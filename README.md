@@ -16,12 +16,12 @@ O teste consiste em duas telas: uma lista de produtos e a página do produto.
 
 O nosso time de produto preparou esse [layout]() para o projeto. A implementação deve ser Pixel perfect.
 
-1. Consumindo esse [endpoint](), faça uma tela mostrando a lista de produtos retornada
+1. Consumindo o endpoint `https://pacific-wave-51314.herokuapp.com/products?page=<page_num>&size=<page_size>`, faça uma tela mostrando a lista de produtos retornada
   * A lista deve suportar paginação
   * As páginas devem ser carregadas apenas quando forem ser exibidas para o usuário
   * A imagem exibida deve vir do `imageObjects` com `featured: true`
   * Extra: para melhorar a performance, é possível descarregar da memória os itens que já passaram e não são mais exibidos na tela?
-2. Ao clicar em um produto, o app deve consumir esse [endpoint]() para exibir a tela de produto
+2. Ao clicar em um produto, o app deve consumir o endpoint `https://pacific-wave-51314.herokuapp.com/products/<product_sku>` para exibir a tela de produto
   * Caso o payload do produto tenha payload `inventory.quantity > 0`, deve ser exibido o botão de adicionar ao carrinho; caso contrário, deve ser exibido o botão de "AVISE-ME"
   * Ao clicar em "COMPRE", deve ser exibida uma modal de confirmação de adição à sacola
   * Clicar em "AVISE-ME" abre uma modal para o usuário digitar seu nome e e-mail
