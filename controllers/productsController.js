@@ -19,11 +19,11 @@ const productsController = {
     const reqProducts = products.slice(start, end)
 
     if(!reqProducts || !reqProducts.length) {
-      response.status(200).send(reqProducts)
-    } else {
       let error = new Error('')
       error.status = 204
       next(error)
+    } else {
+      response.status(200).send(reqProducts)
     }
   },
 
@@ -33,11 +33,11 @@ const productsController = {
     const reqProduct = products.find(prd => prd.sku === String(sku))
 
     if(!reqProduct) {
-      response.status(200).send(reqProduct)
-    } else {
       let error = new Error('Invalid sku')
       error.status = 400
       next(error)
+    } else {
+      response.status(200).send(reqProduct)
     }
   }
 }
