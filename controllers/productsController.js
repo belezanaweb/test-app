@@ -5,12 +5,15 @@ const productsController = {
   index: (req, res) => {
     const { page, size } = req.query || {}
 
-    if (!page || !size) {
+    const _page = Number(page)
+    const _size = Number(size)
+
+    if (!_page || !_size || _page < 1 || _size < 1) {
       return res.status(400).send({ error: 'Invalid query' })
     }
 
-    const start = (page - 1) * size
-    const end = start + size
+    const start = (_page - 1) * _size
+    const end = start + _size
 
     const reqProducts = productList.slice(start, end)
 
