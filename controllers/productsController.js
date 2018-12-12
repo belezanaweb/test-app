@@ -1,35 +1,44 @@
-const productList = require('../mockData/productList.json')
 const products = require('../mockData/products.json')
 
 const productsController = {
-  index: (req, res) => {
-    const { page, size } = req.query || {}
+  list(request, response, next) {
+    const { page, size } = request.query || {}
 
     const _page = Number(page)
     const _size = Number(size)
 
     if (!_page || !_size || _page < 1 || _size < 1) {
-      return res.status(400).send({ error: 'Invalid query' })
+      let error = new Error('Invalid query')
+      error.status = 400
+      return next(error)
     }
 
     const start = (_page - 1) * _size
     const end = start + _size
 
-    const reqProducts = productList.slice(start, end)
+    const reqProducts = products.slice(start, end)
 
-    return (reqProducts && reqProducts.length)
-      ? res.status(200).send(reqProducts)
-      : res.status(204).send()
+    if(!reqProducts || !reqProducts.length) {
+      let error = new Error('')
+      error.status = 204
+      next(error)
+    } else {
+      response.status(200).send(reqProducts)
+    }
   },
 
-  item: (req, res) => {
-    const { sku } = req.params || {}
+  bySku(request, response, next) {
+    const { sku } = request.params || {}
 
     const reqProduct = products.find(prd => prd.sku === String(sku))
 
-    return (reqProduct)
-      ? res.status(200).send(reqProduct)
-      : res.status(400).send({ error: 'Invalid sku' })
+    if(!reqProduct) {
+      let error = new Error('Invalid sku')
+      error.status = 400
+      next(error)
+    } else {
+      response.status(200).send(reqProduct)
+    }
   }
 }
 

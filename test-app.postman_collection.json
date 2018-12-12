@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "8b2ca553-4dfa-418a-a560-eb51a40d5c7c",
+		"name": "test-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d099044c-304c-4c01-ad6f-f0b0c0ffb93c",
+						"exec": [
+							"pm.globals.set(\"base_url\", \"http://localhost:3000\");",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Got 10 products\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.length).to.eql(10);",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=1&size=1\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 1 product on page 1\", function () {",
+							"        pm.expect(response.status).to.eql('OK');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(1);",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=1&size=2\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 2 products on page 1\", function () {",
+							"        pm.expect(response.status).to.eql('OK');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(2);",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=2&size=2\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 2 products on page 2\", function () {",
+							"        pm.expect(response.status).to.eql('OK');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(2);",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=1000&size=1\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 204 (no content) when the page is empty\", function () {",
+							"        pm.expect(response.status).to.eql('No Content');",
+							"        pm.expect(response.text()).to.eql('');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=0&size=1\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) when page is 0\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql('Invalid query');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=-3&size=1\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) when page is negative\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql('Invalid query');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=10&size=0\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) when size is 0\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql('Invalid query');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=1&size=-5555\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) when page is negative\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql('Invalid query');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=aaa&size=wwww\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) when page and size are invalid\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql('Invalid query');",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=1&size=15\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 15 products on page 1\", function () {",
+							"        pm.expect(response.status).to.eql('OK');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(15);",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products?page=2&size=15\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 14 products on page 2\", function () {",
+							"        pm.expect(response.status).to.eql('OK');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.length).to.eql(14);",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/products?page=1&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "products-sku",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d099044c-304c-4c01-ad6f-f0b0c0ffb93c",
+						"exec": [
+							"pm.globals.set(\"base_url\", \"http://localhost:3000\");",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Got correct product\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.sku).to.eql(\"51277\");",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products/123456\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) for invalid product\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql(\"Invalid sku\");",
+							"    });",
+							"});",
+							"",
+							"pm.sendRequest(pm.globals.get(\"base_url\") + \"/products/12cd56\", function (err, response) {",
+							"     ",
+							"    pm.test(\"Got 400 (bad request) for invalid sku\", function () {",
+							"        pm.expect(response.status).to.eql('Bad Request');",
+							"        var jsonData = response.json();",
+							"        pm.expect(jsonData.error).to.eql(\"Invalid sku\");",
+							"    });",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/products/51277",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"products",
+						"51277"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
