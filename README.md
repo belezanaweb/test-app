@@ -14,7 +14,7 @@ Faça um fork deste repositório e crie seus projetos nas pastas `ios` e `androi
 
 O teste consiste em duas telas: uma lista de produtos e a página do produto.
 
-O nosso time de produto preparou esse [layout]() para o projeto. A implementação deve ser Pixel perfect.
+O nosso time de produto preparou esse [layout](https://www.figma.com/file/Dbpn1mqdq2d350NEXojF2v/test-mobile?node-id=392%3A0) para o projeto. A implementação deve ser Pixel perfect.
 
 1. Consumindo o endpoint `https://pacific-wave-51314.herokuapp.com/products?page=<page_num>&size=<page_size>`, faça uma tela mostrando a lista de produtos retornada
   * A lista deve suportar paginação
