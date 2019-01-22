@@ -37,6 +37,6 @@ O nosso time de produto preparou esse [layout](https://www.figma.com/file/Dbpn1m
 * O motivo de ter escolhido a arquitetura e cada tech da stack;
 * Como rodar sua aplicação 😉
 
-# Fim
+# Como enviar
 
 Ao finalizar o teste, submeta um pull request para o repositório que nosso time será notificado. Se tiver alguma observação, escreva no pull request.
