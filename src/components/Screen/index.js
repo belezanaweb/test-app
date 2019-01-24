@@ -1,18 +1,15 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import styles from './styles';
-import { Header } from 'components';
 
-export default ({ children, tint, header }) => {
+export default ({ children }) => {
   return (
     <View style={styles.screen}>
-      <StatusBar
-        translucent={true}
-        backgroundColor="transparent"
-        barStyle={tint ? 'light-content' : 'dark-content'}
-      />
-      <Header header={header} />
+      <SafeAreaView style={styles.safeArea} forceInset={{ top: 'always' }} />
+      <StatusBar translucent={true} backgroundColor="transparent" />
       <View style={styles.content}>{children}</View>
+      <SafeAreaView style={styles.safeArea} forceInset={{ top: 'bottom' }} />
     </View>
   );
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { FlatList, View, ActivityIndicator } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { observer, inject } from 'mobx-react';
-import { Screen, EmptyList, Button } from 'components';
+import { Screen, EmptyList, Button, Header } from 'components';
 import ProductItem from './components/item';
 import styles from './styles';
 
@@ -16,7 +16,7 @@ class ProductList extends Component {
     this.props.navigation.navigate('ShowProduct', { product: product });
   };
 
-  loadMore = () => {
+  loadMoreProducts = () => {
     this.props.ProductStore.getNextPage();
   };
 
@@ -28,43 +28,36 @@ class ProductList extends Component {
     const { products, loading, pagination } = this.props.ProductStore;
 
     return (
-      <Screen
-        header={{
-          title: 'LISTA DE PRODUTOS'
-        }}
-      >
-        <View style={styles.container}>
-          <View style={styles.list}>
-            <FlatList
-              showsVerticalScrollIndicator={false}
-              data={products}
-              keyExtractor={item => item.sku}
-              renderItem={({ item }) => {
-                return (
-                  <ProductItem product={item} onPress={this.handlePressItem} />
-                );
-              }}
-              // onEndReached={this.loadMore}
-              // onEndReachedThreshold={0.5}
-              ListEmptyComponent={
-                !loading ? (
-                  <EmptyList message="Nenhum produto encontrado! :(" />
-                ) : null
-              }
-              ListFooterComponent={
-                <View style={styles.footer}>
-                  <Button
-                    clean
-                    bordered
-                    text="CARREGAR MAIS PRODUTOS"
-                    onPress={this.loadMore}
-                    loading={loading}
-                    disabled={pagination.noMore}
-                  />
-                </View>
-              }
-            />
-          </View>
+      <Screen>
+        <Header title="LISTA DE PRODUTOS" />
+        <View style={styles.containerList}>
+          <FlatList
+            showsVerticalScrollIndicator={false}
+            data={products}
+            keyExtractor={item => item.sku}
+            renderItem={({ item }) => {
+              return (
+                <ProductItem product={item} onPress={this.handlePressItem} />
+              );
+            }}
+            ListEmptyComponent={
+              !loading ? (
+                <EmptyList message="Nenhum produto encontrado! :(" />
+              ) : null
+            }
+            ListFooterComponent={
+              <View style={styles.footerList}>
+                <Button
+                  clean
+                  bordered
+                  text="CARREGAR MAIS PRODUTOS"
+                  onPress={this.loadMoreProducts}
+                  loading={loading}
+                  disabled={pagination.noMore}
+                />
+              </View>
+            }
+          />
         </View>
       </Screen>
     );

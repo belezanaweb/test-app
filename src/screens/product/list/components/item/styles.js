@@ -2,23 +2,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const imageSize = 108;
 
 export default EStyleSheet.create({
-  container: {
+  containerProduct: {
     flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '$white',
-    shadowColor: '$gray',
-    borderRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
-    marginHorizontal: 3,
-    marginTop: 5,
-    marginBottom: 10,
-    padding: 5
+    alignItems: 'center'
   },
   containerLeft: {
     flex: 1,

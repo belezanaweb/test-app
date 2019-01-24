@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Image, View, ActivityIndicator, Text, ScrollView } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import { observer, inject } from 'mobx-react';
-import { Screen } from 'components';
+import { Screen, Header, ContainerBox } from 'components';
 import { getImageUriFromObject } from 'utils/product';
 
 import styles from './styles';
@@ -9,23 +9,29 @@ import Description from './components/Description';
 import BuyButton from './components/BuyButton';
 import LetMeKnowForm from './components/LetMeKnowForm';
 import Price from './components/Price';
+import ShowContentButton from './components/ShowContentButton';
 
 @inject('ProductStore')
 @observer
 class ShowProduct extends Component {
+  state = {
+    showContent: false
+  };
+
   componentWillMount() {
     this.getProduct();
   }
 
-  handlePressItem = product => {
-    this.props.navigation.navigate('ShowProduct', { product: product });
+  isAvailableToBuy = inventory => {
+    return inventory.quantity > 0;
   };
 
-  loadMore = () => {
-    this.props.ProductStore.getNextPage();
-  };
-  isEnableToBuy = product => {
-    return product.inventory.quantity > 0;
+  showContentToggle = () => {
+    this.setState(state => {
+      return {
+        showContent: !state.showContent
+      };
+    });
   };
 
   getProduct = () => {
@@ -40,45 +46,44 @@ class ShowProduct extends Component {
 
   render() {
     const { product, loading } = this.props.ProductStore;
-
+    const { showContent } = this.state;
     return (
-      <Screen
-        header={{
-          title: 'DETALHES DO PRODUTO',
-          goBack: true
-        }}
-      >
-        {loading ? <ActivityIndicator /> : null}
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.container}>
-            <View style={styles.top}>
+      <Screen>
+        <Header title="LISTA DE PRODUTOS" goBack />
+        <View style={styles.wrapProduct}>
+          <ContainerBox scrollEnabled={showContent}>
+            <View style={styles.containerProduct}>
               <Text style={styles.name}>{product.name} </Text>
-              <View style={styles.containerImage}>
-                <Image
-                  source={{
-                    uri: getImageUriFromObject(product.imageObjects, 'large')
-                  }}
-                  style={styles.image}
-                />
+              <Image
+                source={{
+                  uri: getImageUriFromObject(product.imageObjects, 'large')
+                }}
+                style={styles.image}
+              />
+              <View style={styles.containerPriceAndBrand}>
+                <View style={styles.containerPriceAndBrandLeft}>
+                  <Price priceSpecification={product.priceSpecification} />
+                </View>
+                <View style={styles.containerPriceAndBrandRight}>
+                  <Text style={styles.name}>{product.brand.name} </Text>
+                  <Text style={styles.cod}>cod: {product.sku}</Text>
+                </View>
               </View>
-            </View>
-            <View style={styles.containerMiddle}>
-              <View style={styles.containerMiddleLeft}>
-                <Price priceSpecification={product.priceSpecification} />
+              <View style={styles.containerActionButton}>
+                {this.isAvailableToBuy(product.inventory) ? (
+                  <BuyButton />
+                ) : (
+                  <LetMeKnowForm />
+                )}
               </View>
-              <View style={styles.containerMiddleRight}>
-                <Text style={styles.name}>{product.brand.name} </Text>
-                <Text style={styles.cod}>cod: {product.sku}</Text>
-              </View>
-            </View>
-            <View style={styles.button}>
-              {this.isEnableToBuy(product) ? <BuyButton /> : <LetMeKnowForm />}
-            </View>
-            <View style={styles.description}>
               <Description description={product.details.description} />
             </View>
-          </View>
-        </ScrollView>
+            <ShowContentButton
+              onPress={this.showContentToggle}
+              showContent={showContent}
+            />
+          </ContainerBox>
+        </View>
       </Screen>
     );
   }

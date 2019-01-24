@@ -1,24 +1,23 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 const imageSize = 163;
 export default EStyleSheet.create({
-  container: {
+  wrapProduct: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '$white',
-    shadowColor: '$gray',
-    borderRadius: 4,
-    shadowOffset: {
-      width: 0,
-      height: 1
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 2,
-    marginHorizontal: 15,
-    marginTop: 5,
-    marginBottom: 10,
-    padding: 10
+    paddingHorizontal: 10
   },
+  containerScroll: {
+    // flex: 1,
+    backgroundColor: 'blue'
+  },
+  containerProduct: {
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    overflow: 'hidden'
+    // backgroundColor: 'red',
+  },
+
   containerLeft: {
     flex: 1,
     flexDirection: 'column',
@@ -36,12 +35,8 @@ export default EStyleSheet.create({
   image: {
     width: imageSize,
     height: imageSize,
-    resizeMode: 'cover'
-  },
-  containerImage: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 15
+    resizeMode: 'cover',
+    marginVertical: 15
   },
   name: {
     fontSize: 20,
@@ -68,21 +63,21 @@ export default EStyleSheet.create({
     color: '$gray',
     fontSize: 14
   },
-  button: {
+  containerActionButton: {
     flexDirection: 'row'
   },
 
-  containerMiddle: {
+  containerPriceAndBrand: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingVertical: 15,
+    marginVertical: 15,
     alignItems: 'center'
   },
-  containerMiddleLeft: {
+  containerPriceAndBrandLeft: {
     flex: 1,
     alignItems: 'flex-start'
   },
-  containerMiddleRight: {
+  containerPriceAndBrandRight: {
     flex: 1,
     alignItems: 'flex-end'
   }

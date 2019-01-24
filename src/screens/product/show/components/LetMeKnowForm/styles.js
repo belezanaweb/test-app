@@ -1,36 +1,39 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { StatusBar } from 'react-native';
 const styles = EStyleSheet.create({
   wrap: {
-    flex: 1
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '$blackBlur'
   },
   container: {
-    justifyContent: 'space-between',
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: '$white'
+    backgroundColor: '$white',
+    shadowColor: '$dark',
+    borderRadius: 5,
+    shadowOffset: {
+      width: 2,
+      height: 3
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 1,
+    marginHorizontal: 15,
+    marginTop: 5,
+    marginBottom: 10,
+    padding: 5,
+    paddingHorizontal: 20
   },
-  header: {
+  modalHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
   },
-  content: {
-    flex: 1,
-    paddingHorizontal: 20
-  },
-  footer: {},
   textTitle: {
     fontSize: 14,
     color: '$dark',
     fontWeight: 'bold'
   },
-  textFooter: {
-    fontSize: 12,
-    color: '$dark',
-    fontWeight: 'bold'
-  },
+
   closeButton: {
     position: 'absolute',
     right: 10,
@@ -58,13 +61,6 @@ const styles = EStyleSheet.create({
   formControl: {
     paddingVertical: 5,
     flexDirection: 'row'
-  },
-  containerButtonModal: {
-    flexDirection: 'row',
-    backgroundColor: 'red',
-    width: '100%'
-    // flex: 1,
-    // padding:10
   }
 });
 

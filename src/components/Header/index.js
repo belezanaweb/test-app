@@ -1,34 +1,25 @@
 import React from 'react';
 import { Icon } from 'components';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { withNavigation, SafeAreaView } from 'react-navigation';
+import { withNavigation } from 'react-navigation';
 import { substr } from 'utils';
 import styles from './styles';
 
-const Header = ({ header, navigation }) => {
+const Header = ({ title, goBack, navigation }) => {
+  if (!title) return null;
   return (
-    <SafeAreaView style={styles.safeArea} forceInset={{ top: 'always' }}>
-      {!header ? (
-        <View />
-      ) : (
-        <View style={styles.container}>
-          {header.goBack ? (
-            <View style={styles.containerLeft}>
-              <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Icon name="arrow-left" style={styles.goBack} />
-              </TouchableOpacity>
-            </View>
-          ) : null}
-          <View style={styles.containerCenter}>
-            {header.title ? (
-              <Text style={styles.title}>
-                {substr(header.title.toUpperCase(), 25)}
-              </Text>
-            ) : null}
-          </View>
+    <View style={styles.container}>
+      {goBack ? (
+        <View style={styles.containerLeft}>
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <Icon name="arrow-left" style={styles.goBack} />
+          </TouchableOpacity>
         </View>
-      )}
-    </SafeAreaView>
+      ) : null}
+      <View style={styles.containerCenter}>
+        <Text style={styles.title}>{substr(title.toUpperCase(), 25)}</Text>
+      </View>
+    </View>
   );
 };
 

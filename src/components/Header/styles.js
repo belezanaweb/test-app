@@ -8,9 +8,7 @@ export default EStyleSheet.create({
     paddingTop: 10,
     flexDirection: 'row'
   },
-  safeArea: {
-    backgroundColor: '$lightGray'
-  },
+
   title: {
     color: '$dark',
     fontWeight: 'bold',

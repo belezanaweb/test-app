@@ -4,7 +4,7 @@ import { Screen } from 'components';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import styles from './styles';
 
-class AuthLoading extends Component {
+class LoadingScreen extends Component {
   componentWillMount() {
     this.checkUser();
   }
@@ -28,4 +28,4 @@ class AuthLoading extends Component {
   }
 }
 
-export default AuthLoading;
+export default LoadingScreen;

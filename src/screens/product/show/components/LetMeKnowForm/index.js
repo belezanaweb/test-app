@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Modal, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import { Button, Screen } from 'components';
+import { Modal, Text, View, Alert, TextInput } from 'react-native';
+import { Button } from 'components';
 import styles from './styles';
 
 class CustomModal extends Component {
@@ -8,64 +8,73 @@ class CustomModal extends Component {
     modalVisible: this.props.visible || false
   };
 
-  setModalVisible(visible) {
+  toggleModal(visible) {
     this.setState({ modalVisible: visible });
   }
 
   closeModal = () => {
-    this.setModalVisible(false);
+    this.toggleModal(false);
+  };
+  letMeKnowPress = () => {
+    //this timeout to fix ios bug
+    //on showing alert right after close a modal
+    setTimeout(() => {
+      Alert.alert(
+        'Sucesso!',
+        'Você será avisado assim que esse produto chegar!'
+      );
+    }, 500);
+  };
+  handleSubmit = () => {
+    this.setState(
+      state => {
+        return { modalVisible: false };
+      },
+      () => {
+        this.letMeKnowPress();
+      }
+    );
   };
 
   render() {
-    return (
-      <View style={styles.wrap}>
+    const { modalVisible } = this.state;
+    if (!modalVisible) {
+      return (
         <Button
           text="AVISE-ME"
           clean
           bordered
-          onPress={() => this.setModalVisible(true)}
+          onPress={() => this.toggleModal(true)}
         />
-        <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {}}
-          transparent
-        >
-          <Screen>
-            <View style={styles.container}>
-              <View style={styles.header}>
-                <Text style={styles.textTitle}>AVISE-ME</Text>
+      );
+    }
+    return (
+      <Modal
+        animationType="fade"
+        visible={this.state.modalVisible}
+        onRequestClose={() => {}}
+        transparent
+      >
+        <View style={styles.wrap}>
+          <View style={styles.container}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.textTitle}>AVISE-ME</Text>
+            </View>
+            <View style={styles.modalContent}>
+              <View style={styles.formControl}>
+                <TextInput style={styles.textInput} placeholder="Seu nome" />
               </View>
-
-              <View style={styles.content}>
-                <View style={styles.containerForm}>
-                  <View style={styles.formControl}>
-                    <TextInput
-                      style={styles.textInput}
-                      placeholder="Seu nome"
-                    />
-                  </View>
-                  <View style={styles.formControl}>
-                    <TextInput
-                      style={styles.textInput}
-                      placeholder="Seu email"
-                    />
-                  </View>
-                  <View style={styles.formControl}>
-                    <Button
-                      text="Avise-me"
-                      flex={2}
-                      onPress={this.closeModal}
-                    />
-                    <Button text="Cancelar" clean onPress={this.closeModal} />
-                  </View>
-                </View>
+              <View style={styles.formControl}>
+                <TextInput style={styles.textInput} placeholder="Seu email" />
+              </View>
+              <View style={styles.formControl}>
+                <Button text="Avise-me" flex={2} onPress={this.handleSubmit} />
+                <Button text="Cancelar" clean onPress={this.closeModal} />
               </View>
             </View>
-          </Screen>
-        </Modal>
-      </View>
+          </View>
+        </View>
+      </Modal>
     );
   }
 }

@@ -4,14 +4,15 @@ export default EStyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: '$white',
-    // marginTop: statusBarTranslucent ? StatusBar.currentHeight : 0
-
     '@media android': {
-      paddingTop: StatusBar.currentHeight + 5,
+      paddingTop: StatusBar.currentHeight + 5
     },
     '@media ios': {
-      paddingTop: 5,
+      paddingTop: 5
     }
+  },
+  safeArea: {
+    backgroundColor: '$lightGray'
   },
   content: {
     backgroundColor: '$lightGray',
