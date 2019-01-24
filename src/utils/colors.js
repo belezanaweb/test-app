@@ -14,6 +14,6 @@ EStyleSheet.build({
   $hardDark: '#111111',
   $lightGray: '#F5F5F5',
   $gray: '#C4C4C4',
-
-  $blackBlur: 'rgba(0,0,0,0.7)'
+  $blackBlur: 'rgba(0,0,0,0.7)',
+  $whiteBlur: 'rgba(255,255,255,0.8)',
 });

@@ -13,7 +13,7 @@ const styles = options =>
     },
     containerButton: {
       flexDirection: 'row',
-      backgroundColor: options.hidden ? 'rgba(255,255,255,0.8)' : '$white',
+      backgroundColor: options.hidden ? '$whiteBlur' : '$white',
       position: options.hidden ? 'absolute' : 'relative',
       left: 0,
       right: 0,
