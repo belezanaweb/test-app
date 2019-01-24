@@ -1,9 +1,33 @@
-# test-app
-## How to run
-1 - clone this repository
-2 - cd /test-app/ run "npm install or yarn" to install all dependencies
-3 - run "react-native run-ios" for ios devices or "react-native run-android" for android devices.
-*Troubleshooting:
+# test-app beleza na web
+
+## Install
+``` bash
+# Clone the repository
+$ git clone https://github.com/alexrili/test-app
+
+# Go into the repository
+$ cd test-app
+
+# Install dependencies
+$ npm install or yarn
+```
+
+## Usage
+First you need to generate the binar.
+``` bash
+# For IOS devices
+$ react-native run-ios
+
+# For Android devices
+$ react-native devices
+```
+
+## Last Step
+``` bash
+# Close any terminal window that opened during compilation and then
+$ yarn start or npm start
+```
+### Troubleshooting:
 Becouse of babel-module-resolver plugin, you may have a troble to compile the the js bundle
 To solve this problem, just compile the bundle inside the project root folder, in this case cd /test-app run "yarn start"
 the bundle will be compiled en everything must doing good.
