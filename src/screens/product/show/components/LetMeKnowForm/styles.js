@@ -11,6 +11,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '$white'
   },
   header: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20
@@ -49,6 +50,7 @@ const styles = EStyleSheet.create({
     borderWidth: 1,
     flex: 1,
     paddingHorizontal: 15,
+    paddingVertical: 10,
     fontSize: 14,
     fontWeight: 'bold',
     color: '$dark'

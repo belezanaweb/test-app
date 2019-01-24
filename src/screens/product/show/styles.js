@@ -85,9 +85,5 @@ export default EStyleSheet.create({
   containerMiddleRight: {
     flex: 1,
     alignItems: 'flex-end'
-  },
-  description: {
-    // height: 'auto'
-    // overflow: 'hidden'
   }
 });

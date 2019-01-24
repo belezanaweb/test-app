@@ -3,11 +3,12 @@ import { Image, View, ActivityIndicator, Text, ScrollView } from 'react-native';
 import { observer, inject } from 'mobx-react';
 import { Screen } from 'components';
 import { getImageUriFromObject } from 'utils/product';
-import { formatCurrency } from 'utils';
+
 import styles from './styles';
 import Description from './components/Description';
 import BuyButton from './components/BuyButton';
 import LetMeKnowForm from './components/LetMeKnowForm';
+import Price from './components/Price';
 
 @inject('ProductStore')
 @observer
@@ -23,10 +24,6 @@ class ShowProduct extends Component {
   loadMore = () => {
     this.props.ProductStore.getNextPage();
   };
-  handleScroll = (width, height) => {
-    this.refs.product.scrollTo({ y: height, animation: true });
-  };
-
   isEnableToBuy = product => {
     return product.inventory.quantity > 0;
   };
@@ -38,7 +35,7 @@ class ShowProduct extends Component {
       return;
     }
     const sku = this.props.navigation.getParam('sku');
-    this.props.ProductStore.getProduct('46851');
+    this.props.ProductStore.getProduct(sku);
   };
 
   render() {
@@ -52,7 +49,7 @@ class ShowProduct extends Component {
         }}
       >
         {loading ? <ActivityIndicator /> : null}
-        <ScrollView ref="product" onContentSizeChange={this.handleScroll}>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.container}>
             <View style={styles.top}>
               <Text style={styles.name}>{product.name} </Text>
@@ -67,22 +64,7 @@ class ShowProduct extends Component {
             </View>
             <View style={styles.containerMiddle}>
               <View style={styles.containerMiddleLeft}>
-                {product.priceSpecification.discount > 0 ? (
-                  <Text style={styles.maxPrice}>
-                    {formatCurrency(product.priceSpecification.maxPrice)}
-                  </Text>
-                ) : null}
-                <Text style={styles.price}>
-                  {formatCurrency(product.priceSpecification.price)}
-                </Text>
-                <Text style={styles.installments}>
-                  {`${
-                    product.priceSpecification.installments.numberOfPayments
-                  } x de `}
-                  {formatCurrency(
-                    product.priceSpecification.installments.monthlyPayment
-                  )}
-                </Text>
+                <Price priceSpecification={product.priceSpecification} />
               </View>
               <View style={styles.containerMiddleRight}>
                 <Text style={styles.name}>{product.brand.name} </Text>
@@ -93,11 +75,7 @@ class ShowProduct extends Component {
               {this.isEnableToBuy(product) ? <BuyButton /> : <LetMeKnowForm />}
             </View>
             <View style={styles.description}>
-              <Description
-                title="DESCRIÇÃO DO PRODUTO"
-                buttonText="Continuar Lendo"
-                text={product.details.description}
-              />
+              <Description description={product.details.description} />
             </View>
           </View>
         </ScrollView>

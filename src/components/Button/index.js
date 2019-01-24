@@ -10,13 +10,14 @@ export default ({
   loading,
   onPress,
   text,
-  disabled
+  disabled,
+  flex
 }) => {
   const activityColor = clean
     ? EStyleSheet.value('$primary')
     : EStyleSheet.value('$white');
 
-  const styles = buttonStyles({ primary, clean, bordered });
+  const styles = buttonStyles({ primary, clean, bordered, flex });
   if (disabled) {
     return (
       <View style={[styles.container, styles.disabled]}>

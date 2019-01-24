@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FlatList, View, ActivityIndicator } from 'react-native';
 import { observer, inject } from 'mobx-react';
 import { Screen, EmptyList, Button } from 'components';
-import ProductItem from '../components/item';
+import ProductItem from './components/item';
 import styles from './styles';
 
 @inject('ProductStore')

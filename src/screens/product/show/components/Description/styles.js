@@ -3,7 +3,6 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 const styles = options =>
   EStyleSheet.create({
     container: {
-      // marginTop: 20,
       paddingBottom: options.hidden ? 20 : 0
     },
     hiddenArea: {
@@ -41,11 +40,11 @@ const styles = options =>
       fontWeight: '500',
       fontSize: 16,
       color: '$dark',
-      marginTop: 15
-      // bottom:-20
+      marginTop: 15,
+      marginBottom: 5
     },
     text: {
-      fontSize: 12,
+      fontSize: 13,
       color: '$lightDark',
       lineHeight: 19,
       padding: 0,

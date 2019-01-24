@@ -2,7 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 export default options => {
   return EStyleSheet.create({
     container: {
-      flex: 1,
+      flex: options.flex || 1,
       borderRadius: 4,
       paddingHorizontal: 10,
       paddingVertical: 10,

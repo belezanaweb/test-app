@@ -19,18 +19,18 @@ export default class Description extends Component {
 
   render() {
     const { hidden } = this.state;
-    const { size, title, text, buttonText } = this.props;
-    const styles = tabStyles({ hidden, size });
+    const { description } = this.props;
+    const styles = tabStyles({ hidden });
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>Descrição do Produto</Text>
         <View style={styles.hiddenArea}>
-          <Text style={styles.text}>{htmlStrip(text)}</Text>
+          <Text style={styles.text}>{htmlStrip(description)}</Text>
         </View>
         <View style={styles.containerButton}>
           <TouchableOpacity style={styles.button} onPress={this.toggleArea}>
             <Text style={styles.buttonText}>
-              {hidden ? buttonText : 'Esconder'}
+              {hidden ? 'Continuar Lendo' : 'Esconder'}
             </Text>
             <Icon
               name={hidden ? 'chevron-down' : 'chevron-up'}
