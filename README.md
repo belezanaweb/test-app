@@ -22,12 +22,11 @@ $ react-native run-ios
 $ react-native devices
 ```
 
-## Last Step
-``` bash
-# Close any terminal window that opened during compilation and then
-$ yarn start or npm start
-```
 ### Troubleshooting:
-Becouse of babel-module-resolver plugin, you may have a troble to compile the the js bundle
+If you have troble during bundle compilation, may be a babel-module-resolver plugin
 To solve this problem, just compile the bundle inside the project root folder, in this case cd /test-app run "yarn start"
 the bundle will be compiled en everything must doing good.
+``` bash
+# Go into the repository and run 
+$ cd test-app yarn start
+```
