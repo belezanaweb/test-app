@@ -4,7 +4,15 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start --reset-cache",
-    "test": "jest"
+    "test": "jest",
+    "clean-up": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-bundler-cache-*  && npm cache clean --force &&  rm -rf node_modules/ &&  yarn",
+    "clean-up-light": "watchman watch-del-all && rm -rf $TMPDIR/react-* && rm -rf $TMPDIR/metro-bundler-cache-*  && npm cache clean --force",
+    "bundle:ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.js' --bundle-output='./ios/testAppBelezaNaWeb/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
+    "bundle:iosDebug": "node node_modules/react-native/local-cli/cli.js bundle --entry-file='index.js' --bundle-output='./ios/testAppBelezaNaWeb/main.jsbundle' --dev=true --platform='ios' --assets-dest='./ios'",
+    "bundle:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
+    "bundle:androidDebug": "react-native bundle --platform android --dev true --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/",
+    "build:android": "cd android && ./gradlew assembleRelease",
+    "build:androidDebug": "cd android && ./gradlew assembleDebug"
   },
   "dependencies": {
     "axios": "^0.18.0",
