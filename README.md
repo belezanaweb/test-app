@@ -11,9 +11,7 @@ $ cd test-app
 # Install dependencies
 $ npm install or yarn
 ```
-
-## How to run
-First you need to generate the binary.
+After install all dependencies, just run the command below
 ``` bash
 # For IOS devices
 $ react-native run-ios
