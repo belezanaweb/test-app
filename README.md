@@ -17,7 +17,7 @@ After install all dependencies, just run the command below
 $ react-native run-ios
 
 # For Android devices
-$ react-native devices
+$ react-native run-android
 ```
 
 ## IphoneX -12.1 IOS Simulator | ScreenShots
