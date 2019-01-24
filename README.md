@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # test-app beleza na web
 
 ## Install
@@ -69,4 +68,3 @@ O nosso time de produto preparou esse [layout](https://www.figma.com/file/Dbpn1m
 # Como enviar
 
 Ao finalizar o teste, submeta um pull request para o repositório que nosso time será notificado. Se tiver alguma observação, escreva no pull request.
->>>>>>> 558c387197a38dd8275b6415cac6e37a9344e9ec
