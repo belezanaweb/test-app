@@ -11,6 +11,15 @@
     "@types/styled-components": "^4.1.14",
     "react": "16.8.3",
     "react-native": "0.59.2",
+    "react-native-gesture-handler": "^1.1.0",
+    "react-navigation": "^3.7.1",
+    "react-navigation-redux-helpers": "^3.0.0",
+    "react-redux": "^7.0.1",
+    "reactotron-react-native": "^3.2.1",
+    "reactotron-redux": "^3.1.0",
+    "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
+    "redux-persist-transform-filter": "^0.0.18",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {

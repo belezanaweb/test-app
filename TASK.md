@@ -13,9 +13,7 @@
 - [x] ModuleResolver
 - [x] StyledComponents
 - [x] TsLint and Prettier
-- [ ] React Navigation
-- [ ] Redux
-- [ ] Redux Persist
-- [ ] Reactotron
-
-
+- [x] React Navigation
+- [x] Redux
+- [x] Redux Persist
+- [x] Reactotron
