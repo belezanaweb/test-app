@@ -1,0 +1,25 @@
+{
+	"presets": ["module:metro-react-native-babel-preset"],
+	"env": {
+		"test": {},
+		"storybook": {},
+		"production": {
+			"plugins": ["react-native-paper/babel","transform-remove-console"]
+		}
+	},
+	"plugins": [
+		"transform-inline-environment-variables",
+		[
+			"module-resolver",
+			{
+				"root": ["./src"],
+				"alias": {
+					"src": "./src",
+					"components": "./src/components",
+					"screens": "./src/screens",
+					"store": "./src/store"
+				}
+			}
+		]
+	]
+}

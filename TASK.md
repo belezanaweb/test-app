@@ -9,7 +9,7 @@
   
 
 # Stack
-- [ ] TypeScript
+- [x] TypeScript
 - [ ] ModuleResolver
 - [ ] StyledComponents
 - [ ] React Navigation

@@ -1,0 +1,61 @@
+{
+  "compilerOptions": {
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2015",
+    "module": "es6",
+    "moduleResolution": "node",
+    "jsx": "react-native",
+    "lib": [
+      "dom",
+      "es2017",
+      "esnext"
+    ],
+    "baseUrl": "./src",
+    "rootDir": "./src",
+    "paths": {
+      "*": [
+        "*"
+      ],
+      "assets": [
+        "../assets"
+      ]
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "preserveConstEnums": true,
+    "allowJs": false,
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": false,
+    "skipLibCheck": true
+  },
+  "types": [
+    "react",
+    "react-native",
+    "jest"
+  ],
+  "exclude": [
+    ".idea",
+    ".vscode",
+    "assets",
+    "resources",
+    "android",
+    "App.js",
+    "ios",
+    "build",
+    "node_modules",
+    "__mocks__",
+    "__scripts__",
+    "resources",
+    "storybook",
+    "**/*.story.tsx",
+    "**/*.storybook.tsx",
+    "**/storybook.tsx"
+  ],
+  "compileOnSave": false
+}
