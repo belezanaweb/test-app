@@ -10,8 +10,8 @@
 
 # Stack
 - [x] TypeScript
-- [ ] ModuleResolver
-- [ ] StyledComponents
+- [x] ModuleResolver
+- [x] StyledComponents
 - [ ] React Navigation
 - [ ] Redux
 - [ ] Redux Persist

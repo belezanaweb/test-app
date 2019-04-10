@@ -17,7 +17,8 @@
 					"src": "./src",
 					"components": "./src/components",
 					"screens": "./src/screens",
-					"store": "./src/store"
+					"store": "./src/store",
+					"theme": "./src/theme"
 				}
 			}
 		]
