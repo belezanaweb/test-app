@@ -1,5 +1,4 @@
 import * as styledComponents from 'styled-components/native'
-import { ReactNativeThemedStyledComponentsModule } from 'styled-components/native'
 
 interface ITheme {
   primary: string
@@ -48,7 +47,7 @@ const {
   default: styled,
   css,
   ThemeProvider
-} = styledComponents as ReactNativeThemedStyledComponentsModule<ITheme>
+} = styledComponents as styledComponents.ReactNativeThemedStyledComponentsModule<ITheme>
 
 export { css, ThemeProvider, themeColors }
 export default styled

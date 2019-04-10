@@ -32,7 +32,10 @@
     "noImplicitReturns": true,
     "noUnusedParameters": true,
     "noUnusedLocals": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strictFunctionTypes": true,
+    "alwaysStrict": true
   },
   "types": [
     "react",

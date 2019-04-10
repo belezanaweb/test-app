@@ -12,6 +12,7 @@
 - [x] TypeScript
 - [x] ModuleResolver
 - [x] StyledComponents
+- [x] TsLint and Prettier
 - [ ] React Navigation
 - [ ] Redux
 - [ ] Redux Persist
