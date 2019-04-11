@@ -1,6 +1,7 @@
 import * as styledComponents from 'styled-components/native'
 
 interface ITheme {
+  background: string
   primary: string
   primaryText: string
   blueDark: string
@@ -23,6 +24,7 @@ interface ITheme {
 }
 
 const themeColors: ITheme = {
+  background: '#f1f1f1',
   black: '#000000',
   black60: 'rgba(0, 0, 0, 0.6)',
   grayDark: '#676F89',
@@ -30,8 +32,8 @@ const themeColors: ITheme = {
   grayDark10: 'rgba(103, 111, 137, 0.1)',
   grayLight: '#F2F4F7',
   white: '#FFFFFF',
-  primary: '#FF5E4A',
-  primaryText: '#333',
+  primary: '#E66100',
+  primaryText: '#FFF',
   blueDark: '#0B5EDB',
   blueDark10: 'rgba(11, 94, 219, 0.1)',
   blueLight: '#0090C7',
