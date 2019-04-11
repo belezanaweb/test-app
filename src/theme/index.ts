@@ -25,9 +25,9 @@ interface ITheme {
 
 const themeColors: ITheme = {
   background: '#f1f1f1',
-  black: '#000000',
+  black: '#212121',
   black60: 'rgba(0, 0, 0, 0.6)',
-  grayDark: '#676F89',
+  grayDark: '#777',
   grayDark30: 'rgba(103, 111, 137, 0.3)',
   grayDark10: 'rgba(103, 111, 137, 0.1)',
   grayLight: '#F2F4F7',
