@@ -27,7 +27,7 @@ const productReducer: Reducer<IProductState> = (state = initialState, action) =>
       return {
         ...state,
         loading: true,
-        page: state.page +1,
+        page: state.page + 1,
       }
 
     case actions.PRODUCTS_LOAD_SUCCESS:
@@ -38,11 +38,26 @@ const productReducer: Reducer<IProductState> = (state = initialState, action) =>
         products: [...state.products, ...action.payload],
       }
 
-    case actions.PRODUCTS_LOAD_FAILED:
+    case actions.PRODUCTS_LOAD_FAILED || actions.PRODUCT_LOAD_FAILED:
       return {
         ...state,
         loading: false,
         error: action.payload,
+      }
+
+    case actions.PRODUCT_LOAD:
+      return {
+        ...state,
+        loading: true,
+        product: null
+      }
+
+    case actions.PRODUCT_LOAD_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        product: action.payload,
       }
 
     default:

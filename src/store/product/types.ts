@@ -169,59 +169,59 @@ export interface IOrganization2 {
   links: ILink4[]
 }
 
-export interface Details2 {
+export interface IDetails2 {
   shortDescription: string
   description: string
 }
 
-export interface Installments2 {
+export interface IInstallments2 {
   numberOfPayments: number
   monthlyPayment: number
 }
 
-export interface PriceSpecification2 {
+export interface IPriceSpecification2 {
   sku: string
   price: number
   maxPrice: number
   percent: number
   discount: number
-  installments: Installments2
+  installments: IInstallments2
 }
 
-export interface Link5 {
+export interface ILink5 {
   rel: string
   href: string
 }
 
-export interface ExternalCategories {
+export interface IExternalCategories {
   id: string
-  link: Link5
+  link: ILink5
   breadCrumb: string
 }
 
-export interface Integration {
-  externalCategories: ExternalCategories
+export interface IIntegration {
+  externalCategories: IExternalCategories
   name: string
   source: string
 }
 
-export interface Link6 {
+export interface ILink6 {
   rel: string
   href: string
 }
 
-export interface Breadcrumb {
+export interface IBreadcrumb {
   name: string
   url: string
-  links: Link6[]
+  links: ILink6[]
 }
 
-export interface Link7 {
+export interface ILink7 {
   rel: string
   href: string
 }
 
-export interface Gift {
+export interface IGift {
   sku: string
   name: string
   releaseDate: Date
@@ -237,19 +237,19 @@ export interface Gift {
   slugName: string
   scaleValue: IScaleValue2
   organization: IOrganization2
-  details: Details2
-  priceSpecification: PriceSpecification2
-  integrations: Integration[]
+  details: IDetails2
+  priceSpecification: IPriceSpecification2
+  integrations: IIntegration[]
   badge: any[]
   compositionId: string
-  breadcrumb: Breadcrumb[]
+  breadcrumb: IBreadcrumb[]
   aggregatedSkus: string[]
   hidden: boolean
-  links: Link7[]
+  links: ILink7[]
   hasGiftBenefits: boolean
 }
 
-export interface Period {
+export interface IPeriod {
   begin: Date
   showStopwatch: boolean
 }
@@ -260,8 +260,8 @@ export interface IBenefit {
   offerHintDescription: string
   type: string
   target: string
-  gifts: Gift[]
-  period: Period
+  gifts: IGift[]
+  period: IPeriod
 }
 
 export interface IAggregateRating {
@@ -269,58 +269,58 @@ export interface IAggregateRating {
   ratingCount: number
 }
 
-export interface Link8 {
+export interface ILink8 {
   rel: string
   href: string
 }
 
-export interface Value {
+export interface IValue {
   id: string
   name: string
   slugName: string
   disabled: boolean
   value: string
   checked: boolean
-  links: Link8[]
+  links: ILink8[]
 }
 
-export interface Link9 {
+export interface ILink9 {
   rel: string
   href: string
 }
 
-export interface Attribute {
+export interface IAttribute {
   id: string
   name: string
   slugName: string
   required: boolean
   filterable: boolean
   groupUpdate: boolean
-  values: Value[]
-  links: Link9[]
+  values: IValue[]
+  links: ILink9[]
 }
 
-export interface Subcategory {
+export interface ISubcategory {
 }
 
-export interface Link10 {
+export interface ILink10 {
   rel: string
   href: string
 }
 
-export interface Category {
+export interface ICategory {
   id: string
   slugName: string
   name: string
-  attributes: Attribute[]
-  subcategory: Subcategory
-  links: Link10[]
+  attributes: IAttribute[]
+  subcategory: ISubcategory
+  links: ILink10[]
 }
 
-export interface Category2 {
+export interface ICategory2 {
 }
 
-export interface Link11 {
+export interface ILink11 {
   rel: string
   href: string
 }
@@ -329,25 +329,25 @@ export interface IDepartment {
   id: string
   slugName: string
   name: string
-  categories: Category[]
-  category: Category2
+  categories: ICategory[]
+  category: ICategory2
   priority: number
-  links: Link11[]
+  links: ILink11[]
 }
 
-export interface Link12 {
+export interface ILink12 {
   rel: string
   href: string
 }
 
-export interface ExternalCategories2 {
+export interface IExternalCategories2 {
   id: string
-  link: Link12
+  link: ILink12
   breadCrumb: string
 }
 
 export interface IIntegration2 {
-  externalCategories: ExternalCategories2
+  externalCategories: IExternalCategories2
   name: string
   source: string
 }
@@ -370,7 +370,7 @@ export interface IShowcasePreview {
   url: string
 }
 
-export interface Link13 {
+export interface ILink13 {
   rel: string
   href: string
 }
@@ -378,7 +378,7 @@ export interface Link13 {
 export interface IBreadcrumb2 {
   name: string
   url: string
-  links: Link13[]
+  links: ILink13[]
 }
 
 export interface ILastUpdate {

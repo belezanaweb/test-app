@@ -11,13 +11,13 @@ export const PRODUCT_LOAD_SUCCESS = 'PRODUCT_LOAD_SUCCESS'
 export const PRODUCT_LOAD_FAILED = 'PRODUCT_LOAD_FAILED'
 
 
-export const ProductsLoad: ActionCreator<IReduxAction> = payload => ({
-  type: PRODUCTS_LOAD,
+export const ProductsPaginate: ActionCreator<IReduxAction> = payload => ({
+  type: PRODUCTS_PAGINATE,
   payload,
 })
 
-export const ProductsPaginate: ActionCreator<IReduxAction> = payload => ({
-  type: PRODUCTS_PAGINATE,
+export const ProductsLoad: ActionCreator<IReduxAction> = payload => ({
+  type: PRODUCTS_LOAD,
   payload,
 })
 
@@ -28,6 +28,21 @@ export const ProductsLoadSuccess: ActionCreator<IReduxAction> = payload => ({
 
 export const ProductsLoadFailed: ActionCreator<IReduxAction> = payload => ({
   type: PRODUCTS_LOAD_FAILED,
+  payload,
+})
+
+export const ProductLoad: ActionCreator<IReduxAction> = payload => ({
+  type: PRODUCT_LOAD,
+  payload,
+})
+
+export const ProductLoadSuccess: ActionCreator<IReduxAction> = payload => ({
+  type: PRODUCT_LOAD_SUCCESS,
+  payload,
+})
+
+export const ProductLoadFailed: ActionCreator<IReduxAction> = payload => ({
+  type: PRODUCT_LOAD_FAILED,
   payload,
 })
 

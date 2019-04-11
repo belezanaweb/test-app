@@ -4,8 +4,6 @@ export const onPaginate = async (state) => {
     return resp.json()
 
   } catch (e) {
-    console.log({ e })
-
     return e
 
   }
@@ -18,7 +16,6 @@ export const onProduct = async (cod: number) => {
     return resp.json()
 
   } catch (e) {
-    console.log({ e })
     return e
   }
 }

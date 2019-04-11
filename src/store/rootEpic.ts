@@ -1,10 +1,11 @@
 import { combineEpics } from 'redux-observable'
-import { productsEpic } from 'store/product/epic'
+import { productEpic, productsEpic } from 'store/product/epic'
 
 // Import epic here
 
 const epics = [
-  productsEpic
+  productsEpic,
+  productEpic,
     // Insert epic here
 ]
 
