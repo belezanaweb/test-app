@@ -34,7 +34,7 @@ class Products extends React.Component<IProps, IState> {
 
   componentDidMount(): void {
     const { data, ProductsPaginate } = this.props
-    if (!data) ProductsPaginate()
+    if (!data.length) ProductsPaginate()
   }
 
   render(): React.ReactElement {
