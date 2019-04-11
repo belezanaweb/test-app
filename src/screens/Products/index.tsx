@@ -1,51 +1,80 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Platform } from 'react-native'
-import styled, { themeColors } from 'theme'
+import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { FlatList } from 'react-native'
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' + 'Shake or press menu button for dev menu',
+import {  Container, Button, ButtonText, ProductListItem } from 'components'
+
+import styled from 'theme'
+import { IActionCreators, IConnectedProps, IProps, IState } from './types'
+import { IAppState } from 'store/types'
+import { ProductsLoad, ProductsPaginate } from 'store/product/actions'
+
+const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = state => ({
+  loading: state.product.loading,
+  data: state.product.products,
+  refreshing: state.product.refreshing,
 })
 
-interface IProps {}
+const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch =>
+  bindActionCreators(
+    {
+      ProductsLoad,
+      ProductsPaginate,
+    },
+    dispatch
+  )
 
-const mapStateToProps = () => ({})
-
-const bindActions = dispatch => ({})
-
-class Products extends React.Component<IProps, {}> {
+class Products extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: 'LISTA DE PRODUTOS',
   }
-  render(): JSX.Element {
+
+  componentDidMount(): void {
+    this.props.ProductsPaginate()
+  }
+
+  render(): React.ReactElement {
+    const { data, loading, refreshing, ProductsLoad, ProductsPaginate } = this.props
     return (
       <Container>
-        <Title>Produtos</Title>
-        <Text>To get started, edit App.js</Text>
-        <Text>{instructions}</Text>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => (
+            <ProductListItem
+              item={item}
+              onPress={sku => this.props.navigation.navigate('Product', { sku })}
+            />
+          )}
+          keyExtractor={i => i.sku}
+          // onRefresh={() => ProductsLoad()}
+          // refreshing={refreshing}
+          // onEndReached={() => !loading && ProductsPaginate()}
+          // onEndReachedThreshold={0.1}
+          // ListFooterComponent={loading && <Loading />}
+        />
+
+        <Button
+          border
+          margin
+          onPress={() => ProductsPaginate()}>
+          <ButtonText primary={true}>CARREGAR MAIS</ButtonText>
+        </Button>
       </Container>
     )
   }
 }
 
-const Container = styled.View`
-  flex: 1;
-  background-color: #f1f1f1;
-  justify-content: center;
-  align-items: center;
-`
-const Title = styled.Text`
-  font-size: 20px;
-  font-weight: bold;
-  color: ${props => props.theme.primary};
-`
 
-const Text = styled.Text`
-  color: ${props => props.theme.primaryText};
+
+const Loading = styled.ActivityIndicator`
+  align-items: center;
+  height: 20px;
+  margin: 10px 0;
+  background-color: #fff;
 `
 
 export default connect(
   mapStateToProps,
-  bindActions
+  mapDispatchToProps
 )(Products)
