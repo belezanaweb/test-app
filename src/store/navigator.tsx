@@ -21,7 +21,7 @@ interface IProps {
 interface IState {
 
 }
-class navigator extends React.Component<IProps, IState> {
+class Navigator extends React.Component<IProps, IState> {
   static propTypes = {
     dispatch: ProtoTypes.func.isRequired,
     nav: ProtoTypes.shape({
@@ -71,4 +71,4 @@ class navigator extends React.Component<IProps, IState> {
 
 const mapStateToProps = ({ nav }) => ({ nav })
 
-export default connect(mapStateToProps)(navigator)
+export default connect(mapStateToProps)(Navigator)
