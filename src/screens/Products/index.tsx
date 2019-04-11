@@ -9,6 +9,7 @@ import styled from 'theme'
 import { IActionCreators, IConnectedProps, IProps, IState } from './types'
 import { IAppState } from 'store/types'
 import { ProductsLoad, ProductsPaginate } from 'store/product/actions'
+import { ThemeSwitch } from 'store/app/actions'
 
 const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = state => ({
   loading: state.product.loading,
@@ -21,6 +22,7 @@ const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch
     {
       ProductsLoad,
       ProductsPaginate,
+      ThemeSwitch,
     },
     dispatch
   )
@@ -36,9 +38,16 @@ class Products extends React.Component<IProps, IState> {
   }
 
   render(): React.ReactElement {
-    const { data, loading, refreshing, ProductsLoad, ProductsPaginate } = this.props
+    const { data, loading, refreshing, ProductsLoad, ProductsPaginate, ThemeSwitch } = this.props
     return (
       <Container>
+        <Button
+          border
+          margin
+          onPress={() => ThemeSwitch()}>
+          <ButtonText primary={true}>TROCAR TEMA</ButtonText>
+        </Button>
+
         <FlatList
           data={data}
           renderItem={({ item }) => (

@@ -3,7 +3,7 @@ import styled from 'theme'
 export const ProductBlock = styled.View`
   height: 140px;
   flex-direction: row;
-  background-color: #fff;
+  background-color: ${props => props.theme.backgroundPrimary};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin: 5px 10px;
@@ -41,7 +41,7 @@ export const ProductText = styled.Text`
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  color: #212121;
+  color: ${props => props.theme.black};
   margin-bottom: 10px;
 `
 
@@ -57,5 +57,5 @@ export const ProductPriceOld = styled.Text`
   font-weight: normal;
   font-size: 11px;
   text-decoration-line: line-through;
-  color: #999999;
+  color: ${props => props.theme.grayLight};
 `

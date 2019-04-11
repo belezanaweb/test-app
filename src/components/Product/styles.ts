@@ -1,9 +1,9 @@
 import styled from 'theme'
-import { StyleSheet } from 'react-native'
+import { withTheme,  } from 'styled-components'
 
 
 export const ProductBlock = styled.View`
-  background-color: #fff;
+  background-color: ${props => props.theme.backgroundPrimary};
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin: 5px 10px;
@@ -35,7 +35,7 @@ export const ColRight = styled.View<{ right?: boolean }>`
 export const ProductText = styled.Text`
   font-weight: 500;
   font-size: 20px;
-  color: #212121;
+  color: ${props => props.theme.black};
   margin-bottom: 10px;
 `
 
@@ -81,15 +81,6 @@ export const ProductDescTitle = styled.Text`
   color: ${props => props.theme.black};
   margin-top: 10px;
 `
-
-
-export const htmlStyle = StyleSheet.create({
-  br: {
-    height: 2,
-  },
-  p: {},
-  strong: {},
-})
 
 
 export const CarouselBackgroundView = styled.View`

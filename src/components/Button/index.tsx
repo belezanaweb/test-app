@@ -6,8 +6,8 @@ interface IProps {
   margin?: boolean
 }
 
-export const Button: JSX.Element = styled.TouchableHighlight<IProps>`
-  background-color: ${props => props.border ? '#FFF' : props.theme.primary};
+export const Button = styled.TouchableHighlight<IProps>`
+  background-color: ${props => props.border ? props.theme.backgroundPrimary : props.theme.primary};
   border: 2px solid ${props => props.theme.primary};
   border-radius: 4px;
   justify-content: center;
@@ -16,7 +16,7 @@ export const Button: JSX.Element = styled.TouchableHighlight<IProps>`
   margin: ${props => props.margin ? 10 : 0}px
 `
 
-export const ButtonText: JSX.Element = styled.Text`
+export const ButtonText = styled.Text`
   font-style: normal;
   font-weight: bold;
   font-size: 14px;

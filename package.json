@@ -8,11 +8,10 @@
     "lint": "tslint 'src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@types/styled-components": "^4.1.14",
     "react": "16.8.3",
     "react-native": "0.59.2",
     "react-native-gesture-handler": "^1.1.0",
-    "react-native-htmlview": "^0.13.0",
+    "react-native-render-html": "^4.1.2",
     "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^3.7.1",
     "react-navigation-redux-helpers": "^3.0.0",
@@ -27,6 +26,7 @@
     "styled-components": "^4.2.0"
   },
   "devDependencies": {
+    "@types/styled-components": "^4.1.14",
     "@babel/core": "^7.4.0",
     "@babel/runtime": "^7.4.2",
     "@react-native-community/eslint-config": "^0.0.3",
