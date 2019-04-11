@@ -1,8 +1,20 @@
-import { applyMiddleware, compose, createStore } from 'redux'
+import { AsyncStorage } from 'react-native'
+import { applyMiddleware, createStore, StoreCreator } from 'redux'
+import { createEpicMiddleware } from 'redux-observable'
 import { persistReducer, persistStore } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import reducer from './reducers'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import { routerMiddleware } from './navigator'
+import rootEpic from './rootEpic'
+import rootReducer from './reducers'
+
+const blackList = ['navigation']
+const epicMiddleware = createEpicMiddleware()
+
+const persistConfig = {
+  blackList,
+  key: 'root',
+  storage: AsyncStorage,
+}
 
 let tron
 if (__DEV__) {
@@ -31,15 +43,31 @@ if (__DEV__) {
   tron.clear()
 }
 
-const middlewares = [routerMiddleware]
+const middlewares = [epicMiddleware, routerMiddleware]
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  timeout: null,
+const enhancers = __DEV__
+  ? composeWithDevTools({})(applyMiddleware(...middlewares))
+  : applyMiddleware(...middlewares)
+
+
+const reducers = persistReducer(persistConfig, rootReducer)
+
+const configureStore = (_clean: boolean = false, epic: boolean = false): any => {
+  const create: StoreCreator = createStore
+
+  const store = create(reducers, enhancers)
+  const persistor = persistStore(store)
+
+  if (epic) {
+    epicMiddleware.run(rootEpic)
+  }
+
+  // Clear Store
+  if (_clean) {
+    persistor.purge()
+  }
+
+  return { persistor, store }
 }
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose // eslint-disable-line
-const persistedReducer = persistReducer(persistConfig, reducer)
-const enhancer = composeEnhancers(applyMiddleware(...middlewares))
-export const store = createStore(persistedReducer, enhancer)
-export const persistor = persistStore(store)
+
+export default configureStore

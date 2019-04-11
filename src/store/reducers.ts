@@ -1,9 +1,12 @@
 import { combineReducers } from 'redux'
 import { createNavigationReducer } from 'react-navigation-redux-helpers'
 import AppNavigator from 'screens'
+import { IAppState } from 'store/types'
+import product from 'store/product/reducer'
 
 const nav = createNavigationReducer(AppNavigator)
 
-export default combineReducers({
+export default combineReducers<IAppState>({
   nav,
+  product
 })
