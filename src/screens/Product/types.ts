@@ -4,12 +4,11 @@ import { IProduct } from 'store/product/types'
 export interface IConnectedProps {
   refreshing: boolean
   loading: boolean
-  data: IProduct[]
+  product: IProduct
 }
 
 export interface IActionCreators {
-  ProductsLoad: any
-  ProductsPaginate: any
+  ProductLoad: any
 }
 
 export interface IProps extends IConnectedProps, IActionCreators {
