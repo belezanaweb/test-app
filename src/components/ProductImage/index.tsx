@@ -1,12 +1,12 @@
 import styled from 'theme'
 import React from 'react'
-import { ImageObject } from 'store/product/types'
+import { IImageObject } from 'store/product/types'
 
 interface IProps {
-  images?: ImageObject[]
+  images?: IImageObject[]
 }
 
-const ProductImage: React.FunctionComponent<IProps> = ({images})=> {
+export const ProductImage: React.FunctionComponent<IProps> = ({images}) => {
   const featured = images.filter(i => i.featured)[0] || images[0]
   if (!featured) return null
   return (
@@ -17,8 +17,6 @@ const ProductImage: React.FunctionComponent<IProps> = ({images})=> {
     />
   )
 }
-
-export default ProductImage
 
 const Image = styled.Image`
    flex: 1;

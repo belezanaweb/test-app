@@ -17,7 +17,7 @@ interface IProps {
   onPress: (sku: string) => void
 }
 
-const ProductListItem: React.FunctionComponent<IProps> = ({ item, onPress }) => <ProductBlock>
+export const ProductListItem: React.FunctionComponent<IProps> = ({ item, onPress }) => <ProductBlock>
   <ProduckBlockImage>
     <ProductImage images={item.imageObjects}/>
     <ProductCode>cod: {item.sku}</ProductCode>
@@ -38,6 +38,4 @@ const ProductListItem: React.FunctionComponent<IProps> = ({ item, onPress }) => 
     </Button>
   </ProductBlockDetail>
 </ProductBlock>
-
-export default ProductListItem
 
