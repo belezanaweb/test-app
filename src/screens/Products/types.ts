@@ -10,6 +10,7 @@ export interface IConnectedProps {
 export interface IActionCreators {
   ProductsLoad: any
   ProductsPaginate: any
+  ThemeSwitch: any
 }
 
 export interface IProps extends IConnectedProps, IActionCreators {

@@ -2,7 +2,6 @@ import { Button, ButtonText } from 'components'
 import React from 'react'
 import { IProduct } from 'store/product/types'
 import {
-  htmlStyle,
   ProductBlock,
   ProductCode,
   ProductDescTitle,
@@ -18,16 +17,18 @@ import {
   ImageContainer,
   ProductImage,
 } from './styles'
-import HTMLView from 'react-native-htmlview'
+import HTMLView from 'react-native-render-html'
 import Carousel  from 'react-native-snap-carousel'
 import { formatReal } from 'helpers'
+import { withTheme } from 'styled-components'
 
 interface IProps {
   item: IProduct
   onPress: (sku: string) => void
+  theme: any
 }
 
-export const Product: React.FunctionComponent<IProps> = ({ item, onPress }) => {
+const ProductComponent: React.FunctionComponent<IProps> = ({ item, onPress, theme }) => {
   if (!item) return null
 
   const _renderItem = ({item}) => {
@@ -87,11 +88,15 @@ export const Product: React.FunctionComponent<IProps> = ({ item, onPress }) => {
 
     <ProductDescTitle>Descrição do Produto</ProductDescTitle>
     <HTMLView
-      value={item.details.description}
-      stylesheet={htmlStyle}
+      html={item.details.description}
+      baseFontStyle={{
+        color: theme.black
+      }}
     />
 
   </ProductBlock>
 }
+
+export const Product = withTheme(ProductComponent)
 
 

@@ -1,13 +1,14 @@
 import { NavigationActions } from 'react-navigation'
-import {
-  createReactNavigationReduxMiddleware,
-  createReduxContainer,
-} from 'react-navigation-redux-helpers'
-import { connect } from 'react-redux'
+import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers'
+import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
 import React from 'react'
 import { Alert, BackHandler } from 'react-native'
 import ProtoTypes from 'prop-types'
 import routes from 'screens'
+import { dark, light, ThemeProvider } from 'theme'
+import { IActionCreators, IConnectedProps } from '../screens/Products/types'
+import { IAppState } from './types'
+import { bindActionCreators } from 'redux'
 
 export const routerMiddleware = createReactNavigationReduxMiddleware(state => state.nav)
 
@@ -16,11 +17,24 @@ const App = createReduxContainer(routes)
 interface IProps {
   nav: any
   dispatch: any
+  theme?: boolean
 }
 
 interface IState {
 
 }
+
+const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = state => ({
+  nav: state.nav,
+  theme: state.app.theme,
+})
+
+const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch =>
+  bindActionCreators(
+    {},
+    dispatch,
+  )
+
 class Navigator extends React.Component<IProps, IState> {
   static propTypes = {
     dispatch: ProtoTypes.func.isRequired,
@@ -55,7 +69,7 @@ class Navigator extends React.Component<IProps, IState> {
             text: 'Cancel',
           },
         ],
-        { cancelable: false }
+        { cancelable: false },
       )
     }
     dispatch(NavigationActions.back())
@@ -64,11 +78,11 @@ class Navigator extends React.Component<IProps, IState> {
   }
 
   render() {
-    const { nav, dispatch } = this.props
-    return <App state={nav} dispatch={dispatch} />
+    const { nav, dispatch, theme } = this.props
+    return <ThemeProvider theme={theme ? light : dark}>
+      <App state={nav} dispatch={dispatch}/>
+    </ThemeProvider>
   }
 }
-
-const mapStateToProps = ({ nav }) => ({ nav })
 
 export default connect(mapStateToProps)(Navigator)
