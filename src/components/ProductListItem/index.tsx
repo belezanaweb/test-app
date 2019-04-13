@@ -1,4 +1,4 @@
-import { Button, ProductImage, ButtonText } from 'components'
+import { Button, ButtonText, ProductImage } from 'components'
 import React from 'react'
 import { IProduct } from 'store/product/types'
 import {
@@ -9,33 +9,41 @@ import {
   ProductPrice,
   ProductPriceOld,
   ProductText,
+  PriceBlock,
 } from './styles'
 import { formatReal } from 'helpers'
 
 interface IProps {
   item: IProduct
-  onPress: (sku: string) => void
+  border?: boolean
+  onPress?: (sku: string) => void
 }
 
-export const ProductListItem: React.FunctionComponent<IProps> = ({ item, onPress }) => <ProductBlock>
-  <ProduckBlockImage>
-    <ProductImage images={item.imageObjects}/>
-    <ProductCode>cod: {item.sku}</ProductCode>
-  </ProduckBlockImage>
+export const ProductListItem: React.FunctionComponent<IProps> = ({ item, border, onPress }) =>
+  <ProductBlock border={border}>
+    <ProduckBlockImage>
+      <ProductImage images={item.imageObjects}/>
+      <ProductCode>cod: {item.sku}</ProductCode>
+    </ProduckBlockImage>
 
-  <ProductBlockDetail>
-    <ProductText>{item.name}</ProductText>
-    {item.priceSpecification.discount ? (
-      <ProductPriceOld>{formatReal(
-        item.priceSpecification.discount + item.priceSpecification.originalPrice)}</ProductPriceOld>
-    ) : null}
-    <ProductPrice>
-      {formatReal(item.priceSpecification.originalPrice )}
-    </ProductPrice>
+    <ProductBlockDetail>
+      <ProductText>{item.name}</ProductText>
 
-    <Button onPress={() => onPress(item.sku)}>
-      <ButtonText>VER DETALHES</ButtonText>
-    </Button>
-  </ProductBlockDetail>
-</ProductBlock>
+     <PriceBlock>
+       {item.priceSpecification.discount ? (
+         <ProductPriceOld>{formatReal(
+           item.priceSpecification.discount + item.priceSpecification.originalPrice)}</ProductPriceOld>
+       ) : null}
+       <ProductPrice>
+         {formatReal(item.priceSpecification.originalPrice)}
+       </ProductPrice>
+     </PriceBlock>
+
+      {onPress ?
+        <Button onPress={() => onPress(item.sku)}>
+          <ButtonText>VER DETALHES</ButtonText>
+        </Button>
+      : null}
+    </ProductBlockDetail>
+  </ProductBlock>
 
