@@ -50,9 +50,12 @@ class Products extends React.Component<IProps, IState> {
 
         <FlatList
           data={data}
+          initialNumToRender={5}
+          legacyImplementation={true}
           renderItem={({ item }) => (
             <ProductListItem
               item={item}
+              border={true}
               onPress={sku => this.props.navigation.navigate('Product', { sku })}
             />
           )}
