@@ -16,5 +16,5 @@ export interface IProps extends IConnectedProps, IActionCreators {
 }
 
 export interface IState {
-  progress: boolean
+  modal: boolean
 }

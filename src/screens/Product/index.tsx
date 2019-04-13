@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
-import { Container, Product } from 'components'
-import { IActionCreators, IConnectedProps, IProps } from './types'
+import { IActionCreators, IConnectedProps, IProps, IState } from './types'
 import { bindActionCreators } from 'redux'
 import { ProductLoad } from 'store/product/actions'
 import { IAppState } from 'store/types'
+import { Container, ModalAlert, ModalCart, Product } from 'components'
+import { Loading } from '../../components/Loading'
 
 const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = state => ({
   loading: state.product.loading,
@@ -17,12 +18,16 @@ const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch
     {
       ProductLoad,
     },
-    dispatch
+    dispatch,
   )
 
-class ProductScreen extends React.Component<IProps, {}> {
+class ProductScreen extends React.Component<IProps, IState> {
   static navigationOptions = {
     title: 'DETALHES DO PRODUTO',
+  }
+
+  state = {
+    modal: false,
   }
 
   componentDidMount(): void {
@@ -31,11 +36,26 @@ class ProductScreen extends React.Component<IProps, {}> {
     if (!product || product.sku !== sku) ProductLoad(sku)
   }
 
+  onPress = () => {
+    this.setState({ modal: !this.state.modal })
+  }
+
   render() {
     const { product } = this.props
+    const { modal } = this.state
     return (
       <Container>
-        <Product item={product} onPress={null} />
+
+        {
+          product && product.inventory.quantity
+            ? <ModalCart visible={modal} product={product} onPress={() => this.onPress()}/>
+            : <ModalAlert visible={modal} product={product} onPress={() => this.onPress()}/>
+        }
+
+        {!product
+          ? <Loading/>
+          : <Product item={product} onPress={() => this.onPress()}/>}
+
       </Container>
     )
   }
@@ -43,5 +63,5 @@ class ProductScreen extends React.Component<IProps, {}> {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(ProductScreen)

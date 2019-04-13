@@ -21,11 +21,12 @@ import HTMLView from 'react-native-render-html'
 import Carousel  from 'react-native-snap-carousel'
 import { formatReal } from 'helpers'
 import { withTheme } from 'styled-components'
+import { ITheme } from 'theme'
 
 interface IProps {
   item: IProduct
-  onPress: (sku: string) => void
-  theme: any
+  onPress?: (sku: string) => void
+  theme: ITheme
 }
 
 const ProductComponent: React.FunctionComponent<IProps> = ({ item, onPress, theme }) => {
@@ -73,16 +74,13 @@ const ProductComponent: React.FunctionComponent<IProps> = ({ item, onPress, them
       </ColRight>
     </Row>
 
-
-
-
     <Button
       border={!item.inventory.quantity}
       onPress={() => onPress(item.sku)}>
       <ButtonText
         primary={!item.inventory.quantity}
       >{
-        item.inventory.quantity > 0 ? 'COMPRE' : 'AVISE-ME'
+        item.inventory.quantity ? 'COMPRE' : 'AVISE-ME'
       }</ButtonText>
     </Button>
 
