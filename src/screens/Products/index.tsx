@@ -37,7 +37,7 @@ class Products extends React.Component<IProps, IState> {
     if (!data.length) ProductsPaginate()
   }
 
-  render(): React.ReactElement {
+  render() {
     const { data, loading, refreshing, ProductsLoad, ProductsPaginate, ThemeSwitch } = this.props
     return (
       <Container>

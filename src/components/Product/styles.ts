@@ -1,6 +1,4 @@
 import styled from 'theme'
-import { withTheme,  } from 'styled-components'
-
 
 export const ProductBlock = styled.View`
   background-color: ${props => props.theme.backgroundPrimary};

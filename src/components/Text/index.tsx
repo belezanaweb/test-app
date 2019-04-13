@@ -7,7 +7,7 @@ interface IProps {
   size?: number
 }
 
-export const Text: JSX.Elment = styled.Text<IProps>`
+export const Text = styled.Text<IProps>`
   font-style: normal;
   font-weight: normal;
   font-size: ${props => props.size ? props.size : 12}px;

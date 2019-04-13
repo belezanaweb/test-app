@@ -1,6 +1,6 @@
 import * as styledComponents from 'styled-components/native'
 
-interface ITheme {
+export interface ITheme {
   background: string
   backgroundPrimary: string
   primary: string

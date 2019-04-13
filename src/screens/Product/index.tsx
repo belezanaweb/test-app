@@ -31,7 +31,7 @@ class ProductScreen extends React.Component<IProps, {}> {
     if (!product || product.sku !== sku) ProductLoad(sku)
   }
 
-  render(): React.Component {
+  render() {
     const { product } = this.props
     return (
       <Container>

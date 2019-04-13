@@ -16,7 +16,7 @@ export const Button = styled.TouchableHighlight<IProps>`
   margin: ${props => props.margin ? 10 : 0}px
 `
 
-export const ButtonText = styled.Text`
+export const ButtonText = styled.Text<IProps>`
   font-style: normal;
   font-weight: bold;
   font-size: 14px;
