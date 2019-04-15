@@ -3,9 +3,7 @@ import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { FlatList } from 'react-native'
 
-import {  Container, Button, ButtonText, ProductListItem } from 'components'
-
-import styled from 'theme'
+import { Button, ButtonText, Container, Loading, ProductListItem } from 'components'
 import { IActionCreators, IConnectedProps, IProps, IState } from './types'
 import { IAppState } from 'store/types'
 import { ProductsLoad, ProductsPaginate } from 'store/product/actions'
@@ -24,13 +22,22 @@ const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch
       ProductsPaginate,
       ThemeSwitch,
     },
-    dispatch
+    dispatch,
   )
 
 class Products extends React.Component<IProps, IState> {
-  static navigationOptions = {
+  static navigationOptions = ({ screenProps }) => ({
     title: 'LISTA DE PRODUTOS',
-  }
+    headerStyle: {
+      backgroundColor: screenProps.theme.backgroundPrimary,
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      color: screenProps.theme.black,
+    },
+    headerTintColor: screenProps.theme.black,
+    animationEnabled: true
+  })
 
   componentDidMount(): void {
     const { data, ProductsPaginate } = this.props
@@ -64,7 +71,7 @@ class Products extends React.Component<IProps, IState> {
           // refreshing={refreshing}
           // onEndReached={() => !loading && ProductsPaginate()}
           // onEndReachedThreshold={0.1}
-          // ListFooterComponent={loading && <Loading />}
+          ListFooterComponent={loading && <Loading/>}
         />
 
         <Button
@@ -79,15 +86,7 @@ class Products extends React.Component<IProps, IState> {
 }
 
 
-
-const Loading = styled.ActivityIndicator`
-  align-items: center;
-  height: 20px;
-  margin: 10px 0;
-  background-color: #fff;
-`
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Products)

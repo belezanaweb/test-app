@@ -1,23 +1,25 @@
 import { NavigationActions } from 'react-navigation'
 import { createReactNavigationReduxMiddleware, createReduxContainer } from 'react-navigation-redux-helpers'
-import { connect, MapDispatchToProps, MapStateToProps } from 'react-redux'
+import { connect, MapStateToProps } from 'react-redux'
 import React from 'react'
 import { Alert, BackHandler } from 'react-native'
 import ProtoTypes from 'prop-types'
 import routes from 'screens'
 import { dark, light, ThemeProvider } from 'theme'
-import { IActionCreators, IConnectedProps } from '../screens/Products/types'
 import { IAppState } from './types'
-import { bindActionCreators } from 'redux'
 
-export const routerMiddleware = createReactNavigationReduxMiddleware(state => state.nav)
+export const routerMiddleware = createReactNavigationReduxMiddleware(state => state, 'root')
 
-const App = createReduxContainer(routes)
+const App: any = createReduxContainer(routes)
 
-interface IProps {
+interface IConnectedProps {
   nav: any
   dispatch: any
   theme?: boolean
+}
+
+interface IProps  extends IConnectedProps {
+
 }
 
 interface IState {
@@ -28,12 +30,6 @@ const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = sta
   nav: state.nav,
   theme: state.app.theme,
 })
-
-const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch =>
-  bindActionCreators(
-    {},
-    dispatch,
-  )
 
 class Navigator extends React.Component<IProps, IState> {
   static propTypes = {
@@ -79,8 +75,9 @@ class Navigator extends React.Component<IProps, IState> {
 
   render() {
     const { nav, dispatch, theme } = this.props
-    return <ThemeProvider theme={theme ? light : dark}>
-      <App state={nav} dispatch={dispatch}/>
+    const _theme = theme ? dark : light
+    return <ThemeProvider theme={_theme}>
+      <App state={nav} dispatch={dispatch} screenProps={{ theme: _theme }}/>
     </ThemeProvider>
   }
 }

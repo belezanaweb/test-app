@@ -1,5 +1,6 @@
 import { NavigationScreenProp } from 'react-navigation'
 import { IProduct } from 'store/product/types'
+import { ITheme } from '../../theme'
 
 export interface IConnectedProps {
   refreshing: boolean
@@ -15,6 +16,9 @@ export interface IActionCreators {
 
 export interface IProps extends IConnectedProps, IActionCreators {
   navigation: NavigationScreenProp<any, any>
+  screenProps: {
+    theme: ITheme
+  }
 }
 
 export interface IState {

@@ -4,8 +4,7 @@ import { IActionCreators, IConnectedProps, IProps, IState } from './types'
 import { bindActionCreators } from 'redux'
 import { ProductLoad } from 'store/product/actions'
 import { IAppState } from 'store/types'
-import { Container, ModalAlert, ModalCart, Product } from 'components'
-import { Loading } from '../../components/Loading'
+import { Container, ModalAlert, ModalCart, Product, Loading } from 'components'
 
 const mapStateToProps: MapStateToProps<IConnectedProps, IProps, IAppState> = state => ({
   loading: state.product.loading,
@@ -22,9 +21,18 @@ const mapDispatchToProps: MapDispatchToProps<IActionCreators, IProps> = dispatch
   )
 
 class ProductScreen extends React.Component<IProps, IState> {
-  static navigationOptions = {
+  static navigationOptions = ({screenProps}) => ({
     title: 'DETALHES DO PRODUTO',
-  }
+    headerStyle: {
+      backgroundColor: screenProps.theme.backgroundPrimary
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      color: screenProps.theme.black,
+    },
+    headerTintColor: screenProps.theme.black,
+    animationEnabled: true
+  })
 
   state = {
     modal: false,
