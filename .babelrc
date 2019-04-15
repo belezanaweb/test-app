@@ -4,7 +4,7 @@
 		"test": {},
 		"storybook": {},
 		"production": {
-			"plugins": ["react-native-paper/babel","transform-remove-console"]
+			"plugins": ["transform-remove-console"]
 		}
 	},
 	"plugins": [
