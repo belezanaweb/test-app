@@ -1,0 +1,10 @@
+export const orange = '#FF6C00';
+export const darkOrange = '#E66100';
+export const grey = '#999999';
+export const lightGrey = '#CCCCCC';
+export const darkGrey = '#6F6F6F';
+export const normalGrey = '#C4C4C4';
+export const lightDarkGrey = '#777777';
+export const black = '#212121';
+export const white = '#EEEEEE';
+export const purple = '#A43287';
