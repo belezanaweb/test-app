@@ -31,17 +31,14 @@ const styleCommon = {
   right: 0,
   textAlign: 'center',
   textTransform: 'uppercase',
+  top: 35,
 };
 const styles = StyleSheet.create({
   details: {
     ...styleCommon,
-    bottom: '91.55%',
-    top: '5.63%',
   },
   list: {
     ...styleCommon,
-    bottom: '91.55%',
-    top: '5.63%',
   },
 });
 const customText = bool => (bool ? styles.list : styles.details);

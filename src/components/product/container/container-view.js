@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import {
+  StyleSheet, View, Text, TouchableOpacity,
+} from 'react-native';
 import PropTypes from 'prop-types';
+import { Icon } from 'react-native-elements';
 import { ImageProduct } from '../image/image-view';
 import { Code } from '../code/code-view';
 import { Title } from '../title/title-view';
@@ -10,7 +13,9 @@ import margin from '../../../styles/sizes';
 import { Description } from '../description/description-view';
 import { white, purple } from '../../../styles/color';
 
-const returnStock = bool => (bool ? 'compre' : 'avise-me');
+const returnStock = bool => (bool
+  ? 'compre'
+  : 'avise-me');
 const returnType = (type, stock) => {
   if (type || stock) {
     return true;
@@ -21,32 +26,47 @@ const returnType = (type, stock) => {
 export class ProductContainer extends Component {
   render() {
     const {
-      description,
-      installments,
-      name,
-      url,
-      title,
-      price,
-      discount,
-      stock,
-      type,
-      view,
+      element, view,
     } = this.props;
 
     return (
       <View style={customHeight(view)}>
         <View style={customPadding(view)}>
-          <Title view={view} text={title} />
-          <ImageProduct view={view} url={url} />
-          <Code text="cod: 54417" view={view} name={name} />
-          <Price view={view} text={price} discount={discount} installments={installments} />
-          <View style={customButtonView(view)}>
-            <Button type={returnType(type, stock)} text={type ? 'Ver Detalhes' : returnStock(stock)} />
-          </View>
-          <View>
-            <Description text={description} />
+          <Title view={view} text={element.title} />
+          <ImageProduct view={view} url={element.url} />
+          <Code text="cod: 54417" view={view} name={element.name} />
+          <Price
+            view={view}
+            text={element.price}
+            discount={element.discount}
+            installments={element.installments}
+          />
+          <TouchableOpacity
+            style={customButtonView(view)}
+            onPress={() => {
+              alert('press button');
+            }}
+          >
+            <Button
+              type={returnType(element.type, element.stock)}
+              text={element.type ? 'Ver Detalhes' : returnStock(element.stock)}
+            />
+          </TouchableOpacity>
+          <View
+            style={view ? {} : { display: 'none' }}
+          >
+            <Description text={element.description} />
             <View style={styles.viewRead}>
               <Text style={styles.textRead}>Continuar Lendo</Text>
+              <View
+                style={{
+                  position: 'absolute',
+                  right: -10,
+                  top: -1,
+                }}
+              >
+                <Icon name="chevron-down" type="evilicon" color={purple} size={40} />
+              </View>
             </View>
           </View>
           <View />
@@ -57,15 +77,19 @@ export class ProductContainer extends Component {
 }
 
 ProductContainer.propTypes = {
-  description: PropTypes.string.isRequired,
-  discount: PropTypes.string.isRequired,
-  installments: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  stock: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired,
-  type: PropTypes.bool.isRequired,
-  url: PropTypes.string.isRequired,
+  element: PropTypes
+    .shape({
+      description: PropTypes.string,
+      discount: PropTypes.string,
+      installments: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.string,
+      stock: PropTypes.bool,
+      title: PropTypes.string,
+      type: PropTypes.bool,
+      url: PropTypes.string,
+    })
+    .isRequired,
   view: PropTypes.bool.isRequired,
 };
 
@@ -106,6 +130,7 @@ const styles = StyleSheet.create({
   viewRead: {
     borderColor: white,
     borderTopWidth: 1,
+    fontWeight: 'bold',
     height: 38,
     top: 115,
     width: '100%',
@@ -115,7 +140,6 @@ const customHeight = bool => (bool
   ? {
     ...styles.container,
     height: 596,
-    top: -400,
   }
   : {
     ...styles.container,
@@ -130,6 +154,8 @@ const customPadding = bool => (bool
     flex: 1,
     paddingLeft: margin,
   });
-const customButtonView = bool => (bool ? styles.buttonViewBig : styles.buttonViewSmall);
+const customButtonView = bool => (bool
+  ? styles.buttonViewBig
+  : styles.buttonViewSmall);
 
 export default ProductContainer;

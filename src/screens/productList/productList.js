@@ -1,38 +1,18 @@
 import React, { Component } from 'react';
 import { ProductListView } from './productList-view';
 import { ProductContainer } from '../../components/product/container/container-view';
-import { defaultTitle, defaultUrl } from '../../utils/globalVariables';
+import { itens } from '../../utils/globalVariables';
 
-const exempleListArray = [
-  {
-    discount: 'R$ 600,00',
-    price: 'R$ 549,00',
-    title: defaultTitle,
-    type: true,
-    url: defaultUrl,
-  }, {
-    discount: 'R$ 600,00',
-    price: 'R$ 549,00',
-    title: defaultTitle,
-    type: false,
-    url: defaultUrl,
-  },
-];
-
-const renderList = () => {
+const renderList = (item) => {
   const jsx = [];
   let i = 0;
 
-  for (const item of exempleListArray) {
+  for (const element of item) {
     jsx.push(
       <ProductContainer
         key={i}
-        type={item.type}
-        discount={item.discount}
-        price={item.price}
-        title={item.title}
-        url={item.url}
         view={false}
+        element={element}
       />,
     );
     i++;
@@ -43,9 +23,11 @@ const renderList = () => {
 
 export class ProductList extends Component {
   render() {
+    const item = itens;
+
     return (
       <ProductListView>
-        {renderList()}
+        {renderList(item)}
       </ProductListView>
     );
   }
