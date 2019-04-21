@@ -12,6 +12,7 @@ import { Button } from '../../button/button-view';
 import margin from '../../../styles/sizes';
 import { Description } from '../description/description-view';
 import { white, purple } from '../../../styles/color';
+import setItem from '../../../redux/actions/actions';
 
 const returnStock = bool => (bool
   ? 'compre'
@@ -29,6 +30,11 @@ export class ProductContainer extends Component {
       element, view,
     } = this.props;
 
+    const productAction = () => {
+      const result = view ? {} : element;
+      setItem(result);
+    };
+
     return (
       <View style={customHeight(view)}>
         <View style={customPadding(view)}>
@@ -43,9 +49,7 @@ export class ProductContainer extends Component {
           />
           <TouchableOpacity
             style={customButtonView(view)}
-            onPress={() => {
-              alert('press button');
-            }}
+            onPress={() => { productAction(); }}
           >
             <Button
               type={returnType(element.type, element.stock)}

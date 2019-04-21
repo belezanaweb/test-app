@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Container } from '../../components/container/container.view';
+import { Container } from '../../components/container/container-view';
 import { ProductContainer } from '../../components/product/container/container-view';
 
-export class ProductDetailsView extends Component {
+export class ProductDetails extends Component {
   render() {
     const { item } = this.props;
 
@@ -19,7 +19,7 @@ export class ProductDetailsView extends Component {
   }
 }
 
-ProductDetailsView.propTypes = {
+ProductDetails.propTypes = {
   item: PropTypes.shape({
     description: PropTypes.string,
     discount: PropTypes.string,
@@ -33,4 +33,4 @@ ProductDetailsView.propTypes = {
   }).isRequired,
 };
 
-export default ProductDetailsView;
+export default ProductDetails;

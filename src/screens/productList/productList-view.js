@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { Button } from '../../components/button/button-view';
-import { Container } from '../../components/container/container.view';
+import { Container } from '../../components/container/container-view';
 
-export class ProductListView extends Component {
+export class ProductList extends Component {
   render() {
     const { children } = this.props;
 
@@ -21,8 +21,8 @@ export class ProductListView extends Component {
   }
 }
 
-ProductListView.propTypes = {
+ProductList.propTypes = {
   children: PropTypes.arrayOf(PropTypes.element).isRequired,
 };
 
-export default ProductListView;
+export default ProductList;
