@@ -10,7 +10,7 @@ export class Price extends Component {
     const {
       view, text, discount, installments,
     } = this.props;
-    const discountJSX = discount
+    const discountJSX = (discount !== text)
       ? <Text style={customTextDiscount(view)}>{discount}</Text>
       : <View />;
     const installmentsJSX = installments
@@ -20,7 +20,7 @@ export class Price extends Component {
     return (
       <View style={customContainer(view)}>
         {discountJSX}
-        <Text style={customText(discount, view)}>
+        <Text style={customText((discount !== text), view)}>
           {text}
         </Text>
         {installmentsJSX}

@@ -9,7 +9,7 @@ export class ImageProduct extends Component {
     return (
       <Image
         style={custom(view)}
-        source={{ url }}
+        source={{ uri: url }}
       />
     );
   }
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   imageBig: {
     height: 163,
     margin: 12,
-    marginLeft: 58,
+    marginLeft: 85,
     position: 'relative',
     width: 163,
   },

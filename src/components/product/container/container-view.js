@@ -14,11 +14,11 @@ import { Description } from '../description/description-view';
 import { white, purple } from '../../../styles/color';
 import setItem from '../../../redux/actions/actions';
 
-const returnStock = bool => (bool
+const returnStock = stock => ((stock > 0)
   ? 'compre'
   : 'avise-me');
 const returnType = (type, stock) => {
-  if (type || stock) {
+  if (type || (stock > 0)) {
     return true;
   }
   return false;
@@ -32,7 +32,7 @@ export class ProductContainer extends Component {
 
     const productAction = () => {
       const result = view ? {} : element;
-      setItem(result);
+      setItem({ ...result, type: false });
     };
 
     return (
@@ -47,17 +47,8 @@ export class ProductContainer extends Component {
             discount={element.discount}
             installments={element.installments}
           />
-          <TouchableOpacity
-            style={customButtonView(view)}
-            onPress={() => { productAction(); }}
-          >
-            <Button
-              type={returnType(element.type, element.stock)}
-              text={element.type ? 'Ver Detalhes' : returnStock(element.stock)}
-            />
-          </TouchableOpacity>
           <View
-            style={view ? {} : { display: 'none' }}
+            style={view ? { top: 40 } : { display: 'none' }}
           >
             <Description text={element.description} />
             <View style={styles.viewRead}>
@@ -73,6 +64,16 @@ export class ProductContainer extends Component {
               </View>
             </View>
           </View>
+
+          <TouchableOpacity
+            style={customButtonView(view)}
+            onPress={() => { productAction(); }}
+          >
+            <Button
+              type={returnType(element.type, element.stock)}
+              text={element.type ? 'Ver Detalhes' : returnStock(element.stock)}
+            />
+          </TouchableOpacity>
           <View />
         </View>
       </View>
@@ -99,9 +100,9 @@ ProductContainer.propTypes = {
 
 const styles = StyleSheet.create({
   buttonViewBig: {
-    position: 'relative',
+    position: 'absolute',
     right: 0,
-    top: 95,
+    top: 360,
     width: '100%',
   },
   buttonViewSmall: {
