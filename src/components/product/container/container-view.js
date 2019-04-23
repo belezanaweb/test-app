@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet, View, Text, TouchableOpacity,
+  Modal, Text, View, Alert, StyleSheet, TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon } from 'react-native-elements';
@@ -13,6 +13,7 @@ import margin from '../../../styles/sizes';
 import { Description } from '../description/description-view';
 import { white, purple } from '../../../styles/color';
 import setItem from '../../../redux/actions/actions';
+import { ModalTest } from '../../modal/modal-view';
 
 const returnStock = stock => ((stock > 0)
   ? 'compre'
@@ -25,14 +26,33 @@ const returnType = (type, stock) => {
 };
 
 export class ProductContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      modalVisible: false,
+    });
+    this.setModalVisible = this.setModalVisible.bind(this);
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
   render() {
     const {
       element, view,
     } = this.props;
+    const {
+      modalVisible,
+    } = this.state;
 
     const productAction = () => {
-      const result = view ? {} : element;
-      setItem({ ...result, type: false });
+      if (!view) {
+        const result = element;
+        setItem({ ...result, type: false });
+      } else {
+        this.setModalVisible(true);
+      }
     };
 
     return (
@@ -76,6 +96,16 @@ export class ProductContainer extends Component {
           </TouchableOpacity>
           <View />
         </View>
+        <Modal
+          animationType="fade"
+          transparent
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert('Modal has been closed.');
+          }}
+        >
+          <ModalTest setModalVisible={this.setModalVisible} stock={element.stock} name={element.name} description={element.description} />
+        </Modal>
       </View>
     );
   }
@@ -89,7 +119,7 @@ ProductContainer.propTypes = {
       installments: PropTypes.string,
       name: PropTypes.string,
       price: PropTypes.string,
-      stock: PropTypes.bool,
+      stock: PropTypes.number,
       title: PropTypes.string,
       type: PropTypes.bool,
       url: PropTypes.string,
@@ -100,9 +130,9 @@ ProductContainer.propTypes = {
 
 const styles = StyleSheet.create({
   buttonViewBig: {
+    bottom: '31%',
     position: 'absolute',
     right: 0,
-    top: 360,
     width: '100%',
   },
   buttonViewSmall: {

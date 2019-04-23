@@ -5,7 +5,7 @@ import { customButton, customText } from './buttom-style';
 
 export class Button extends Component {
   render() {
-    const { type, text, action } = this.props;
+    const { type, text } = this.props;
 
     return (
       <View style={customButton(type)}>
@@ -18,7 +18,6 @@ export class Button extends Component {
 }
 
 Button.propTypes = {
-  action: PropTypes.func.isRequired,
   text: PropTypes.string.isRequired,
   type: PropTypes.bool.isRequired,
 };

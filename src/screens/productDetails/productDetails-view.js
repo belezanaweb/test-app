@@ -26,7 +26,7 @@ ProductDetails.propTypes = {
     installments: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.string,
-    stock: PropTypes.bool,
+    stock: PropTypes.number,
     title: PropTypes.string,
     type: PropTypes.bool,
     url: PropTypes.string,

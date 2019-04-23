@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -7,16 +7,19 @@ import { Header } from '../header/header-view';
 import { ProductList } from '../../screens/productList/productList-view';
 import { ProductContainer } from '../product/container/container-view';
 import { ProductDetails } from '../../screens/productDetails/productDetails-view';
+import { Button } from '../button/button-view';
 import store from '../../redux/store';
 
-const renderList = (item) => {
+const renderList = (item, limit) => {
   const jsx = [];
   let i = 0;
 
   for (const element of item) {
-    jsx.push(
-      <ProductContainer key={i} view={false} element={element} />,
-    );
+    if (i < limit) {
+      jsx.push(
+        <ProductContainer key={i} view={false} element={element} />,
+      );
+    }
     i++;
   }
 
@@ -41,15 +44,47 @@ const getProductsFromApi = () => {
     });
 };
 
+const loadingMore = (bool, func, limit) => {
+  if (!bool && limit < 9) {
+    return (
+      <TouchableOpacity
+        style={{ padding: 10, paddingTop: 0 }}
+        onPress={() => {
+          func();
+        }}
+      >
+        <Button type={false} text="Carregar mais produtos" />
+      </TouchableOpacity>
+    );
+  }
+};
+
 export class Content extends Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      limit: 3,
+    });
+    this.setLimit = this.setLimit.bind(this);
+  }
+
+  setLimit() {
+    const { limit } = this.state;
+    this.setState({
+      limit: (limit + 3),
+    });
+  }
+
   render() {
     const { item, list } = this.props;
+    const { limit } = this.state;
 
     return (
       <ScrollView>
         {(item.title)
           ? <ProductDetails item={item} />
-          : <ProductList>{renderList(list)}</ProductList>}
+          : <ProductList>{renderList(list, limit)}</ProductList>}
+        { loadingMore(item.title, this.setLimit, limit) }
         <Header
           type
           text={item
