@@ -8,7 +8,7 @@ Recomendamos que você não gaste mais do que 4 - 6 horas.
 
 Fique à vontade para nos enviar qualquer sugestão ou dúvida que surja durante o projeto.
 
-Faça um fork deste repositório e desenvolva seu projeto dentro da pasta [`src`](./src). O projeto foi criado com `react-native init test_app`.
+Faça um fork deste repositório e desenvolva seu projeto dentro da pasta [`src`](./src). O projeto foi criado com `npx react-native init test_app`.
 
 # Tarefas
 
