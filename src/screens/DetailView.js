@@ -102,11 +102,11 @@ export default function DetailView({ navigation }) {
               <Text style={styles.labelCod}>{`cod: ${data.sku}`}</Text>
             </View>
           </View>
-          <Button onPress={handleButtonPress} secondary={!data.inventory.quantity > 0}>
+          <Button onPress={handleButtonOnPress} secondary={!data.inventory.quantity > 0}>
             {data.inventory.quantity > 0 ? BUY : WARN_ME}
           </Button>
           <Text style={styles.labelDescTitle}>{DESC}</Text>
-          <View style={{ height: viewMore ? null : 175 }}>
+          <View style={{ height: viewMore ? null : 150 }}>
             <HTMLView
               stylesheet={{ p: { ...styles.labelDesc } }}
               value={`<p>${data.details.description}</p>`}
