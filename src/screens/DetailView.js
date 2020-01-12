@@ -106,7 +106,7 @@ export default function DetailView({ navigation }) {
             {data.inventory.quantity > 0 ? BUY : WARN_ME}
           </Button>
           <Text style={styles.labelDescTitle}>{DESC}</Text>
-          <View style={{ height: viewMore ? null : 150 }}>
+          <View style={{ height: viewMore ? null : 150, overflow: 'hidden' }}>
             <HTMLView
               stylesheet={{ p: { ...styles.labelDesc } }}
               value={`<p>${data.details.description}</p>`}
@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignContent: 'stretch'
+    alignContent: 'stretch',
+    backgroundColor: 'rgba(255,255,255,0.8)'
   },
   labelReadMore: {
     color: '#A43287',
