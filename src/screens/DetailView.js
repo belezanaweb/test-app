@@ -56,6 +56,10 @@ export default function DetailView({ navigation }) {
     setViewMore(!viewMore)
   }
 
+  handleButtonOnPress = () => {
+    navigation.pop()
+  }
+
   function render() {
     function returnFeaturedImageUri(imageObjects) {
       let uri
@@ -98,7 +102,7 @@ export default function DetailView({ navigation }) {
               <Text style={styles.labelCod}>{`cod: ${data.sku}`}</Text>
             </View>
           </View>
-          <Button secondary={!data.inventory.quantity > 0}>
+          <Button onPress={handleButtonPress} secondary={!data.inventory.quantity > 0}>
             {data.inventory.quantity > 0 ? BUY : WARN_ME}
           </Button>
           <Text style={styles.labelDescTitle}>{DESC}</Text>
