@@ -18,6 +18,7 @@ export const ProductContainer = styled.View`
   shadow-opacity: 0.2;
   shadow-radius: 1.41px;
   elevation: 2;
+  margin-bottom: 20px;
 `;
 
 export const ProductImageWrapper = styled.View`
