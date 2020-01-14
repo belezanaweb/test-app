@@ -1,7 +1,10 @@
 import Reactotron, { openInEditor } from 'reactotron-react-native';
 import { reactotronRedux } from 'reactotron-redux';
 
-const tron = Reactotron.configure()
+const tron = Reactotron
+  .configure({
+    name: 'test-beleza'
+  })
   .useReactNative()
   .use(reactotronRedux())
   .use(openInEditor())
