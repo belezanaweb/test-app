@@ -1,5 +1,13 @@
 # Mobile Test
 
+# Como executar o projeto?
+
+**iOS:**
+
+**Android:**
+
+# Regras
+
 Esta é uma avaliação básica de código.
 
 O objetivo é conhecer um pouco a forma como você resolveria problemas com que lidamos no dia-a-dia e a sua habilidade/experiência em criar e organizar um projeto de app multi-plataforma.
