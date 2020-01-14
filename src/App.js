@@ -12,7 +12,7 @@ const App = () => (
   <>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <StatusBar barStyle='light-content' backgroundColor={Colors.primary} />
+        <StatusBar barStyle='dark-content' backgroundColor={Colors.white} />
         <Routes />
       </PersistGate>
     </Provider>
