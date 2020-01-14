@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 
 import {
   Wrapper,
-  MainTitle,
   ProductContainer,
   ProductImageWrapper,
   ProductDescriptionWrapper,
   ProductImage,
+  ContainerPrices,
 } from './Main.style';
 
+import MainTitle from '../../Components/Texts/MainTitle/MainTitle';
 import TextDefault from '../../Components/Texts/TextDefault/TextDefault';
 import ButtonPrimary from '../../Components/Buttons/ButtonPrimary/ButtonPrimary';
 
@@ -22,7 +23,11 @@ class Main extends Component {
     return (
       <>
         <Wrapper>
-          <MainTitle>LISTA DE PRODUTOS</MainTitle>
+          <MainTitle
+            text={'LISTA DE PRODUTOS'}
+            color={Colors.black}
+            fontSize={20}
+            fontWeight={'bold'} />
 
           <ProductContainer>
             <ProductImageWrapper>
@@ -31,7 +36,7 @@ class Main extends Component {
               />
               <TextDefault
                 text={'cod: 21312'}
-                color={'#CACACA'}
+                color={Colors.grey}
                 fontSize={14} />
             </ProductImageWrapper>
             <ProductDescriptionWrapper>
@@ -41,10 +46,18 @@ class Main extends Component {
                 fontSize={16}
                 letterSpacing={-0.5} />
 
-              <TextDefault
-                text={'R$ 231,10'}
-                color={Colors.primary}
-                fontSize={18} />
+              <ContainerPrices>
+                <TextDefault
+                  text={'R$ 231,10'}
+                  color={Colors.grey}
+                  fontSize={14}
+                  striked={true} />
+
+                <TextDefault
+                  text={'R$ 231,10'}
+                  color={Colors.primary}
+                  fontSize={18} />
+              </ContainerPrices>
 
               <ButtonPrimary
                 onPress={() => {}}

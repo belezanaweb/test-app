@@ -8,15 +8,6 @@ export const Wrapper = styled.View`
   background: ${Colors.lightGrey};
 `;
 
-export const MainTitle = styled.Text`
-  ${Layout.Type.body};
-  font-size: 20px;
-  color: ${Colors.black};
-  font-weight: bold;
-  text-align: center;
-  padding: 10px 0;
-`;
-
 export const ProductContainer = styled.View`
   flex-direction: row;
   background: ${Colors.white};
@@ -49,3 +40,7 @@ export const ProductImage = styled.Image`
   height: 80%;
   margin-bottom: 10px;
 `;
+
+export const ContainerPrices = styled.View`
+`;
+

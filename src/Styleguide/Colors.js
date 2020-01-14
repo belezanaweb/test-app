@@ -6,6 +6,7 @@ export default Colors = {
   black: '#000',
   black50: 'rgba(0, 0, 0, 0.5)',
   darkGrey: '#2B2B2B',
+  grey: '#CACACA',
   lightGrey: '#F8F8F8',
   red: '#F00',
   green: '#33CC00',
