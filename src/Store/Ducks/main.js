@@ -1,22 +1,24 @@
-export const Types = {
-  ADD_EXAMPLE: 'ADD_EXAMPLE',
-};
+import { createActions, createReducer } from 'reduxsauce';
 
-export const MainTypes = Types;
+export const { Types, Creators } = createActions({
+  setCurrentItem: ['data'],
+});
+
+export const UserInfoTypes = Types;
+export default Creators;
 
 const INITIAL_STATE = {
   data: [],
-  title: 'Test',
+  currentItem: {},
 };
 
-export function reducer(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case Types.ADD_EXAMPLE:
-      return { 
-        ...state,
-        data: action.data
-      };
-    default:
-      return state;
+const setCurrentItem = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    currentItem: action.data
   }
 }
+
+export const reducer = createReducer(INITIAL_STATE, {
+  [Types.SET_CURRENT_ITEM]: setCurrentItem,
+});

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import {
   Wrapper,
@@ -17,6 +19,8 @@ import ButtonPrimary from '../../Components/Buttons/ButtonPrimary/ButtonPrimary'
 import { getProducts } from '../../Services/Products';
 import { toBrazilianReal, showToast } from '../../Utils/Functions';
 import FullLoader from '../../Components/FullLoader/FullLoader';
+
+import { Creators as MainActions } from '../../Store/Ducks/main';
 
 class Main extends Component {
   state = {
@@ -46,15 +50,21 @@ class Main extends Component {
           products: res,
           isLoading: false,
         });
-        console.tron.log('res', res);
       })
       .catch((error) => {
-        console.tron.log('error', error);
         showToast('Ocorreu um erro inesperado. Tente novamente mais tarde.');
         this.setState({
           isLoading: false,
         });
       });
+  }
+
+  goToProductPage = (item) => {
+    this.props.setCurrentItem(item);
+
+    setTimeout(() => {
+      console.tron.log(this.props.currentItem)
+    }, 1000);
   }
 
   renderProductItem = (item) => {
@@ -65,7 +75,7 @@ class Main extends Component {
             source={{uri: item.imageObjects[0].medium}}
           />
           <TextDefault
-            text={`cod: ${item.sku}`}
+            text={`cód: ${item.sku}`}
             color={Colors.grey}
             fontSize={14} />
         </ProductImageWrapper>
@@ -94,7 +104,7 @@ class Main extends Component {
           </ContainerPrices>
 
           <ButtonPrimary
-            onPress={() => {}}
+            onPress={() => this.goToProductPage(item)}
             title={'VER DETALHES'} />
         </ProductDescriptionWrapper>
       </ProductContainer>
@@ -121,9 +131,12 @@ class Main extends Component {
               )}
             />
 
-            <ButtonPrimary
+            { !isLoading && (
+              <ButtonPrimary
               onPress={() => this.loadMoreItems()}
               title={'Carregar mais 10 produtos'} />
+            )}
+
           </ContainerList>
 
 
@@ -138,4 +151,12 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapStateToProps = state => ({
+  setCurrentItem: state.main.setCurrentItem,
+  currentItem: state.main.currentItem,
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(MainActions, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
