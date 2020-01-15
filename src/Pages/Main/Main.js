@@ -28,10 +28,13 @@ class Main extends Component {
     products: [],
     isLoading: true,
   }
+  navigate;
 
   constructor(props) {
     super(props);
+    const { navigation } = this.props;
 
+    this.navigate = this.props.navigation;
     this.loadMoreItems();
   }
 
@@ -60,11 +63,11 @@ class Main extends Component {
   }
 
   goToProductPage = (item) => {
-    this.props.setCurrentItem(item);
+    const { setCurrentItem } = this.props;
 
-    setTimeout(() => {
-      console.tron.log(this.props.currentItem)
-    }, 1000);
+    setCurrentItem(item);
+
+    this.navigate.push('Item');
   }
 
   renderProductItem = (item) => {

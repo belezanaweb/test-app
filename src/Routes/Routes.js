@@ -2,6 +2,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import Main from '../Pages/Main/Main';
+import Item from '../Pages/Item/Item';
 
 const mainScreenStack = createStackNavigator(
   {
@@ -13,8 +14,14 @@ const mainScreenStack = createStackNavigator(
         headerTintColor: 'white'
       }
     },
-  },
-  {
+    Item: {
+      screen: Item,
+      navigationOptions: {
+        header: null,
+        headerBackTitle: null,
+        headerTintColor: 'white'
+      }
+    },
     navigationOptions: ({ navigation }) => ({
       initialRouteName: 'Main',
       headerMode: 'screen',

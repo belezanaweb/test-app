@@ -40,6 +40,7 @@ export const ProductImage = styled.Image`
   width: 100%;
   height: 80%;
   margin-bottom: 10px;
+  resize-mode: stretch;
 `;
 
 export const ContainerPrices = styled.View`
