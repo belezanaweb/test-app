@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
 
 import {
   Wrapper,
@@ -8,46 +8,87 @@ import {
   ProductDescriptionWrapper,
   ProductImage,
   ContainerPrices,
+  ContainerList,
 } from './Main.style';
 
 import MainTitle from '../../Components/Texts/MainTitle/MainTitle';
 import TextDefault from '../../Components/Texts/TextDefault/TextDefault';
 import ButtonPrimary from '../../Components/Buttons/ButtonPrimary/ButtonPrimary';
+import { getProducts } from '../../Services/Products';
+import { toBrazilianReal, showToast } from '../../Utils/Functions';
+import FullLoader from '../../Components/FullLoader/FullLoader';
 
 class Main extends Component {
+  state = {
+    currentItems: 0,
+    products: [],
+    isLoading: true,
+  }
 
   constructor(props) {
     super(props);
+
+    this.loadMoreItems();
   }
 
-  renderProductItem = () => {
+  loadMoreItems = () => {
+    const { currentItems } = this.state;
+    const newItemsSize = currentItems + 10;
+
+    this.setState({
+      currentItems: newItemsSize,
+      isLoading: true,
+    });
+
+    getProducts(newItemsSize)
+      .then((res) => {
+        this.setState({
+          products: res,
+          isLoading: false,
+        });
+        console.tron.log('res', res);
+      })
+      .catch((error) => {
+        console.tron.log('error', error);
+        showToast('Ocorreu um erro inesperado. Tente novamente mais tarde.');
+        this.setState({
+          isLoading: false,
+        });
+      });
+  }
+
+  renderProductItem = (item) => {
     return (
       <ProductContainer>
         <ProductImageWrapper>
           <ProductImage
-            source={{uri: 'https://res.cloudinary.com/beleza-na-web/image/upload/w_130,f_auto,fl_progressive,q_auto:best/v1/imagens/5/carolina-herrera-212-own-the-party-copo-51916-3520948609418638679.jpg'}}
+            source={{uri: item.imageObjects[0].medium}}
           />
           <TextDefault
-            text={'cod: 21312'}
+            text={`cod: ${item.sku}`}
             color={Colors.grey}
             fontSize={14} />
         </ProductImageWrapper>
         <ProductDescriptionWrapper>
           <TextDefault
-            text={'Good Girl Velvet Fatale Carolina Herrera Eau de Parfum - Perfume Feminino 80ml'}
+            text={item.name}
             color={'#434343'}
             fontSize={16}
-            letterSpacing={-0.5} />
+            letterSpacing={-0.8} />
 
           <ContainerPrices>
-            <TextDefault
-              text={'R$ 231,10'}
-              color={Colors.grey}
-              fontSize={14}
-              striked={true} />
+            {
+              item.priceSpecification.maxPrice > item.priceSpecification.price && (
+                <TextDefault
+                text={`R$ ${toBrazilianReal(item.priceSpecification.maxPrice)}`}
+                color={Colors.grey}
+                fontSize={14}
+                striked={true} />
+              )
+            }
 
             <TextDefault
-              text={'R$ 231,10'}
+              text={`R$ ${toBrazilianReal(item.priceSpecification.price)}`}
               color={Colors.primary}
               fontSize={18} />
           </ContainerPrices>
@@ -61,6 +102,8 @@ class Main extends Component {
   }
 
   render() {
+    const { products, isLoading } = this.state;
+
     return (
       <>
         <Wrapper>
@@ -70,15 +113,26 @@ class Main extends Component {
             fontSize={20}
             fontWeight={'bold'} />
 
-          <FlatList
-            data={['a', 'b']}
-            renderItem={({ item }) => (
-              this.renderProductItem()
-            )}
-          />
+          <ContainerList>
+            <FlatList
+              data={products}
+              renderItem={({ item }) => (
+                this.renderProductItem(item)
+              )}
+            />
+
+            <ButtonPrimary
+              onPress={() => this.loadMoreItems()}
+              title={'Carregar mais 10 produtos'} />
+          </ContainerList>
 
 
         </Wrapper>
+
+        {
+          isLoading && <FullLoader />
+        }
+
       </>
     )
   }

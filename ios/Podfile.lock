@@ -223,6 +223,8 @@ PODS:
     - React
   - RNCMaskedView (0.1.6):
     - React
+  - RNFS (2.16.2):
+    - React
   - RNGestureHandler (1.5.3):
     - React
   - RNVectorIcons (6.6.0):
@@ -260,6 +262,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNFS (from `../node_modules/react-native-fs`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -323,6 +326,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNFS:
+    :path: "../node_modules/react-native-fs"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNVectorIcons:
@@ -359,6 +364,7 @@ SPEC CHECKSUMS:
   ReactCommon: eb96b70a2a5bed775e919151fd77699fed52944c
   RNCAsyncStorage: e99188b8a89ea0edddc82d8831cd5142f4550fdc
   RNCMaskedView: 13dedff7c0722ffbb7349c489705be7eba428711
+  RNFS: 63be1ccb4bf27a09d1cf7f481c86fdfba9e4a0a2
   RNGestureHandler: 123c4bb46136077e390cc308a432029a1c1f47e5
   RNVectorIcons: 66af4d5c8ff4f584c7b7cd9c4b0780920f27fce2
   Yoga: 6af72bedeaea291a3a3717772d6d41836f23a1b9

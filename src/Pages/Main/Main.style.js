@@ -16,7 +16,7 @@ export const ProductContainer = styled.View`
   shadow-color: #000;
   shadow-offset: 0px 2px;
   shadow-opacity: 0.2;
-  shadow-radius: 1.41px;
+  shadow-radius: 1.4px;
   elevation: 2;
   margin-bottom: 20px;
 `;
@@ -32,7 +32,7 @@ export const ProductDescriptionWrapper = styled.View`
   flex: 1;
   width: 65%;
   height: 100%;
-  padding: 10px 10px 10px 0;
+  padding: 10px;
   justify-content: space-around;
 `;
 
@@ -45,3 +45,6 @@ export const ProductImage = styled.Image`
 export const ContainerPrices = styled.View`
 `;
 
+export const ContainerList = styled.ScrollView`
+  margin-bottom: 20px;
+`;
