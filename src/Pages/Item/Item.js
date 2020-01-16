@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList } from 'react-native';
+import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -24,9 +24,7 @@ import MainTitle from '../../Components/Texts/MainTitle/MainTitle';
 import TextDefault from '../../Components/Texts/TextDefault/TextDefault';
 import ButtonPrimary from '../../Components/Buttons/ButtonPrimary/ButtonPrimary';
 import ButtonSecondary from '../../Components/Buttons/ButtonSecondary/ButtonSecondary';
-import { getProducts } from '../../Services/Products';
 import { toBrazilianReal, showToast, isValidEmail } from '../../Utils/Functions';
-import FullLoader from '../../Components/FullLoader/FullLoader';
 
 import { Creators as MainActions } from '../../Store/Ducks/main';
 
@@ -37,9 +35,14 @@ class Item extends Component {
     email: '',
   }
   refInputEmail;
+  navigate;
 
   constructor(props) {
     super(props);
+
+    const { navigation } = this.props;
+
+    this.navigate = navigation;
   }
 
   setModalBuyVisible(visible) {
@@ -66,83 +69,89 @@ class Item extends Component {
             color={Colors.black}
             fontSize={20}
             fontWeight={'bold'} />
+          <ScrollView>
+            <ContainerContent>
+              <TextDefault
+                text={currentItem.name}
+                color={Colors.black}
+                fontSize={24}
+                letterSpacing={-0.8} />
 
-          <ContainerContent>
-            <TextDefault
-              text={currentItem.name}
-              color={Colors.black}
-              fontSize={24}
-              letterSpacing={-0.8} />
+              <ProductImage
+                source={{uri: currentItem.imageObjects[0].large}}
+              />
 
-            <ProductImage
-              source={{uri: currentItem.imageObjects[0].large}}
-            />
+              <ContainerInfo>
+                <BoxPrices>
+                  {
+                    currentItem.priceSpecification.maxPrice > currentItem.priceSpecification.price && (
+                      <TextDefault
+                      text={`R$ ${toBrazilianReal(currentItem.priceSpecification.maxPrice)}`}
+                      color={Colors.grey}
+                      fontSize={14}
+                      striked={true} />
+                    )
+                  }
 
-            <ContainerInfo>
-              <BoxPrices>
-                {
-                  currentItem.priceSpecification.maxPrice > currentItem.priceSpecification.price && (
-                    <TextDefault
-                    text={`R$ ${toBrazilianReal(currentItem.priceSpecification.maxPrice)}`}
+                  <TextDefault
+                    text={`R$ ${toBrazilianReal(currentItem.priceSpecification.price)}`}
+                    color={Colors.primary}
+                    fontSize={24} />
+
+                  <TextDefault
+                    text={`${currentItem.priceSpecification.installments.numberOfPayments}x de ${toBrazilianReal(currentItem.priceSpecification.installments.monthlyPayment)}`}
+                    color={'#999'}
+                    fontSize={18} />
+                </BoxPrices>
+                <BoxSku>
+
+                  <TextDefault
+                    text={currentItem.brand.name}
+                    color={Colors.black}
+                    fontSize={18} />
+
+                  <TextDefault
+                    text={`cód: ${currentItem.sku}`}
                     color={Colors.grey}
-                    fontSize={14}
-                    striked={true} />
+                    fontSize={14} />
+                </BoxSku>
+              </ContainerInfo>
+
+              <ContainerActions>
+                {
+                  currentItem.inventory.quantity > 0 ? (
+                    <ButtonPrimary
+                      onPress={() => this.setModalBuyVisible(true)}
+                      title={'COMPRE'} />
+                  ) : (
+                    <ButtonSecondary
+                      onPress={() => this.setModalWarnVisible(true)}
+                      title={'AVISE-ME'} />
                   )
                 }
 
-                <TextDefault
-                  text={`R$ ${toBrazilianReal(currentItem.priceSpecification.price)}`}
-                  color={Colors.primary}
-                  fontSize={24} />
 
                 <TextDefault
-                  text={`${currentItem.priceSpecification.installments.numberOfPayments}x de ${toBrazilianReal(currentItem.priceSpecification.installments.monthlyPayment)}`}
-                  color={'#999'}
-                  fontSize={18} />
-              </BoxPrices>
-              <BoxSku>
-
-                <TextDefault
-                  text={currentItem.brand.name}
+                  text={'Descrição do Produto'}
                   color={Colors.black}
-                  fontSize={18} />
+                  fontSize={16}
+                  marginTop={10}
+                  marginBottom={10} />
 
                 <TextDefault
-                  text={`cód: ${currentItem.sku}`}
-                  color={Colors.grey}
-                  fontSize={14} />
-              </BoxSku>
-            </ContainerInfo>
+                  text={currentItem.details.shortDescription}
+                  color={'#999'}
+                  fontSize={14}
+                  marginBottom={20} />
 
-            <ContainerActions>
-              {
-                currentItem.inventory.quantity > 0 ? (
-                  <ButtonPrimary
-                    onPress={() => this.setModalBuyVisible(true)}
-                    title={'COMPRE'} />
-                ) : (
-                  <ButtonSecondary
-                    onPress={() => this.setModalWarnVisible(true)}
-                    title={'AVISE-ME'} />
-                )
-              }
+                <ButtonPrimary
+                  onPress={() => this.navigate.goBack()}
+                  title={'Voltar para a lista'} />
+              </ContainerActions>
 
 
-              <TextDefault
-                text={'Descrição do Produto'}
-                color={Colors.black}
-                fontSize={16}
-                marginTop={10}
-                marginBottom={10} />
-
-              <TextDefault
-                text={currentItem.details.shortDescription}
-                color={'#999'}
-                fontSize={14} />
-            </ContainerActions>
-
-
-          </ContainerContent>
+            </ContainerContent>
+          </ScrollView>
 
 
         </Wrapper>
@@ -204,7 +213,10 @@ class Item extends Component {
             </InputEmail>
 
             <ButtonPrimary
-              onPress={() => this.setModalWarnVisible(!this.state.modalWarnVisible)}
+              onPress={() => {
+                this.setModalWarnVisible(!this.state.modalWarnVisible);
+                showToast(`E-mail salvo com sucesso.`);
+              }}
               title={'Enviar'}
               disabled={!isValidEmail(email)} />
           </ModalWrapper>

@@ -35,6 +35,9 @@ class Main extends Component {
     const { navigation } = this.props;
 
     this.navigate = this.props.navigation;
+  }
+
+  componentDidMount() {
     this.loadMoreItems();
   }
 
@@ -46,6 +49,8 @@ class Main extends Component {
       currentItems: newItemsSize,
       isLoading: true,
     });
+
+    console.tron.log('newItemsSize', newItemsSize)
 
     getProducts(newItemsSize)
       .then((res) => {
