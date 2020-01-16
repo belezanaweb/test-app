@@ -2,9 +2,18 @@
 
 # Como executar o projeto?
 
-**iOS:**
+### iOS:
 
-**Android:**
+- Instale os módulos utilizando o comando **yarn install**
+- Vá para a pasta **ios** e execute o comando **pod install**
+- Execute o simulador
+- Volte para a pasta do projeto e execute o comando **react-native run-ios**
+
+### Android:
+
+- Instale os módulos utilizando o comando **yarn install**
+- Execute o simulador
+- Execute o projeto com o comando **react-native run-android**
 
 # Regras
 

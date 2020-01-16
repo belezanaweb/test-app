@@ -34,7 +34,7 @@ class Main extends Component {
     super(props);
     const { navigation } = this.props;
 
-    this.navigate = this.props.navigation;
+    this.navigate = navigation;
   }
 
   componentDidMount() {
