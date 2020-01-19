@@ -11,6 +11,9 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
+    "axios": "^0.19.1",
+    "lodash": "^4.17.15",
+    "numeral": "^2.0.6",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.3",
@@ -35,6 +38,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-  "assets":["./src/assets/fonts/"]
+    "assets": [
+      "./src/assets/fonts/"
+    ]
   }
 }
