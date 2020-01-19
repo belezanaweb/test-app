@@ -1,43 +1,89 @@
 import React, { Component } from 'react';
-import { Text, View, Button } from 'react-native';
-import { Container, ContainerScroll, ContainerWrapper } from '../../utils/style';
+import { ActivityIndicator, FlatList } from 'react-native';
+import axios from 'axios';
+import { isEmpty } from 'lodash';
+import { Container, ContainerScroll, ContainerWrapper, ContainerLoading } from '../../utils/style';
+import Colors from '../../utils/colors';
 import Header from '../../components/header';
 import CardProducts from '../../components/cardProducts';
+import ButtomProject from '../../components/buttom';
 
 export default class ProductsScreen extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			data: [],
+			isLoading: false,
+			error: false,
+			page: 1,
+			finishRequest: false,
+		};
+	}
+
+	componentWillMount() {
+		this.callApi(this.state.page);
+	}
+
+	callApi = async page => {
+		this.setState({ isLoading: true, page: page });
+
+		await axios
+			.get(`https://pacific-wave-51314.herokuapp.com/products?page=${page}&size=10`)
+			.then(({ status, data }) => {
+				if (status === 200) {
+					this.setState(prevState => ({
+						data: prevState.data.concat(data),
+						isLoading: false,
+					}));
+				} else {
+					this.setState({ finishRequest: true, isLoading: false });
+				}
+			})
+			.catch(error => {
+				this.setState({ isLoading: false, error: true });
+			});
+	};
+
 	render() {
 		const { navigate } = this.props.navigation;
-
-		const dados = [
-			{
-				img: 'teste',
-				cod: '2343243',
-				desc: 'asdsaudhauh aspdoksaodpksa lllap asdasdsa oapaoasds',
-				value: '23,40',
-			},
-			{
-				img: 'teste2',
-				cod: '123434',
-				desc: 'asdsaudhauh aspdoksaodpksa lllap asdasdsa aaaa',
-				value: '23,50',
-			},
-			{
-				img: 'teste2',
-				cod: '999999',
-				desc: 'asdsaudhauh aspdoksaodpksa lllap asdasdsa aaaa asdasdsa aaaa asdasdsa aaaa',
-				value: '23,50',
-			},
-		];
-
+		const { isLoading, data, finishRequest } = this.state;
+		console.log(data);
 		return (
 			<Container>
-				<Header name="Home" />
+				<Header name="Lista de produtos" />
 
-				<ContainerScroll>
-					<ContainerWrapper>
-						<CardProducts />
-					</ContainerWrapper>
-				</ContainerScroll>
+				{isLoading && (
+					<ContainerLoading>
+						<ActivityIndicator size="large" color={Colors.orange} />
+					</ContainerLoading>
+				)}
+
+				{!isEmpty(data) && !isLoading && (
+					<ContainerScroll>
+						<ContainerWrapper>
+							<FlatList
+								contentContainerStyle={{ flexGrow: 1 }}
+								data={data}
+								refreshing={true}
+								keyExtractor={(item, index) => index.toString()}
+								removeClippedSubviews={true}
+								renderItem={({ item, index }) => {
+									return <CardProducts data={item} />;
+								}}
+							/>
+
+							{!finishRequest && (
+								<ButtomProject
+									name="Carregar mais"
+									onPress={() => {
+										this.callApi(this.state.page + 1);
+									}}
+								/>
+							)}
+						</ContainerWrapper>
+					</ContainerScroll>
+				)}
 			</Container>
 		);
 	}
