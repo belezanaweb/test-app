@@ -8,6 +8,7 @@ export const CardContainer = styled.View`
 	border-radius: 5px;
 	padding: 5px;
 	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: 10px;
 `;
 
 export const BoxLeft = styled.View`
