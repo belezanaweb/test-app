@@ -1,16 +1,14 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ContainerHeader = styled.View`
 	height: 40px;
 	justify-content: center;
-`
+`;
 
 export const TextHeader = styled.Text`
 	font-family: 'Roboto-Medium';
-	font-style: normal;
-	font-weight: bold;
 	font-size: 14px;
 	line-height: 16px;
 	text-align: center;
 	text-transform: uppercase;
-`
+`;
