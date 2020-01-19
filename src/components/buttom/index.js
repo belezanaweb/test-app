@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ContainerButton, TextButtom } from './style';
 
-const ButtomProject = ({ name }) => (
-	<ContainerButton>
-		<TextButtom> testee buton </TextButtom>
+const ButtomProject = ({ name, onPress }) => (
+	<ContainerButton onPress={onPress}>
+		<TextButtom> {name} </TextButtom>
 	</ContainerButton>
 );
 
