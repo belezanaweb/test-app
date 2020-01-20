@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import { Container, ContainerScroll, ContainerWrapper } from '../../utils/style';
 
 const modalConfirmPurchase = ({ data }) => {
 	return (
-		<View>
-			<Text>Modal confirm</Text>
-		</View>
+		<Container>
+			<ContainerScroll>
+				<ContainerWrapper>
+					<Text>Modal confirm</Text>
+				</ContainerWrapper>
+			</ContainerScroll>
+		</Container>
 	);
 };
 export default modalConfirmPurchase;

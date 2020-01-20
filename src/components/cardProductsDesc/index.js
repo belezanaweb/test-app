@@ -16,9 +16,15 @@ import HTML from 'react-native-render-html';
 import Numeral from 'numeral';
 import 'numeral/locales/pt-br';
 import ButtomProject from '../buttom';
+import Header from '../header';
 import Modais from '../modais';
 import Colors from '../../utils/colors';
-import { TextPriceScratched } from '../../utils/style';
+import {
+	Container,
+	ContainerScroll,
+	ContainerWrapper,
+	TextPriceScratched,
+} from '../../utils/style';
 
 const CardProductsDesc = ({ data }) => {
 	const [visibleModal, setVisible] = useState(false);
@@ -83,7 +89,20 @@ const CardProductsDesc = ({ data }) => {
 				visible={visibleModal}
 				onRequestClose={() => {}}
 			>
-				{haveStock ? <Modais.modalConfirm /> : <Modais.modalConfirmPurchase />}
+				<Container>
+					<ContainerScroll>
+						<ContainerWrapper>
+							<Header
+								name="Teste"
+								onPress={() => {
+									setVisible(!visibleModal);
+								}}
+								close
+							/>
+							{haveStock ? <Modais.modalConfirmPurchase /> : <Modais.modalFormRemember />}
+						</ContainerWrapper>
+					</ContainerScroll>
+				</Container>
 			</Modal>
 		</CardContainer>
 	);

@@ -1,7 +1,7 @@
-import modalConfirm from './modalConfirmPurchase';
 import modalConfirmPurchase from './modalConfirmPurchase';
+import modalFormRemember from './modalFormRememberMe';
 
 export default {
-	modalConfirm,
 	modalConfirmPurchase,
+	modalFormRemember,
 };
