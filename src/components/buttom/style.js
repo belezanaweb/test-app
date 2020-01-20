@@ -3,9 +3,12 @@ import Colors from '../../utils/colors';
 
 export const ContainerButton = styled.TouchableOpacity`
 	width: 100%;
-	background: ${Colors.orange};
+	background: ${props => (props.outline ? 'transparent' : props.background)};
 	border-radius: 4px;
 	padding: 10px 0px;
+	margin: ${props => (props.margin ? props.margin : '0px')};
+	border-color: ${props => (props.outline ? props.background : 'transparent')};
+	border-width: 2;
 `;
 
 export const TextButtom = styled.Text`
@@ -14,5 +17,5 @@ export const TextButtom = styled.Text`
 	line-height: 16px;
 	text-align: center;
 	text-transform: uppercase;
-	color: ${Colors.white};
+	color: ${props => (props.outline ? props.background : Colors.white)};
 `;
