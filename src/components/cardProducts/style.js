@@ -38,15 +38,6 @@ export const TextPrice = styled.Text`
 	font-family: 'Roboto-Bold';
 `;
 
-export const TextPriceScratched = styled.Text`
-	color: ${colors.greyMedium};
-	font-size: 11px;
-	line-height: 13px;
-	font-family: 'Roboto-Regular';
-	text-decoration: line-through;
-	text-decoration-color: ${colors.greyMedium};
-`;
-
 export const TextCod = styled.Text`
 	color: ${colors.greyLight};
 	font-size: 14px;

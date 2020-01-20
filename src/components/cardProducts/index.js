@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import {
-	CardContainer,
-	BoxLeft,
-	BoxRight,
-	TextDesc,
-	TextPrice,
-	BoxPrices,
-	TextPriceScratched,
-	TextCod,
-} from './style';
 import { Image } from 'react-native';
 import Numeral from 'numeral';
 import 'numeral/locales/pt-br';
 import { isEmpty } from 'lodash';
 import ButtomProject from '../buttom';
+import { CardContainer, BoxLeft, BoxRight, TextDesc, TextPrice, BoxPrices, TextCod } from './style';
+import { TextPriceScratched } from '../../utils/style';
+import Colors from '../../utils/colors';
 
-const CardProducts = ({ data }) => {
+const CardProducts = ({ data, navigate }) => {
 	Numeral.locale('pt-br');
 	const thumbnail = data.imageObjects.filter(item => item.featured);
 	return (
@@ -31,7 +24,7 @@ const CardProducts = ({ data }) => {
 					/>
 				) : null}
 
-				<TextCod>cod: 54417</TextCod>
+				<TextCod>cod: {data.sku}</TextCod>
 			</BoxLeft>
 			<BoxRight>
 				<TextDesc>{data.name}</TextDesc>
@@ -42,7 +35,13 @@ const CardProducts = ({ data }) => {
 					</TextPriceScratched>
 					<TextPrice>{Numeral(data.priceSpecification.price).format('$0.00')}</TextPrice>
 				</BoxPrices>
-				<ButtomProject name="VER DETALHES" />
+				<ButtomProject
+					name="VER DETALHES"
+					onPress={() => {
+						navigate('ProdDescription', { cod: data.sku });
+					}}
+					background={Colors.orange}
+				/>
 			</BoxRight>
 		</CardContainer>
 	);
