@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Dimensions, Modal } from 'react-native';
 import {
 	CardContainer,
 	TitleDesc,
@@ -16,13 +16,16 @@ import HTML from 'react-native-render-html';
 import Numeral from 'numeral';
 import 'numeral/locales/pt-br';
 import ButtomProject from '../buttom';
+import Modais from '../modais';
 import Colors from '../../utils/colors';
 import { TextPriceScratched } from '../../utils/style';
 
 const CardProductsDesc = ({ data }) => {
+	const [visibleModal, setVisible] = useState(false);
 	Numeral.locale('pt-br');
 	const thumbnail = data.imageObjects.filter(item => item.featured);
 	const haveStock = data.inventory.quantity > 0;
+
 	return (
 		<CardContainer>
 			<TitleDesc>{data.name}</TitleDesc>
@@ -58,6 +61,9 @@ const CardProductsDesc = ({ data }) => {
 				margin="18px 0px"
 				outline={haveStock ? false : true}
 				background={Colors.orange}
+				onPress={() => {
+					setVisible(!visibleModal);
+				}}
 			/>
 			<TextTitleDesc>Descrição do Produto</TextTitleDesc>
 			<HTML
@@ -70,6 +76,15 @@ const CardProductsDesc = ({ data }) => {
 				html={data.details.description.replace('<br>', '')}
 				imagesMaxWidth={Dimensions.get('window').width}
 			/>
+
+			<Modal
+				animationType="slide"
+				transparent={false}
+				visible={visibleModal}
+				onRequestClose={() => {}}
+			>
+				{haveStock ? <Modais.modalConfirm /> : <Modais.modalConfirmPurchase />}
+			</Modal>
 		</CardContainer>
 	);
 };
