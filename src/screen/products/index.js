@@ -48,7 +48,7 @@ export default class ProductsScreen extends Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		const { isLoading, data, finishRequest } = this.state;
-		console.log(data);
+
 		return (
 			<Container>
 				<Header name="Lista de produtos" />
@@ -69,7 +69,7 @@ export default class ProductsScreen extends Component {
 								keyExtractor={(item, index) => index.toString()}
 								removeClippedSubviews={true}
 								renderItem={({ item, index }) => {
-									return <CardProducts data={item} />;
+									return <CardProducts data={item} navigate={navigate} />;
 								}}
 							/>
 
@@ -79,6 +79,7 @@ export default class ProductsScreen extends Component {
 									onPress={() => {
 										this.callApi(this.state.page + 1);
 									}}
+									background={Colors.orange}
 								/>
 							)}
 						</ContainerWrapper>
