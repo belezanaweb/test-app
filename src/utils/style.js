@@ -30,3 +30,19 @@ export const TextPriceScratched = styled.Text`
 	text-decoration: line-through;
 	text-decoration-color: ${colors.greyMedium};
 `;
+
+export const InputText = styled.TextInput`
+	margin-top: 15px;
+	padding: 10px;
+	border-width: 2;
+	border-color: ${colors.orangeFF};
+	border-radius: 3px;
+`;
+
+export const TextError = styled.Text`
+	color: ${colors.error};
+	font-size: 15px;
+	line-height: 13px;
+	font-family: 'Roboto-Regular';
+	padding: 10px;
+`;

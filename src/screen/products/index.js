@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator, FlatList, Text } from 'react-native';
 import axios from 'axios';
 import { isEmpty } from 'lodash';
-import { Container, ContainerScroll, ContainerWrapper, ContainerLoading } from '../../utils/style';
+import {
+	Container,
+	ContainerScroll,
+	ContainerWrapper,
+	ContainerLoading,
+	TextError,
+} from '../../utils/style';
 import Colors from '../../utils/colors';
 import Header from '../../components/header';
 import CardProducts from '../../components/cardProducts';
@@ -47,12 +53,13 @@ export default class ProductsScreen extends Component {
 
 	render() {
 		const { navigate } = this.props.navigation;
-		const { isLoading, data, finishRequest } = this.state;
+		const { isLoading, data, finishRequest, error } = this.state;
 
 		return (
 			<Container>
 				<Header name="Lista de produtos" />
 
+				{error && <TextError>Ocorreu um erro ao carregar!! Tente novamente mais tarde</TextError>}
 				{isLoading && (
 					<ContainerLoading>
 						<ActivityIndicator size="large" color={Colors.orange} />

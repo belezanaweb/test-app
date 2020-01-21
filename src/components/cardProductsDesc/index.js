@@ -93,7 +93,7 @@ const CardProductsDesc = ({ data }) => {
 					<ContainerScroll>
 						<ContainerWrapper>
 							<Header
-								name="Teste"
+								name={haveStock ? 'Confirmação' : 'Cadastro'}
 								onPress={() => {
 									setVisible(!visibleModal);
 								}}

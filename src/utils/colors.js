@@ -6,8 +6,9 @@ const orange = '#e66100',
 	gray77 = '#777777',
 	white = '#ffffff',
 	whiteF8 = '#ffffff',
-	black21 = '#212121';
-
+	black21 = '#212121',
+	sucess = '#28a745',
+	error = '#c32';
 export default {
 	orange,
 	greyLight,
@@ -18,4 +19,6 @@ export default {
 	black21,
 	orangeFF,
 	greyMediumBold,
+	sucess,
+	error,
 };
