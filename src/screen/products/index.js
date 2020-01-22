@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, FlatList, Text } from 'react-native';
+import { ActivityIndicator, FlatList } from 'react-native';
 import axios from 'axios';
 import { isEmpty } from 'lodash';
 import {
@@ -56,7 +56,7 @@ export default class ProductsScreen extends Component {
 		const { isLoading, data, finishRequest, error } = this.state;
 
 		return (
-			<Container>
+			<Container testID={'productScreen'}>
 				<Header name="Lista de produtos" />
 
 				{error && <TextError>Ocorreu um erro ao carregar!! Tente novamente mais tarde</TextError>}
@@ -67,7 +67,7 @@ export default class ProductsScreen extends Component {
 				)}
 
 				{!isEmpty(data) && !isLoading && (
-					<ContainerScroll>
+					<ContainerScroll testID={'leo'}>
 						<ContainerWrapper>
 							<FlatList
 								contentContainerStyle={{ flexGrow: 1 }}

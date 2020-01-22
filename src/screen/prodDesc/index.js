@@ -28,7 +28,6 @@ export default class ProdDescription extends Component {
 		await axios
 			.get(`https://pacific-wave-51314.herokuapp.com/products/${cod}`)
 			.then(({ data }) => {
-				console.log('valor de response =>', data);
 				this.setState({ data: data, isLoading: false });
 			})
 			.catch(error => {

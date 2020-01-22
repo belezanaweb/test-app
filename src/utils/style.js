@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import colors from './colors';
 
 export const Container = styled.SafeAreaView`
@@ -34,7 +34,7 @@ export const TextPriceScratched = styled.Text`
 export const InputText = styled.TextInput`
 	margin-top: 15px;
 	padding: 10px;
-	border-width: 2;
+	border-width: 2px;
 	border-color: ${colors.orangeFF};
 	border-radius: 3px;
 `;

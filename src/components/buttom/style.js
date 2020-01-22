@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import Colors from '../../utils/colors';
 
 export const ContainerButton = styled.TouchableOpacity`
@@ -8,7 +8,7 @@ export const ContainerButton = styled.TouchableOpacity`
 	padding: 10px 0px;
 	margin: ${props => (props.margin ? props.margin : '0px')};
 	border-color: ${props => (props.outline ? props.background : 'transparent')};
-	border-width: 2;
+	border-width: 2px;
 `;
 
 export const TextButtom = styled.Text`

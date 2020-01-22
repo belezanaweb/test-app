@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Header Snapshot Component Header Snapshot 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "flexDirection": "row",
+        "height": 40,
+        "justifyContent": "center",
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "Roboto-Medium",
+          "fontSize": 20,
+          "lineHeight": 20,
+          "textAlign": "center",
+          "textTransform": "uppercase",
+          "width": "100%",
+        },
+      ]
+    }
+  >
+    Test
+  </Text>
+</View>
+`;

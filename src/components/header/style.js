@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 export const ContainerHeader = styled.View`
 	height: 40px;
@@ -9,8 +9,8 @@ export const ContainerHeader = styled.View`
 
 export const TextHeader = styled.Text`
 	font-family: 'Roboto-Medium';
-	font-size: 14px;
-	line-height: 16px;
+	font-size: 20px;
+	line-height: 20px;
 	text-align: center;
 	text-transform: uppercase;
 	width: 100%;
