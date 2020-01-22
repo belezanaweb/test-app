@@ -64,3 +64,4 @@ yarn.lock
 
 # test
 coverage/
+__snapshots__/
