@@ -39,11 +39,11 @@ export const ContainerButton = styled.TouchableOpacity`
   }};
 `
 
-export const Text = styled.Text`
+export const TextButton = styled.Text`
   font-weight: bold;
   font-size: 14px;
   text-transform: uppercase;
-  font-family: Helvetica Neue;
+  font-family: Helvetica;
   color:
    ${props => {
    if (props.secundary)

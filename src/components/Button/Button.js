@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { ContainerButton, Text } from './styles'
+import { ContainerButton, TextButton } from './styles'
 
 const Button = props => {
   return (
     <ContainerButton {...props} >
-      <Text {...props}>{props.children}</Text>
+      <TextButton {...props}>{props.children}</TextButton>
     </ContainerButton>
   )
 }
