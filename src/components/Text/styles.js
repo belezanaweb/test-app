@@ -1,5 +1,7 @@
 import styled from 'styled-components/native'
 
+import colors from '../../theme/colors'
+
 const getFontSize = ({ type }) => {
   switch (type) {
     case 'h1':
@@ -19,9 +21,9 @@ const getFontSize = ({ type }) => {
 
 export const TextStyled = styled.Text`
   font-family: Helvetica;
-  line-height: 20px;
   font-style: normal;
   font-weight: normal;
   font-size: ${props => getFontSize(props)};
   text-decoration-line: ${props => (props.line ? 'line-through' : 'none')};
+  color: ${props => (props.color ? props.color : colors.dark)};
 `
