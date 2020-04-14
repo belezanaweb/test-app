@@ -1,10 +1,15 @@
 import React from 'react'
 import { View } from 'react-native'
+import currency from 'currency.js'
 
 import { Button, Card, Text, ShowMore, Image } from '../../components'
 import colors from '../../theme/colors'
 
 const ItemList = props => {
+  const sanitizePrice = price => {
+    return currency(price).format()
+  }
+
   return (
     <Card>
       <View
@@ -35,7 +40,7 @@ const ItemList = props => {
         <View
           style={{
             flex: 3,
-            paddingTop: 5
+            justifyContent: 'space-around'
           }}
         >
           <Text type="h5" color={colors.dark}>
@@ -43,7 +48,7 @@ const ItemList = props => {
           </Text>
 
           <Text type="h1" color={colors.primary}>
-            R$ {props.priceSpecification.price}0
+            R$ {sanitizePrice(props.priceSpecification.price)}
           </Text>
 
           <Button>Ver detalhes</Button>
