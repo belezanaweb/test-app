@@ -1,9 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
 import currency from 'currency.js'
 
-import { Button, Card, Text, ShowMore, Image } from '../../components'
+import { Button, Card, Text, Image } from '../../components'
 import colors from '../../theme/colors'
+import { Content, ContentImage, ContentDetails } from './styles'
 
 const ItemList = props => {
   const sanitizePrice = price => {
@@ -12,37 +12,15 @@ const ItemList = props => {
 
   return (
     <Card>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-around'
-        }}
-      >
-        <View
-          style={{
-            flex: 2,
-            alignItems: 'center',
-            justifyContent: 'space-between'
-          }}
-        >
-          <Image
-            style={{
-              width: 108,
-              height: 108
-            }}
-            source={{ uri: props.imageObjects[0].small }}
-          />
+      <Content>
+        <ContentImage>
+          <Image source={{ uri: props.imageObjects[0].small }} />
 
           <Text type="h5" color={colors.grey}>
             cod: {props.sku}
           </Text>
-        </View>
-        <View
-          style={{
-            flex: 3,
-            justifyContent: 'space-around'
-          }}
-        >
+        </ContentImage>
+        <ContentDetails>
           <Text type="h5" color={colors.dark}>
             {props.name}
           </Text>
@@ -52,8 +30,8 @@ const ItemList = props => {
           </Text>
 
           <Button>Ver detalhes</Button>
-        </View>
-      </View>
+        </ContentDetails>
+      </Content>
     </Card>
   )
 }

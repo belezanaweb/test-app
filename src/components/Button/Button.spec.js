@@ -1,6 +1,6 @@
 import 'react-native'
 import React from 'react'
-import { create, act } from 'react-test-renderer'
+import { create } from 'react-test-renderer'
 
 import Button from './Button'
 

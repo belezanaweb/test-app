@@ -22,11 +22,18 @@
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
     "eslint": "^6.7.2",
+    "husky": "^4.2.5",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test",
+      "pre-push": "yarn lint && yarn test"
+    }
   }
 }

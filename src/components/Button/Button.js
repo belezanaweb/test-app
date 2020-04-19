@@ -4,7 +4,7 @@ import { ContainerButton, TextButton } from './styles'
 
 const Button = props => {
   return (
-    <ContainerButton {...props} >
+    <ContainerButton {...props}>
       <TextButton {...props}>{props.children}</TextButton>
     </ContainerButton>
   )

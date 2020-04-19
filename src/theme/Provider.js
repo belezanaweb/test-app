@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, SafeAreaView, StatusBar, Appearance } from 'react-native'
+import { SafeAreaView, StatusBar } from 'react-native'
 
 import statusBarTheme from './statusBarTheme'
 

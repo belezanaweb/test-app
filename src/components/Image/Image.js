@@ -1,8 +1,9 @@
 import React from 'react'
-import { Image } from 'react-native'
 
-const ImageStyled = props => {
-  return <Image {...props} />
+import { ImageStyled } from './styles'
+
+const Image = props => {
+  return <ImageStyled {...props} />
 }
 
-export default ImageStyled
+export default Image
