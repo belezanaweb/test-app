@@ -3,12 +3,14 @@ import { FlatList } from 'react-native'
 
 import { ItemList } from '../'
 
-const List = ({ data }) => {
+const List = props => {
   return (
     <FlatList
-      data={data}
+      data={props.data}
       keyExtractor={item => item.sku}
-      renderItem={({ item }) => <ItemList {...item} />}
+      renderItem={({ item, index }) => (
+        <ItemList {...item} navigation={props.navigation} index={index} />
+      )}
     />
   )
 }

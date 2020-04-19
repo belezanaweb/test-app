@@ -15,7 +15,6 @@ const ItemList = props => {
       <Content>
         <ContentImage>
           <Image source={{ uri: props.imageObjects[0].small }} />
-
           <Text type="h5" color={colors.grey}>
             cod: {props.sku}
           </Text>
@@ -29,7 +28,16 @@ const ItemList = props => {
             R$ {sanitizePrice(props.priceSpecification.price)}
           </Text>
 
-          <Button>Ver detalhes</Button>
+          <Button
+            onPress={() =>
+              props.navigation.navigate('Details', {
+                sku: props.sku,
+                index: props.index,
+              })
+            }
+          >
+            Ver detalhes
+          </Button>
         </ContentDetails>
       </Content>
     </Card>
