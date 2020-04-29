@@ -3,7 +3,6 @@ import 'react-native-gesture-handler'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 
-import Provider from './theme/Provider'
 import Home from './screens/Home'
 import DetailsProduct from './screens/DetailsProduct'
 
