@@ -1,15 +1,11 @@
 import React from 'react'
-import currency from 'currency.js'
 
 import { Button, Card, Text, Image } from '../../components'
 import colors from '../../theme/colors'
 import { Content, ContentImage, ContentDetails } from './styles'
+import sanitizePrice from '../../helpers/sanitizePrice'
 
 const ItemList = props => {
-  const sanitizePrice = price => {
-    return currency(price).format()
-  }
-
   return (
     <Card>
       <Content>
