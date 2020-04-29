@@ -5,5 +5,5 @@ export const Container = styled.View`
 `
 
 export const ContainerButton = styled.View`
-  padding: 5px;
+  padding: 10px;
 `

@@ -5,6 +5,15 @@ import { Text } from '../../components'
 import { Container, ContainerButton } from './styles'
 import colors from '../../theme/colors'
 
+const sanitizeHtml = textWithTags => {
+  const regexTags = /(<([^>]+)>)/gi
+
+  return textWithTags
+    .replace('<br>', '\n\n')
+    .replace(regexTags, '')
+    .replace(/&nbsp;/gi, '')
+}
+
 const ShowMore = props => {
   const renderTruncatedFooter = handlePress => {
     return (
@@ -34,7 +43,7 @@ const ShowMore = props => {
         renderRevealedFooter={renderRevealedFooter}
       >
         <Text type="h5" color={colors.darkOpacity}>
-          {props.children}
+          {sanitizeHtml(props.description)}
         </Text>
       </ReadMore>
     </Container>
