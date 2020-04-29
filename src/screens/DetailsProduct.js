@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
-import { ItemList } from '../components'
-import data from '../products.json'
+import { ItemDetails } from '../components'
+import { getProductBySku } from '../services/products'
 
 export default function DetailsProduct(props) {
-  const { sku, index } = props.route.params
+  const { sku } = props.route.params
+  const [product, setProduct] = useState()
 
-  return <ItemList {...data[index]} />
+  useEffect(() => {
+    getProductBySku(sku)
+      .then(newProduct => {
+        setProduct(newProduct)
+      })
+      .catch(err => {
+        console.log('Não foi possivel carregar os dados', err)
+      })
+  }, [sku])
+
+  return <ItemDetails {...product} />
 }

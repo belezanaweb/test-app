@@ -8,9 +8,7 @@ const List = props => {
     <FlatList
       data={props.data}
       keyExtractor={item => item.sku}
-      renderItem={({ item, index }) => (
-        <ItemList {...item} navigation={props.navigation} index={index} />
-      )}
+      renderItem={({ item }) => <ItemList {...item} navigation={props.navigation} />}
     />
   )
 }

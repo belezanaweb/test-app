@@ -5,5 +5,6 @@ import ShowMore from './ShowMore'
 import Image from './Image'
 import List from './List'
 import ItemList from './ItemList'
+import ItemDetails from './ItemDetails'
 
-export { Button, Text, Card, ShowMore, Image, List, ItemList }
+export { Button, Text, Card, ShowMore, Image, List, ItemList, ItemDetails }
