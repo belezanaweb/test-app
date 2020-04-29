@@ -5,8 +5,8 @@ export const getAllProducts = async (page = 1, size = 10) => {
     const res = await Api.get('/products', {
       params: {
         page,
-        size
-      }
+        size,
+      },
     })
     return res.data
   } catch (err) {
