@@ -9,11 +9,10 @@ const Home = props => {
   const [products, setProducts] = useState([])
   const [page, setPage] = useState(1)
   const [sizeList, setSizeList] = useState(sizePagination)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
 
-  useEffect(() => {
-    setLoading(true)
+  const setInitialData = () => {
     getAllProducts(page, sizeList)
       .then(newProducts => {
         setSizeList(newProducts.length)
@@ -24,7 +23,13 @@ const Home = props => {
       .catch(err => {
         console.log('Não foi possivel carregar os dados', err)
       })
-  }, [page, sizeList])
+  }
+
+  useEffect(() => {
+    setInitialData()
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const renderFooter = () => {
     if (loadingMore) {
