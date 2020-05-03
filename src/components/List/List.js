@@ -9,6 +9,7 @@ const List = props => {
       data={props.data}
       keyExtractor={item => item.sku}
       renderItem={({ item }) => <ItemList {...item} navigation={props.navigation} />}
+      {...props}
     />
   )
 }
