@@ -6,11 +6,23 @@ import { Content, ContentImage, ContentDetails } from './styles'
 import sanitizePrice from '../../helpers/sanitizePrice'
 
 const ItemList = props => {
+  const getImage = listImages => {
+    const item = listImages.filter(_item => _item.featured)[0]
+    if (item) {
+      return {
+        uri: item.small,
+      }
+    }
+    return {
+      uri: listImages[0].small,
+    }
+  }
+
   return (
     <Card>
       <Content>
         <ContentImage>
-          <Image source={{ uri: props.imageObjects[0].small }} />
+          <Image source={getImage(props.imageObjects)} />
           <Text type="h5" color={colors.grey}>
             cod: {props.sku}
           </Text>
