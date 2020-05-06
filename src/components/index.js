@@ -7,5 +7,6 @@ import List from './List'
 import ItemList from './ItemList'
 import ItemDetails from './ItemDetails'
 import Loading from './Loading'
+import Input from './Input'
 
-export { Button, Text, Card, ShowMore, Image, List, ItemList, ItemDetails, Loading }
+export { Button, Text, Card, ShowMore, Image, List, ItemList, ItemDetails, Loading, Input }

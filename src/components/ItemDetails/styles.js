@@ -15,3 +15,10 @@ export const ContentImage = styled.View`
   padding-top: 12px;
   padding-bottom: 12px;
 `
+
+export const ContainerModal = styled.View`
+  flex: 1;
+  justify-content: center;
+  background-color: #333;
+  opacity: 0.8;
+`
