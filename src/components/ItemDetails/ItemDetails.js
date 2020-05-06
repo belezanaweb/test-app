@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ScrollView, Modal, View } from 'react-native'
+import { ScrollView, Modal } from 'react-native'
 
 import { Button, Card, Text, Image, ShowMore, Input } from '../../components'
 import colors from '../../theme/colors'
