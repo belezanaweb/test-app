@@ -1,11 +1,15 @@
-export interface ProductsProps {
+export interface ProductProps {
   sku: string,
   name: string,
-  maxPrice?: number,
-  price: number,
-  image: string,
+  maxPrice?: string,
+  price: string,
+  picture: string,
+}
+
+export interface ProductAllProps extends ProductProps {
+  gallery: any,
   description: string,
   numberOfPayments: number,
-  monthlyPayment: number,
+  monthlyPayment: string,
   brand: string,
 }
