@@ -11,26 +11,18 @@ StatusBar.setBarStyle('light-content');
 
 /* istanbul ignore if */
 if (Platform.OS === 'android') {
-  StatusBar.setBackgroundColor('#ffffff60');
+  StatusBar.setBackgroundColor('#00000050');
   StatusBar.setTranslucent(true);
 }
 
-function App() {
-  const headerStyles = {
-    headerTransparent: true,
-    headerStyle: {
-      backgroundColor: 'transparent',
-      borderBottomWidth: 0,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontSize: 27,
-      marginTop: -39,
-      textTransform: 'uppercase'
-    },
-    headerBackTitle: '',
-  }
+const headerStyles = {
+  headerTitleStyle: {
+    textTransform: 'uppercase'
+  },
+}
 
+
+const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
