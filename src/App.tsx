@@ -1,59 +1,58 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
+import { StatusBar, Platform } from 'react-native';
+import ProductList from './screens/ProductList';
+import ProductDetails from './screens/ProductDetails';
 
-import React from 'react'
-import { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+const Stack = createStackNavigator();
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+StatusBar.setBarStyle('light-content');
 
-
-type Props = {};
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
-      </View>
-    );
-  }
+/* istanbul ignore if */
+if (Platform.OS === 'android') {
+  StatusBar.setBackgroundColor('#ffffff60');
+  StatusBar.setTranslucent(true);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+function App() {
+  const headerStyles = {
+    headerTransparent: true,
+    headerStyle: {
+      backgroundColor: 'transparent',
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontSize: 27,
+      marginTop: -39,
+      textTransform: 'uppercase'
+    },
+    headerBackTitle: '',
+  }
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS
+        }}
+      >
+        <Stack.Screen
+          name="ProductList"
+          component={ProductList}
+          options={{ title: 'Lista de produtos', ...headerStyles }}
+        />
+
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
+          options={{ title: 'Detalhes do produto', ...headerStyles }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
