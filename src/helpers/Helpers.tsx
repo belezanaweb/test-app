@@ -9,7 +9,7 @@ export const formatPrice = (currency: string, value: number) => {
   }
 
   if (currency === 'BRL') {
-    formatters['BRL'](value);
+    return formatters['BRL'](value);
   }
 }
 
