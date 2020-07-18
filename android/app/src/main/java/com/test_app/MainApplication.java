@@ -1,4 +1,4 @@
-package com.test_app;
+package app.online_store;
 
 import android.app.Application;
 import android.content.Context;
