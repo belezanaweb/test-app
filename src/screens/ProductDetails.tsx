@@ -7,7 +7,7 @@ import { getAsyncStorageData, setAsyncStorageData } from '../helpers/AsyncStorag
 import LottieView from 'lottie-react-native';
 import { ThemeStyles } from '../theme/Theme';
 import ProductDetailsCard from '../components/ProductDetailsCard';
-import BuyConfirmationModal from '../components/BuyConfirmationModal';
+import ProductModal from '../components/ProductModal';
 
 const LoadingProduct = require('../assets/lottie/loadingProduct.json');
 
@@ -76,7 +76,7 @@ const ProductDetails = ({ navigation, route }: any) => {
       { !loading ?
         <>
           { !!productModal &&
-            <BuyConfirmationModal
+            <ProductModal
               product={fullProduct}
               template={fullProduct.inventory ? 'orderSuccess' : 'outOfStock'}
               onClose={() => {
