@@ -7,6 +7,7 @@ import { getAsyncStorageData, setAsyncStorageData } from '../helpers/AsyncStorag
 import LottieView from 'lottie-react-native';
 import { ThemeStyles } from '../theme/Theme';
 import ProductDetailsCard from '../components/ProductDetailsCard';
+import BuyConfirmationModal from '../components/BuyConfirmationModal';
 
 const LoadingProduct = require('../assets/lottie/loadingProduct.json');
 
@@ -16,8 +17,7 @@ const ProductDetails = ({ navigation, route }: any) => {
 
   const [loading, setLoading] = useState(true);
   const [fullProduct, setFullProduct] = useState({} as ProductAllProps);
-  const [buyConfirmation, setBuyConfirmation] = useState(false);
-  const [remember, setRemember] = useState(false);
+  const [productModal, setProductModal] = useState(false);
 
   useEffect(() => {
     getAsyncStorageData(`product_${stripSpecialChars(sku)}`)
@@ -52,7 +52,8 @@ const ProductDetails = ({ navigation, route }: any) => {
           monthlyPayment: formatPrice('BRL', p.priceSpecification.installments.monthlyPayment),
           description: p.details.description || '',
           brand: p.brand.name,
-          inventory: p.inventory.quantity || 0,
+          // inventory: p.inventory.quantity || 0,
+          inventory: 0,
         }
 
         setFullProduct(_product);
@@ -74,9 +75,20 @@ const ProductDetails = ({ navigation, route }: any) => {
     <>
       { !loading ?
         <>
+          { !!productModal &&
+            <BuyConfirmationModal
+              product={fullProduct}
+              template={fullProduct.inventory ? 'orderSuccess' : 'outOfStock'}
+              onClose={() => {
+                setTimeout(() => setProductModal(false), 500);
+              }}
+            />
+          }
+
           <ScrollView contentContainerStyle={styles.scrollView}>
             <ProductDetailsCard
               product={fullProduct}
+              onPress={() => setProductModal(true)}
             />
           </ScrollView>
         </>

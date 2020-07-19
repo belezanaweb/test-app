@@ -8,13 +8,13 @@ import Image from 'react-native-image-placeholder';
 const PicturePlaceholder = require('../assets/img/picture-placeholder.png');
 
 const ProductListItem = (props: any) => {
-  const { product, onPressView } = props;
+  const { product, onPress, showButton, buttonLabel, hideBg } = props;
 
   product.picture = product.picture ? product.picture : {};
   const picture = product.picture.medium || product.picture.large;
 
   return (
-    <View style={styles.product}>
+    <View style={[styles.product, hideBg ? styles.hideBg : null]}>
       <View style={styles.productLeftSide}>
         <Image
           style={styles.productPicture}
@@ -30,7 +30,7 @@ const ProductListItem = (props: any) => {
       <View style={styles.productRightSide}>
         <Text style={styles.productName} numberOfLines={3}>{ product.name }</Text>
 
-        <View style={styles.productPriceContainer}>
+        <View style={[styles.productPriceContainer, !showButton ? { marginTop: 20 } : null]}>
           { !!product.maxPrice &&
             <Text style={styles.productMaxPrice} numberOfLines={1}>{ product.maxPrice }</Text>
           }
@@ -38,14 +38,24 @@ const ProductListItem = (props: any) => {
           <Text style={styles.productPrice} numberOfLines={1}>{ product.price }</Text>
         </View>
 
-        <Touchable onPress={() => onPressView(product)} testID='ViewProduct'>
-          <View style={ThemeStyles.solidButton.container}>
-            <Text style={ThemeStyles.solidButton.text}>Ver Detalhes</Text>
-          </View>
-        </Touchable>
+        { !!showButton &&
+          <Touchable onPress={() => onPress(product)} testID='ViewProduct'>
+            <View style={ThemeStyles.solidButton.container}>
+              <Text style={ThemeStyles.solidButton.text}>{ buttonLabel }</Text>
+            </View>
+          </Touchable>
+        }
       </View>
     </View>
   )
+}
+
+ProductListItem.defaultProps = {
+  product: {},
+  onPress: () => {},
+  showButton: true,
+  buttonLabel: 'View Product',
+  hideBg: false,
 }
 
 const styles = StyleSheet.create({
@@ -108,6 +118,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
   },
+  hideBg: {
+    backgroundColor: 'transparent',
+    elevation: 0,
+    shadowColor: 'transparent',
+    shadowOpacity: 0,
+  }
 });
 
 export default ProductListItem;

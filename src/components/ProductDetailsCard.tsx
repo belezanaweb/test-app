@@ -13,7 +13,7 @@ const ArrowDown = require('../assets/img/arrow-down.png');
 const deviceWidth = Dimensions.get('window').width;
 
 const ProductDetailsCard = (props: any) => {
-  const { product } = props;
+  const { product, onPress } = props;
 
   const [readMoreDescription, setReadMoreDescription] = useState(false);
 
@@ -73,14 +73,14 @@ const ProductDetailsCard = (props: any) => {
       </View>
 
       { product.inventory > 0 ?
-          <Touchable onPress={() => {}} testID='BuyProduct'>
+          <Touchable onPress={() => onPress(product.inventory, product)} testID='BuyProduct'>
             <View style={ThemeStyles.solidButton.container}>
             <Text style={ThemeStyles.solidButton.text}>Compre</Text>
             </View>
           </Touchable>
 
         :
-          <Touchable onPress={() => {}} testID='RememberMe'>
+          <Touchable onPress={() => onPress(product.inventory, product)} testID='RememberMe'>
             <View style={ThemeStyles.outlinedButton.container}>
             <Text style={ThemeStyles.outlinedButton.text}>Avise-Me</Text>
             </View>
@@ -115,6 +115,11 @@ const ProductDetailsCard = (props: any) => {
       }
     </View>
   )
+}
+
+ProductDetailsCard.defaultProps = {
+  product: {},
+  onPress: () => {},
 }
 
 const styles = StyleSheet.create({

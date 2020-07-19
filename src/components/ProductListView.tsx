@@ -37,7 +37,9 @@ const ProductListView = (props: any) => {
     return (
       <ProductListItem
         product={item}
-        onPressView={onPressView}
+        onPress={onPressView}
+        showButton={true}
+        buttonLabel='Ver Detalhes'
       />
     )
   }
