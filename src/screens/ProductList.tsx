@@ -32,7 +32,7 @@ const ProductList = ({ navigation }: any) => {
             name: p[i].name,
             price: formatPrice('BRL', p[i].priceSpecification.price),
             maxPrice: formatPrice('BRL', p[i].priceSpecification.maxPrice),
-            picture: p[i].imageObjects.filter((img: any) => img.featured)[0],
+            picture: p[i].imageObjects.filter((img: any) => img.featured)[0] || p[i].imageObjects[0],
           });
 
           if (i === res.data.length - 1) {

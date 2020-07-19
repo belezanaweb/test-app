@@ -3,9 +3,10 @@ import { StyleSheet } from 'react-native';
 export const ThemeColors = {
   black: '#212121',
   primary: '#ff6c00',
-  lightGray: '#cccccc',
+  lightGray: '#c4c4c4',
   mediumGray: '#999999',
   darkGray: '#6f6f6f',
+  purple: '#a43287',
 }
 
 export const ThemeStyles = {
