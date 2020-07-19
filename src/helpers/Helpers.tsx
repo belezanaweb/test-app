@@ -13,3 +13,6 @@ export const formatPrice = (currency: string, value: number) => {
   }
 }
 
+export const stripSpecialChars = (str: string) => {
+  return str.replace(/[^a-z0-9]/gi,'');
+}
