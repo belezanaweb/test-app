@@ -62,6 +62,7 @@
     "metro.config.js",
     "jest.config.js",
     "__tests__",
-    "__mocks__"
+    "__mocks__",
+    "**/*.test.tsx"
   ]
 }
