@@ -5,6 +5,7 @@ import ProductListView from '../components/ProductListView';
 import { ProductProps } from '../types/Types';
 import { formatPrice } from '../helpers/Helpers';
 import LottieView from 'lottie-react-native';
+import { ThemeStyles } from '../theme/Theme';
 
 const LoadingProducts = require('../assets/lottie/loadingProducts.json');
 
@@ -80,7 +81,7 @@ const ProductList = ({ navigation }: any) => {
       }
 
       { !!loading &&
-        <View style={styles.loadingContainer}>
+        <View style={ThemeStyles.loading.container}>
           <LottieView
             source={LoadingProducts}
             style={styles.loadingAnimation}
@@ -97,13 +98,6 @@ const ProductList = ({ navigation }: any) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  loadingContainer: {
-    flex: 1,
-    position: 'absolute',
-    backgroundColor: '#ffffff',
-    width: '100%',
-    height: '100%',
   },
   loadingAnimation: {
     flex: 1,

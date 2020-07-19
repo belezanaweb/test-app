@@ -42,5 +42,14 @@ export const ThemeStyles = {
       fontSize: 16,
       fontWeight: 'bold',
     }
+  }),
+  loading: StyleSheet.create({
+    container: {
+      flex: 1,
+      position: 'absolute',
+      backgroundColor: '#ffffff',
+      width: '100%',
+      height: '100%',
+    },
   })
 }
