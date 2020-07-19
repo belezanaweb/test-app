@@ -36,7 +36,9 @@ const ProductListView = (props: any) => {
   }, [data]);
 
   const rowRenderer = (type: any, item: ProductProps, index: number) => {
-    const picture = item?.picture?.medium || item?.picture?.large;
+    item.picture = item.picture ? item.picture : {};
+
+    const picture = item.picture.medium || item.picture.large;
 
     return (
       <View style={styles.product}>
