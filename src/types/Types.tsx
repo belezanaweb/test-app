@@ -12,4 +12,5 @@ export interface ProductAllProps extends ProductProps {
   numberOfPayments: number,
   monthlyPayment: string,
   brand: string,
+  inventory: number,
 }
