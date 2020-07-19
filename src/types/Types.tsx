@@ -3,7 +3,7 @@ export interface ProductProps {
   name: string,
   maxPrice?: string,
   price: string,
-  picture: string,
+  picture: any,
 }
 
 export interface ProductAllProps extends ProductProps {
