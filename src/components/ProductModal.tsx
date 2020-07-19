@@ -5,12 +5,15 @@ import Modal from "react-native-modal";
 import ProductListItem from './ProductListItem';
 import { ThemeColors, ThemeStyles } from '../theme/Theme';
 import { systemWeights } from 'react-native-typography';
+import FloatingLabelInput from './FloatingLabelInput';
 
 const deviceWidth = Dimensions.get('window').width;
 const Close = require('../assets/img/close.png');
 
-const SendMoneyModal = (props: any) => {
+const ProductModal = (props: any) => {
   const [ visible, setVisible ] = useState(true);
+  const [ userName, setUserName ] = useState('');
+  const [ userEmail, setUserEmail ] = useState('');
   const { product, onClose, template } = props;
 
   const close = () => {
@@ -72,10 +75,40 @@ const SendMoneyModal = (props: any) => {
 
           { template === 'outOfStock' &&
             <>
-              <Text style={styles.modalTitle}>Avisar quando chegar</Text>
+              <Text style={styles.modalTitle}>Avise-me quando chegar</Text>
 
               <View style={styles.modalContent}>
+                <View style={styles.modalForm}>
+                  <FloatingLabelInput
+                    label='Nome'
+                    textContentType='name'
+                    blurOnSubmit={false}
+                    noValidation={true}
+                    onChangeText={(ref: any, text: string) => setUserName(text)}
+                    defaultValue=''
+                    value={userName}
+                    alwaysEnabled={false}
+                    primaryColor={ThemeColors.primary}
+                    placeholderTextColor={ThemeColors.primary}
+                    borderBottomColor={ThemeColors.primary}
+                    testID="nameInput"
+                  />
 
+                  <FloatingLabelInput
+                    label='E-mail'
+                    textContentType='emailAddress'
+                    blurOnSubmit={false}
+                    noValidation={true}
+                    onChangeText={(ref: any, text: string) => setUserEmail(text)}
+                    defaultValue=''
+                    value={userEmail}
+                    alwaysEnabled={false}
+                    primaryColor={ThemeColors.primary}
+                    placeholderTextColor={ThemeColors.primary}
+                    borderBottomColor={ThemeColors.primary}
+                    testID="emailInput"
+                  />
+                </View>
 
                 <View style={styles.modalButton}>
                   <Touchable onPress={close}>
@@ -93,7 +126,7 @@ const SendMoneyModal = (props: any) => {
   )
 }
 
-SendMoneyModal.defaultProps = {
+ProductModal.defaultProps = {
   product: {},
   onClose: () => {},
   template: 'orderSuccess',
@@ -133,9 +166,12 @@ const styles = StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 15,
   },
+  modalForm: {
+    padding: 15,
+  },
   modalButton: {
     paddingHorizontal: 15,
   },
 });
 
-export default SendMoneyModal;
+export default ProductModal;
