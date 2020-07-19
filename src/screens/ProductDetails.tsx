@@ -52,8 +52,7 @@ const ProductDetails = ({ navigation, route }: any) => {
           monthlyPayment: formatPrice('BRL', p.priceSpecification.installments.monthlyPayment),
           description: p.details.description || '',
           brand: p.brand.name,
-          // inventory: p.inventory.quantity || 0,
-          inventory: 0,
+          inventory: p.inventory.quantity || 0,
         }
 
         setFullProduct(_product);
