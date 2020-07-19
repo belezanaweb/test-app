@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 import Touchable from 'react-native-touchable-safe';
-import { ThemeColors, ThemeStyles } from '../theme/Theme';
+import { ThemeStyles } from '../theme/Theme';
 import { ProductProps } from '../types/Types';
 // @ts-ignore
 import ProductListItem from './ProductListItem';
