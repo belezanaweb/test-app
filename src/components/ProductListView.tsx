@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
-import { RecyclerListView, DataProvider, LayoutProvider, BaseScrollView } from "recyclerlistview";
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import { RecyclerListView, DataProvider, LayoutProvider } from "recyclerlistview";
 import Touchable from 'react-native-touchable-safe';
 import { ThemeColors, ThemeStyles } from '../theme/Theme';
 import { ProductProps } from '../types/Types';
@@ -13,7 +13,7 @@ const deviceWidth = Dimensions.get('window').width;
 const itemHeight = 180;
 
 const ProductListView = (props: any) => {
-  const { data, onPressView, onPressMore } = props;
+  const { data, onPressView, onPressMore, visiblePaginator } = props;
 
   const [dataProvider, setDataProvider] = useState(
     new DataProvider((r1, r2) => {
@@ -93,7 +93,7 @@ const ProductListView = (props: any) => {
       rowRenderer={rowRenderer}
       contentContainerStyle={styles.listContainer}
       showsVerticalScrollIndicator={false}
-      renderFooter={renderFooter}
+      renderFooter={visiblePaginator ? renderFooter : () => null}
     />
   )
 }
@@ -102,6 +102,7 @@ ProductListView.defaultProps = {
   data: [],
   onPressView: () => {},
   onPressMore: () => {},
+  visiblePaginator: true,
 }
 
 const styles = StyleSheet.create({
