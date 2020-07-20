@@ -14,7 +14,7 @@ const ProductModal = (props: any) => {
   const [ visible, setVisible ] = useState(true);
   const [ userName, setUserName ] = useState('');
   const [ userEmail, setUserEmail ] = useState('');
-  const { product, onClose, template } = props;
+  const { product, onClose, onChangeText, template } = props;
 
   const close = () => {
     setVisible(false);
@@ -63,7 +63,7 @@ const ProductModal = (props: any) => {
                 />
 
                 <View style={styles.modalButton}>
-                  <Touchable onPress={close}>
+                  <Touchable onPress={close} testID='CloseButton'>
                     <View style={ThemeStyles.solidButton.container}>
                       <Text style={ThemeStyles.solidButton.text}>Continuar comprando</Text>
                     </View>
@@ -84,7 +84,7 @@ const ProductModal = (props: any) => {
                     textContentType='name'
                     blurOnSubmit={false}
                     noValidation={true}
-                    onChangeText={(ref: any, text: string) => setUserName(text)}
+                    onChangeText={(ref: any, text: string) => { setUserName(text); onChangeText(text); }}
                     defaultValue=''
                     value={userName}
                     alwaysEnabled={false}
@@ -99,7 +99,7 @@ const ProductModal = (props: any) => {
                     textContentType='emailAddress'
                     blurOnSubmit={false}
                     noValidation={true}
-                    onChangeText={(ref: any, text: string) => setUserEmail(text)}
+                    onChangeText={(ref: any, text: string) => { setUserEmail(text); onChangeText(text); }}
                     defaultValue=''
                     value={userEmail}
                     alwaysEnabled={false}
@@ -111,7 +111,7 @@ const ProductModal = (props: any) => {
                 </View>
 
                 <View style={styles.modalButton}>
-                  <Touchable onPress={close}>
+                  <Touchable onPress={close} testID='SendButton'>
                     <View style={ThemeStyles.solidButton.container}>
                       <Text style={ThemeStyles.solidButton.text}>Enviar</Text>
                     </View>
@@ -128,7 +128,8 @@ const ProductModal = (props: any) => {
 
 ProductModal.defaultProps = {
   product: {},
-  onClose: () => {},
+  onClose: /* istanbul ignore next */ () => {},
+  onChangeText: /* istanbul ignore next */ () => {},
   template: 'orderSuccess',
 }
 

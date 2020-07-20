@@ -19,7 +19,7 @@ const ProductDetailsCard = (props: any) => {
   const [readMoreDescription, setReadMoreDescription] = useState(false);
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID='ProductCard'>
       <Text style={styles.title}>{ product.name }</Text>
 
       <View style={styles.galleryContainer}>
@@ -39,6 +39,7 @@ const ProductDetailsCard = (props: any) => {
             product.gallery.map((pic: any, i : number) => {
               const picture = pic.large || pic.medium;
 
+              /* istanbul ignore else */
               if (picture) {
                 return (
                   <Image
@@ -120,7 +121,7 @@ const ProductDetailsCard = (props: any) => {
 
 ProductDetailsCard.defaultProps = {
   product: {},
-  onPress: () => {},
+  onPress: /* istanbul ignore next */ () => {},
 }
 
 const styles = StyleSheet.create({

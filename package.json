@@ -61,6 +61,12 @@
       "<rootDir>/jest/setup.js",
       "@testing-library/jest-native/extend-expect"
     ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/src/screens/ProductDetails.tsx",
+      "!<rootDir>/src/screens/ProductList.tsx",
+      "!<rootDir>/src/types/Types.tsx"
+    ],
     "moduleFileExtensions": [
       "ts",
       "tsx",

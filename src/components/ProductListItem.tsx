@@ -14,7 +14,7 @@ const ProductListItem = (props: any) => {
   const picture = product.picture.medium || product.picture.large;
 
   return (
-    <View style={[styles.product, hideBg ? styles.hideBg : null]}>
+    <View style={[styles.product, hideBg ? styles.hideBg : null]} testID='ProductItem'>
       <View style={styles.productLeftSide}>
         <Image
           style={styles.productPicture}
@@ -28,7 +28,7 @@ const ProductListItem = (props: any) => {
       </View>
 
       <View style={styles.productRightSide}>
-        <Text style={styles.productName} numberOfLines={3}>{ product.name }</Text>
+        <Text style={styles.productName} numberOfLines={3} testID='ProductName'>{ product.name }</Text>
 
         <View style={[styles.productPriceContainer, !showButton ? { marginTop: 20 } : null]}>
           { !!product.maxPrice &&
@@ -52,7 +52,7 @@ const ProductListItem = (props: any) => {
 
 ProductListItem.defaultProps = {
   product: {},
-  onPress: () => {},
+  onPress: /* istanbul ignore next */ () => {},
   showButton: true,
   buttonLabel: 'View Product',
   hideBg: false,

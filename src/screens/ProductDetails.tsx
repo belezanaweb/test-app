@@ -22,21 +22,26 @@ const ProductDetails = ({ navigation, route }: any) => {
   useEffect(() => {
     getAsyncStorageData(`product_${stripSpecialChars(sku)}`)
     .then((_product) => {
-      if (_product && _product.title) {
-        setFullProduct(_product);
-        setLoading(false);
-        loadProductDetails();
-      } else {
+      /* istanbul ignore if */
+      if (_product && _product.name) {
+        setTimeout(() => {
+          setFullProduct(_product);
+          setLoading(false);
+        }, 150);
+      }
+
+      loadProductDetails();
+    })
+    
+    .catch(/* istanbul ignore next */
+      (err) => {
         loadProductDetails();
       }
-    })
-    .catch((err) => {
-      loadProductDetails();
-    });
+    );
   }, []);
 
   const loadProductDetails = () => {
-    Api.products.get(`https://pacific-wave-51314.herokuapp.com/products/${sku}`)
+    Api.products.get(`/${sku}`)
     .then((res: any) => {
       if (res.status === 200) {
         const p: any = res.data;
@@ -58,8 +63,6 @@ const ProductDetails = ({ navigation, route }: any) => {
         setFullProduct(_product);
 
         setAsyncStorageData(`product_${stripSpecialChars(sku)}`, _product);
-
-        setLoading(false);
       }
     })
     .catch((err) => {

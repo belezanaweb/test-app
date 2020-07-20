@@ -13,12 +13,14 @@ const itemHeight = 180;
 const ProductListView = (props: any) => {
   const { data, onPressView, onPressMore, visiblePaginator } = props;
 
+  /* istanbul ignore next */
   const [dataProvider, setDataProvider] = useState(
     new DataProvider((r1, r2) => {
       return r1 !== r2
     })
   );
 
+  /* istanbul ignore next */
   const [layoutProvider] = useState(
     new LayoutProvider(
       (index) => 1,
@@ -33,6 +35,7 @@ const ProductListView = (props: any) => {
     setDataProvider((prevState) => prevState.cloneWithRows(data))
   }, [data]);
 
+  /* istanbul ignore next */
   const rowRenderer = (type: any, item: ProductProps, index: number) => {
     return (
       <ProductListItem
@@ -65,14 +68,15 @@ const ProductListView = (props: any) => {
       contentContainerStyle={styles.listContainer}
       showsVerticalScrollIndicator={false}
       renderFooter={visiblePaginator ? renderFooter : () => null}
+      testID='ProductList'
     />
   )
 }
 
 ProductListView.defaultProps = {
   data: [],
-  onPressView: () => {},
-  onPressMore: () => {},
+  onPressView: /* istanbul ignore next */ () => {},
+  onPressMore: /* istanbul ignore next */ () => {},
   visiblePaginator: true,
 }
 

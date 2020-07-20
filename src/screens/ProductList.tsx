@@ -20,7 +20,7 @@ const ProductList = ({ navigation }: any) => {
   }, [pagination])
 
   const loadProducts = () => {
-    Api.products.get(`https://pacific-wave-51314.herokuapp.com/products?page=${pagination.page}&size=${pagination.size}`)
+    Api.products.get(`?page=${pagination.page}&size=${pagination.size}`)
     .then((res: any) => {
       if (res.status === 200) {
         const p: any = res.data;
