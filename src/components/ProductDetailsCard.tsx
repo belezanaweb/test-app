@@ -5,6 +5,7 @@ import { systemWeights } from 'react-native-typography';
 import Swiper from 'react-native-swiper';
 import Touchable from 'react-native-touchable-safe';
 import LinearGradient from 'react-native-linear-gradient';
+import { stripHTMLTags } from '../helpers/Helpers';
 // @ts-ignore
 import Image from 'react-native-image-placeholder';
 
@@ -91,7 +92,7 @@ const ProductDetailsCard = (props: any) => {
         <>
           <View style={[styles.descriptionContainer, readMoreDescription ? null : { maxHeight: 135 }]}>
             <Text style={styles.descriptionHeading}>Descrição do Produto</Text>
-            <Text style={styles.descriptionText}>{ product.description.replace(/(<([^>]+)>)/ig, '').replace(/&nbsp;/ig, '').trim() }</Text>
+            <Text style={styles.descriptionText}>{ stripHTMLTags(product.description) }</Text>
 
             { !readMoreDescription &&
               <LinearGradient
