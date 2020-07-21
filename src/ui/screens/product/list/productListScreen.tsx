@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "./components/productCard";
-import { productFetch } from "../../../../api/product/productFetch";
+import { productListFetch } from "../../../../api/product/productFetch";
 import { ScrollView, Text, View, ActivityIndicator } from "react-native";
 import { screenStyle } from "./style";
 import { Button } from "../../../components";
+import { formatCurrency } from "../../../../global/utils";
 
 export const ProductListScreen = () => {
 
@@ -13,7 +14,7 @@ export const ProductListScreen = () => {
 
     const populateProducts = async () => {
         setIsLoading(true);
-        setProductList(await productFetch(listSize));
+        setProductList(await productListFetch(listSize));
         setIsLoading(false);
     };
 
@@ -28,11 +29,12 @@ export const ProductListScreen = () => {
 
             return (
                 <ProductCard
+                    key={p.sku}
                     name={p.name}
                     sku={p.sku}
-                    maxPrice={`R$ ${p.priceSpecification.maxPrice}`}
+                    maxPrice={formatCurrency(p.priceSpecification.maxPrice)}
                     inventoryQuantity={p.inventory.quantity}
-                    price={`R$ ${p.priceSpecification.price}`}
+                    price={formatCurrency(p.priceSpecification.price)}
                     imageURI={imageObject ? imageObject.small : ""}
                     onPressDetail={() => { navigateToDetails(p.sku); }}
                 />
