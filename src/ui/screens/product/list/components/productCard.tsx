@@ -21,17 +21,25 @@ export const ProductCard = (props: IProductCardProps) => {
         return <View>{elements}</View>;
     };
 
+    const renderImage = (): JSX.Element => {
+        if (props.imageURI && props.imageURI !== "") {
+            return (
+                <Image
+                    style={componentStyle.ProductCard.imageStye}
+                    source={{ uri: props.imageURI }}
+                />
+            );
+        } else {
+            return <View style={componentStyle.ProductCard.imageStye} />;
+        }
+    }
+
     return (
         <View style={componentStyle.ProductCard.outContainerStyle}>
             <Card>
                 <View style={componentStyle.ProductCard.inContainerStyle}>
                     <View>
-                        <Image
-                            style={componentStyle.ProductCard.imageStye}
-                            source={{
-                                uri: props.imageURI
-                            }}
-                        />
+                        {renderImage()}
                         <Text style={componentStyle.ProductCard.skuTextStyle}>{`cod: ${props.sku}`}</Text>
                     </View>
                     <View style={{ flex: 2, justifyContent: "space-between" }}>
@@ -39,7 +47,7 @@ export const ProductCard = (props: IProductCardProps) => {
                         <View>
                             {renderPrice()}
                         </View>
-                        <Button isPrimary={true} title="ver detalhes" onPress={() => { }} />
+                        <Button isPrimary={true} title="ver detalhes" onPress={props.onPressDetail} />
                     </View>
                 </View>
             </Card>
@@ -54,4 +62,5 @@ export interface IProductCardProps {
     maxPrice?: string;
     inventoryQuantity: number;
     imageURI: string;
+    onPressDetail: () => void;
 };

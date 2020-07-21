@@ -5,9 +5,11 @@ export const atomStyle = {
     PrimaryButton: StyleSheet.create({
         buttonStyle: {
             backgroundColor: theme.color.primary,
+            height: 36
         },
         containerStyle: {
-            borderRadius: 4,
+            borderRadius: 4
+
         },
         titleStyle:{
             color: theme.color.onPrimary,
