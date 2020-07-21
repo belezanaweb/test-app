@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, Button } from "../../../../components";
-import { View, Image, Text } from "react-native";
-import { theme } from "../../../../theme";
-import { componentStyle } from "./style"
+import { Image, Text, View } from "react-native";
+import { Button, Card } from "../../../../components";
+import { componentStyle } from "./style";
 
 export const ProductCard = (props: IProductCardProps) => {
 
