@@ -8,7 +8,7 @@ export const ProductCard = (props: IProductCardProps) => {
     const renderPrice = (): JSX.Element => {
         const elements: JSX.Element[] = [];
 
-        if (props.maxPrice) {
+        if (props.maxPrice > props.price) {
             elements.push(
                 <Text key="txtMaxPrice" style={componentStyle.ProductCard.maxPriceStyle}>{props.maxPrice}</Text>
             );
@@ -22,9 +22,9 @@ export const ProductCard = (props: IProductCardProps) => {
     };
 
     return (
-        <View style={{ margin: 10 }}>
+        <View style={componentStyle.ProductCard.outContainerStyle}>
             <Card>
-                <View style={componentStyle.ProductCard.containerStyle}>
+                <View style={componentStyle.ProductCard.inContainerStyle}>
                     <View>
                         <Image
                             style={componentStyle.ProductCard.imageStye}

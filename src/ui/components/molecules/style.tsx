@@ -4,7 +4,6 @@ export const moleculeStyle = {
     Card: StyleSheet.create({
         containerStyle: {
             padding: 5,
-            marginBottom: 20,
             backgroundColor: "#FFF",
             borderRadius: 4,
             shadowColor: "#000",

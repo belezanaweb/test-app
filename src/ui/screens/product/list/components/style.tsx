@@ -3,7 +3,11 @@ import { theme } from "../../../../theme";
 
 export const componentStyle = {
     ProductCard: StyleSheet.create({
-        containerStyle: {
+        outContainerStyle: {
+            margin: 10,
+            marginTop: 0
+        },
+        inContainerStyle: {
             flexDirection: "row",
             justifyContent: "space-between",
             width: "100%",
