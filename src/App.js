@@ -10,6 +10,7 @@ import React, { Fragment } from 'react';
 import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from 'react-native';
 import { Colors, Header } from 'react-native/Libraries/NewAppScreen';
 import { Button } from "./ui/components/atoms/button";
+import { Card } from "./ui/components/molecules/card";
 
 
 const App: () => React$Node = () => {
@@ -19,9 +20,11 @@ const App: () => React$Node = () => {
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic" style={styles.scrollView}>
           <Header />
-          <View style={{width: 290}}>
-          <Button title="Primary" isPrimary={true} onPress={() => { }} />
-          <Button title="SECONDARY" isPrimary={false} onPress={() => { }} />
+          <View style={{ width: 290 }}>
+            <Card>
+              <Button title="Primary" isPrimary={true} onPress={() => { }} />
+              <Button title="SECONDARY" isPrimary={false} onPress={() => { }} />
+            </Card>
           </View>
         </ScrollView>
       </SafeAreaView>

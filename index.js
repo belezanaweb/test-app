@@ -4,6 +4,7 @@
 
 import { AppRegistry } from 'react-native'
 import App from 'src/App'
+import { ProductListScreen } from "./src/ui/screens/product/list/productListScreen";
 import { name as appName } from 'test_app/app.json'
 
-AppRegistry.registerComponent(appName, () => App)
+AppRegistry.registerComponent(appName, () => ProductListScreen)
