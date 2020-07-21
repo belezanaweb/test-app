@@ -6,7 +6,7 @@ import { screenStyle } from "./style";
 import { Button } from "../../../components";
 import { formatCurrency } from "../../../../global/utils";
 
-export const ProductListScreen = () => {
+export const ProductListScreen = ({ navigation }) => {
 
     const [productList, setProductList] = useState([]);
     const [listSize, setListSize] = useState(10);
@@ -19,7 +19,7 @@ export const ProductListScreen = () => {
     };
 
     const navigateToDetails = (sku: string) => {
-
+        navigation.navigate("ProductDetail", { productSKU: sku });
     }
 
     const renderProductCards = () => {
