@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Image, Text, View, ActivityIndicator } from "react-native";
+import { Image, Text, View, ActivityIndicator, Alert, AlertButton } from "react-native";
+import Modal from "react-native-modal";
 import { productFetch } from "../../../../api/product/productFetch";
 import { formatCurrency } from "../../../../global/utils";
 import { Button, Card } from "../../../components";
 import { screenStyle } from "./style";
+import { Input } from "react-native-elements";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 interface IProduct {
-    sku: string;
+    sku?: string;
     name?: string;
     imageObjects?: Array<{ featured: boolean, medium: string }>;
     priceSpecification?: { maxPrice: number, price: number; installments: { numberOfPayments: number, monthlyPayment: number } };
@@ -20,6 +23,7 @@ export const ProductDetailScreen = ({ route, navigation }) => {
     const { productSKU } = route.params;
     const [product, setProduct] = useState<IProduct>({});
     const [isLoading, setIsLoading] = useState(true);
+    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const fetchProduct = async () => {
         setIsLoading(true);
@@ -58,9 +62,10 @@ export const ProductDetailScreen = ({ route, navigation }) => {
 
     const renderButton = () => {
         if (product.inventory.quantity > 0) {
-            return <Button isPrimary={true} title="Compre" onPress={() => { }} />;
+            const buttons: AlertButton[] = [{ text: "Sim" }, { text: "Não" }];
+            return <Button isPrimary={true} title="Compre" onPress={() => { Alert.alert("Comprar", "Deseja comprar o produto?", buttons) }} />;
         } else {
-            return <Button isPrimary={false} title="Avise-me" onPress={() => { }} />;
+            return <Button isPrimary={false} title="Avise-me" onPress={() => { setIsModalVisible(true) }} />;
         }
     };
 
@@ -95,6 +100,16 @@ export const ProductDetailScreen = ({ route, navigation }) => {
                             </View>
                         </Card>
                     </View>
+                    <Modal isVisible={isModalVisible}>
+                        <View style={{ backgroundColor: "#FFF", height: 200, padding: 5 }}>
+                            <Text>Informe seu nome e e-mail:</Text>
+                            <Input placeholder="Nome" />
+                            <Input placeholder="E-mail" />
+                            <View style={{ alignItems: "flex-end", paddingRight: 5 }}>
+                                <TouchableOpacity onPress={() => { setIsModalVisible(false) }}><Text>OK</Text></TouchableOpacity>
+                            </View>
+                        </View>
+                    </Modal>
                 </View>
             )
         }
