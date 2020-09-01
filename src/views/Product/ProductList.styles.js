@@ -18,6 +18,9 @@ export default StyleSheet.create({
     alignContent: 'center',
     padding: 10
   },
+  buttonFooter: {
+    //margin: 10
+  },
   fontHeader: {
     fontSize: 14,
     textTransform: 'uppercase',

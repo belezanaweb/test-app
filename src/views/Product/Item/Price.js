@@ -10,7 +10,7 @@ import React from 'react'
 import { Text } from 'react-native'
 import currencyFormatter from 'currency-formatter'
 
-import Styles, { Colors } from './ProductItem.styles'
+import Styles, { Colors } from './Price.styles'
 
 const Price: () => React$Node = ({ item, withPriceSpecification }) => {
   const calculateDiscount = () => {
@@ -35,8 +35,8 @@ const Price: () => React$Node = ({ item, withPriceSpecification }) => {
       </Text>
       {withPriceSpecification && (
         <Text styles={Styles.priceSpecification}>{`${
-          item.priceSpecification?.installments?.numberOfPayments
-        }x de ${currencyFormatter.format(item.priceSpecification?.installments?.monthlyPayment, {
+          item?.priceSpecification?.installments?.numberOfPayments
+        }x de ${currencyFormatter.format(item?.priceSpecification?.installments?.monthlyPayment, {
           locale: 'pt-BR'
         })}`}</Text>
       )}

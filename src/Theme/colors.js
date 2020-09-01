@@ -12,6 +12,7 @@ const DARK_GRAY = '#6F6F6F'
 const GRAY = '#999999'
 const BLACK = '#000'
 const BACKGROUND = '#E5E5E5'
+const PINK = '#A43287'
 
 /*  FONT SIZE */
 const TEXT_8 = RFValue(8, 580)
@@ -37,6 +38,7 @@ export const Colors = {
   GRAY,
   WHITE,
   BLACK,
+  PINK,
   BACKGROUND,
   TEXT_8,
   TEXT_12,

@@ -7,7 +7,7 @@
  */
 
 import React, { useEffect, useState } from 'react'
-import { Image } from 'react-native'
+import { Image, Text } from 'react-native'
 import PropTypes from 'prop-types'
 
 const ProductImage: () => React$Node = ({ imageObjects, width, height }) => {
@@ -16,17 +16,15 @@ const ProductImage: () => React$Node = ({ imageObjects, width, height }) => {
 
   useEffect(() => {
     imageObjects?.map((item, index) => {
+      //console.log('imageObjects', item)
       if (item.featured) {
         setPathImage(item.medium)
+        //console.log('path', item.medium)
       }
     })
   }, [])
 
-  return (
-    <>
-      <Image source={{ uri: pathImage }} style={{ width, height }} />
-    </>
-  )
+  return <Image source={{ uri: pathImage }} style={{ width, height }} />
 }
 
 ProductImage.propTypes = {

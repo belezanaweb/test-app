@@ -2,7 +2,7 @@
  * @format
  */
 
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 
 import { Colors } from '../../../Theme/colors'
 
@@ -16,6 +16,11 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 8,
     padding: 10
+  },
+  textRead: {
+    color: Colors.PINK,
+    fontSize: 14,
+    fontWeight: 'bold'
   },
   item: {
     backgroundColor: Colors.WHITE,
@@ -43,25 +48,14 @@ export default StyleSheet.create({
     textTransform: 'uppercase',
     fontWeight: 'bold'
   },
-  buttonText: {
-    color: Colors.SECONDARY_COLOR,
-    fontWeight: 'bold',
-    textTransform: 'uppercase',
-    fontSize: 14
-  },
-  button: {
-    alignItems: 'center',
-    backgroundColor: Colors.WHITE,
-    padding: 10,
-    borderRadius: 4,
-    margin: 10,
-    borderWidth: 2,
-    borderColor: Colors.SECONDARY_COLOR
-  },
+
   image: {
     marginTop: 12,
     alignContent: 'center',
     alignItems: 'center'
+  },
+  button: {
+    margin: 10
   },
   brand: {
     fontSize: 20,

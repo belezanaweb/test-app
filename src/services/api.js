@@ -54,7 +54,6 @@ export const productListAction = (page_num, page_size) => {
 }
 
 export const getProductAction = sku => {
-  console.log('getProductAction', sku)
   const path = `/products/${sku}`
   let _headers = {
     ...headers

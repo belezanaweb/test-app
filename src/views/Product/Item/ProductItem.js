@@ -6,12 +6,11 @@
  * @flow strict-local
  */
 
-import React, { Fragment } from 'react'
-import { View, Text, Button, TouchableOpacity } from 'react-native'
+import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
 import ProductImage from '../ProductImage'
-import currencyFormatter from 'currency-formatter'
 
-import Styles, { Colors } from './ProductItem.styles'
+import Styles from './ProductItem.styles'
 import Theme from '../../../Theme'
 import Price from './Price'
 
@@ -40,8 +39,8 @@ const ProductItem: () => React$Node = ({ item, navigation }) => {
             </View>
 
             <View style={Styles.buttonFooter}>
-              <TouchableOpacity style={Styles.button} onPress={onPress}>
-                <Text style={Styles.buttonText}>ver detalhes</Text>
+              <TouchableOpacity style={Theme.button} onPress={onPress}>
+                <Text style={Theme.buttonText}>ver detalhes</Text>
               </TouchableOpacity>
             </View>
           </View>

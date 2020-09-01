@@ -44,7 +44,6 @@ const ProductList: () => React$Node = ({ navigation }) => {
             {productList?.map((item, index) => (
               <ProductItem key={index} item={item} navigation={navigation} />
             ))}
-
             <View style={Styles.buttonFooter}>
               <TouchableOpacity style={Styles.button}>
                 <Text style={Styles.buttonText}>carregar mais produtos</Text>
