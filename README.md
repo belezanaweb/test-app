@@ -1,10 +1,10 @@
 # Entrega - Test
 
-- Pojeto esta usando vector-icons , webview para html, 
-- rum 
-  -> yarn install && cd ios && pod install && cd ..
-  -> yarn ios 
-  -> yarn android 
+- Pojeto esta usando vector-icons , webview para html, </br>
+- rum </br>
+  -> yarn install && cd ios && pod install && cd ..</br>
+  -> yarn ios </br>
+  -> yarn android </br>
 
 
 # Mobile Test
