@@ -1,7 +1,7 @@
 # Entrega - Test
 
 - Pojeto esta usando vector-icons , webview para html, </br>
-- rum </br>
+- run project </br>
   -> yarn install && cd ios && pod install && cd ..</br>
   -> yarn ios </br>
   -> yarn android </br>
