@@ -11,6 +11,13 @@ export default StyleSheet.create({
     backgroundColor: Colors.BACKGROUND,
     height: '100%'
   },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    paddingLeft: 10,
+    borderWidth: 1,
+    borderRadius: 10
+  },
   textTop: {
     fontSize: 20,
     fontWeight: 'bold',

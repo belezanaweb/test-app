@@ -19,7 +19,7 @@ const ModalProduct = ({ product, onOpenModal, openModal, children }) => {
       <Modal transparent animationType="fade" visible={openModal} onRequestClose={onPressOpenModal}>
         <TouchableOpacity style={Styles.bodyPopup} activeOpacity={0.5} onPress={onPressOpenModal}>
           <View style={[Styles.wrapperPopup, { height: 200 }]}>
-            <Text style={[Styles.header]}>Confirmar compra </Text>
+            <Text style={[Styles.header]}>Confirmar </Text>
             <View style={{ paddingLeft: 10, paddingRight: 10 }}>{children}</View>
           </View>
         </TouchableOpacity>

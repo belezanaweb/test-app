@@ -3,7 +3,15 @@
  */
 
 import React, { Fragment, useEffect, useState } from 'react'
-import { SafeAreaView, ScrollView, View, Text, StatusBar, TouchableOpacity } from 'react-native'
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+  TouchableOpacity,
+  TextInput
+} from 'react-native'
 
 import { getProductAction } from '../../../services/api'
 
@@ -13,14 +21,19 @@ import Loading from '../../Loading'
 import ProductImage from '../ProductImage'
 import Price from '../Item/Price'
 import ModalProduct from '../../Modal'
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { Colors } from '../../../Theme/colors'
+import WebViewDetail from './WebViewDetail'
+
+const chevron_down = 'chevron-down'
+const chevron_up = 'chevron-up'
 
 const ProductDetails: () => React$Node = ({ route, navigation }) => {
-  const onPress = () => navigation.goBack()
   const [product, setProduct] = useState(undefined)
   const [loading, setLoading] = useState(true)
   const [openModal, setOpenModal] = useState(false)
-
+  const [chevron, setChevron] = useState(chevron_down)
+  const [email, setEmail] = useState(undefined)
   const { sku } = route.params
 
   useEffect(() => {
@@ -31,18 +44,57 @@ const ProductDetails: () => React$Node = ({ route, navigation }) => {
       }
       setLoading(false)
       setProduct(res.data)
-      // console.log('getProductAction ', res.data)
     })
   }, [])
 
   const handleOpenModal = isOpen => {
     setOpenModal(isOpen)
   }
+  const onShowAll = () => {
+    if (chevron === chevron_down) {
+      setChevron(chevron_up)
+    } else {
+      setChevron(chevron_down)
+    }
+  }
+
+  const renderShopAdd = () => {
+    return (
+      <View>
+        <Text>{product?.name}</Text>
+        <TouchableOpacity
+          style={[Theme.button, { marginTop: 20 }]}
+          onPress={() => handleOpenModal(false)}
+        >
+          <Text style={Theme.buttonText}>Adicionar</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+  const renderNotifyMe = () => {
+    return (
+      <View>
+        <TextInput
+          style={Styles.input}
+          onChangeText={text => setEmail(text)}
+          placeholder={'Email'}
+          value={email}
+        />
+        <TouchableOpacity
+          style={[Theme.buttonSecondary, { marginTop: 20 }]}
+          onPress={() => handleOpenModal(false)}
+        >
+          <Text style={Theme.buttonTextSecondary}>Enviar</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  }
 
   return (
     <Fragment>
       <ModalProduct product={product} openModal={openModal} onOpenModal={handleOpenModal}>
-        <Text>{product?.name}</Text>
+        {!!product?.inventory?.quantity && renderShopAdd()}
+        {!product?.inventory?.quantity && renderNotifyMe()}
       </ModalProduct>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView>
@@ -78,36 +130,53 @@ const ProductDetails: () => React$Node = ({ route, navigation }) => {
                     <Text style={Theme.buttonText}>compre</Text>
                   </TouchableOpacity>
                 )}
-                {!!product?.inventory?.quantity && (
+                {!product?.inventory?.quantity && (
                   <TouchableOpacity style={Theme.buttonSecondary} onPress={onPress}>
                     <Text style={Theme.buttonTextSecondary}>avise-me</Text>
                   </TouchableOpacity>
                 )}
               </View>
               <View style={{ padding: 10 }}>
-                <Text style={[Styles.fontHeader, { textTransform: 'capitalize' }]}>
+                <Text style={[Styles.fontHeader, { fontSize: 16, textTransform: 'capitalize' }]}>
                   Descrição do Produto
                 </Text>
-                <Text style={{ marginTop: 5, marginRight: 2, marginBottom: 10 }}>
-                  {product?.details?.shortDescription}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    borderColor: Colors.LIGHT_GRAY,
-                    borderTopWidth: 1,
-                    paddingTop: 5
-                  }}
-                >
-                  <View style={{ flex: 0.8 }}>
-                    <TouchableOpacity onPress={onPress}>
+
+                {chevron === chevron_down && (
+                  <Text style={{ marginTop: 5, marginRight: 2, marginBottom: 10, fontSize: 12 }}>
+                    {product?.details?.shortDescription}
+                  </Text>
+                )}
+
+                {chevron === chevron_up && <WebViewDetail html={product?.details?.description} />}
+                {chevron === chevron_down && (
+                  <View
+                    style={{
+                      opacity: 0.5,
+                      marginBottom: 10,
+                      marginTop: -30,
+                      height: 20,
+                      backgroundColor: Colors.WHITE
+                    }}
+                  ></View>
+                )}
+
+                <TouchableOpacity onPress={onShowAll}>
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      borderColor: Colors.LIGHT_GRAY,
+                      borderTopWidth: 1,
+                      paddingTop: 5
+                    }}
+                  >
+                    <View style={{ flex: 0.8 }}>
                       <Text style={Styles.textRead}>Continuar Lendo</Text>
-                    </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
+                      <FontAwesome name={chevron} size={15} color={Colors.PINK} />
+                    </View>
                   </View>
-                  <View style={{ flex: 0.2, alignItems: 'flex-end' }}>
-                    <Text style={Theme.textCode}>cod:</Text>
-                  </View>
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </ScrollView>
