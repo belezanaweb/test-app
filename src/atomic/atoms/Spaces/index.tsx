@@ -53,3 +53,29 @@ export const BoxTouchable = styled.TouchableOpacity`
   border-radius: ${props => (props.border ? props.border : 0)}px;
   overflow: ${props => (props.overflow ? props.overflow : 'hidden')};
 `
+
+export const TouchableButton = styled.TouchableOpacity`
+  background-color: ${props => (props.bg ? props.bg : colors.white)};
+
+  flex-direction: ${props => (props.fd ? props.fd : 'column')};
+  flex-wrap: ${props => (props.fw ? props.fw : 'nowrap')};
+
+  height: ${props => (props.height ? props.height : 'auto')};
+
+  padding-top: ${props => (props.pt ? props.pt : 0)}px;
+  padding-right: ${props => (props.pr ? props.pr : 0)}px;
+  padding-left: ${props => (props.pl ? props.pl : 0)}px;
+  padding-bottom: ${props => (props.pb ? props.pb : 0)}px;
+
+  margin-top: ${props => (props.mt ? props.mt : 0)}px;
+  margin-right: ${props => (props.mr ? props.mr : 0)}px;
+  margin-left: ${props => (props.ml ? props.ml : 0)}px;
+  margin-bottom: ${props => (props.mb ? props.mb : 0)}px;
+  position: ${props => (props.position ? props.position : 'relative')};
+
+  border-radius: ${props => (props.border ? props.border : 0)}px;
+  overflow: ${props => (props.overflow ? props.overflow : 'hidden')};
+
+  max-height : 36px;
+  justify-content : flex-end;
+`
