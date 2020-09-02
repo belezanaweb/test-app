@@ -1,14 +1,15 @@
 import { call, put } from 'redux-saga/effects'
 
-import api, { apikey } from '../../../config/config'
+import api from '../../../config/config'
 
 import * as productsAction from '../../actions/productsActions'
 import * as productAction from '../../actions/productActions'
 
 export function* getProducts(data) {
-  let { page } = data.data
 
-  const url = ``
+  let { page, size } = data.data
+
+  const url = `products?page=${page}&size=${size}`
 
   try {
     const response = yield call(api.get, url)

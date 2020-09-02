@@ -6,8 +6,10 @@ const colors = {
   carmen: '#FF0000',
   green: '#39FF14',
   blue: '#1B03A3',
-  gray: '#767577',
+  gray: '#C4C4C4',
   bordo: '#5E2129',
-};
+  orange: '#FF6C00',
+  lightGray : '#E5E5E5',
+}
 
-export default colors;
+export default colors

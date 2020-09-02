@@ -40,7 +40,7 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
       <View
         style={{
           flexDirection: 'row',
-          backgroundColor: darkMode ? colors.graffit : colors.white,
+          backgroundColor: darkMode ? colors.graffit : colors.lightGray,
           padding: 20,
           paddingTop: Platform.OS === 'ios' ? 50 : 20,
           justifyContent: 'center',

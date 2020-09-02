@@ -10,12 +10,11 @@ import { connect } from 'react-redux'
 import * as appAction from '../../redux/actions/appActions'
 import * as productsAction from '../../redux/actions/productsActions'
 
-import { isEmpty } from 'lodash'
+import { isEmpty, find } from 'lodash'
 
 import moment from 'moment'
 
 import CardProduct from '../../atomic/molecules/CardProduct'
-import Pagination from '../../atomic/molecules/Pagination'
 
 function Home({ navigation, _getProducts, dataProducts, darkMode }) {
   const [page, setPage] = useState(1)
@@ -41,79 +40,85 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
 
   //getting products list
   useEffect(() => {
-    let body = {}
-
+    let body = {
+      page: page,
+      size: 3
+    }
     _getProducts(body)
   }, [])
 
   //render item
   const renderItem = ({ item }) => {
-    const { title, poster_path, backdrop_path, id, release_date, vote_average, vote_count } = item
+    const { sku, name, releaseDate, priceSpecification } = item
+
+    const image = find(item.imageObjects, function (img) {
+      return img.featured === true
+    })
+
+    const originalPrice = priceSpecification.originalPrice
+    const price = priceSpecification.price
 
     return (
       <CardProduct
         navigation={navigation}
-        title={title}
-        image={poster_path}
-        id={id}
-        date={release_date}
-        vote_average={vote_average}
-        vote_count={vote_count}
+        title={name}
+        image={image.imageUrl}
+        id={sku}
+        date={releaseDate}
+        originalPrice={originalPrice}
+        price={price}
       />
     )
   }
 
   //on reach end of flat list
   const onEndFlatList = () => {
-
     let next = page + 1
+    setPage(next)
 
-    if (next <= total_pages) {
-      const { request_token } = dataToken.data
-
-      let body = {
-        token: request_token,
-        page: next
-      }
-      setPage(next)
-
-      _getProducts(body)
+    let body = {
+      page: next,
+      size: 3
     }
+
+    console.warn(body)
+
+    //_getProducts(body)
   }
 
   return (
     <>
       <Header backButton={false} title="LISTA DE PRODUTOS" navigation={navigation} />
       <BoxSafe>
-        {/* <Box pr={8} pl={8} pt={8} bg={darkMode ? '' : colors.white}>
+        <Box pl={3} pr={10} bg={darkMode ? '' : colors.lightGray}>
           {dataProducts.isLoading ? (
             <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
           ) : (
             <>
               <FlatList
-                data={dataProducts.data.results}
-                keyExtractor={(item) => item.id.toString()}
+                data={dataProducts.data}
+                keyExtractor={item => item.sku.toString()}
                 renderItem={renderItem}
                 onEndReached={() => onEndFlatList()}
                 onEndReachedThreshold={0.01}
-                numColumns={2}
               />
             </>
           )}
-        </Box> */}
+        </Box>
       </BoxSafe>
     </>
   )
 }
 
 const mapStateToProps = state => ({
-  darkMode: state.appReducer.darkMode
+  darkMode: state.appReducer.darkMode,
+  dataProducts: state.productsReducer
 })
 
 const mapDispatchToProps = dispatch => {
   return {
     _getProducts: data => {
-      //dispatch(productsAction.ProductsRequest(data));
+      dispatch(productsAction.ProductsRequest(data))
     }
   }
 }

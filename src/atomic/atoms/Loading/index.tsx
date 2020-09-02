@@ -1,10 +1,10 @@
 import React from 'react';
-//import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 function Loading({navigation, name, size, color}) {
   return (
     <>
-      {/* <Icon name={name} size={size} color={color} /> */}
+      <Icon name={name} size={size} color={color} />
     </>
   );
 }
