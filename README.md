@@ -1,7 +1,7 @@
 # Entrega - Test
 
 - Pojeto esta usando vector-icons , webview para html, </br>
-- usei hook bem simples, e componentizei varios itens para facilitar o desenvolvimento, só nao deu tempo de fazer os testes unitarios, </br>
+- usei hooks bem simples, e componentizei varios itens para facilitar o desenvolvimento, só nao deu tempo de fazer os testes unitarios, </br>
 - run project </br>
   -> yarn install && cd ios && pod install && cd ..</br>
   -> yarn ios </br>
