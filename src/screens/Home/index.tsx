@@ -7,6 +7,9 @@ import Header from '../../atomic/atoms/Header'
 import Loading from '../../atomic/atoms/Loading'
 import colors from '../../atomic/constants/colors'
 import { connect } from 'react-redux'
+
+import Button from '../../atomic/atoms/Button'
+
 import * as appAction from '../../redux/actions/appActions'
 import * as productsAction from '../../redux/actions/productsActions'
 
@@ -41,8 +44,8 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
   //getting products list
   useEffect(() => {
     let body = {
-      page: page,
-      size: 3
+      page: 1,
+      size: 6
     }
     _getProducts(body)
   }, [])
@@ -62,7 +65,7 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
       <CardProduct
         navigation={navigation}
         title={name}
-        image={image.imageUrl}
+        image={!isEmpty(image) ? image.imageUrl : ''}
         id={sku}
         date={releaseDate}
         originalPrice={originalPrice}
@@ -71,26 +74,25 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
     )
   }
 
-  //on reach end of flat list
-  const onEndFlatList = () => {
+  function showMoreProducts () {
     let next = page + 1
     setPage(next)
 
     let body = {
       page: next,
-      size: 3
+      size: 6
     }
 
     console.warn(body)
 
-    //_getProducts(body)
+    _getProducts(body)
   }
 
   return (
     <>
       <Header backButton={false} title="LISTA DE PRODUTOS" navigation={navigation} />
       <BoxSafe>
-        <Box pl={3} pr={10} bg={darkMode ? '' : colors.lightGray}>
+        <Box flex={1} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
           {dataProducts.isLoading ? (
             <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
           ) : (
@@ -99,11 +101,20 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
                 data={dataProducts.data}
                 keyExtractor={item => item.sku.toString()}
                 renderItem={renderItem}
-                onEndReached={() => onEndFlatList()}
+                //onEndReached={() => onEndFlatList()}
                 onEndReachedThreshold={0.01}
               />
             </>
           )}
+
+          <Button
+            onPress={() => {
+              showMoreProducts()
+            }}
+            bg={'transparent'}
+            title={'Carregar mais Produtos'}
+            textColor={colors.orange}
+          />
         </Box>
       </BoxSafe>
     </>

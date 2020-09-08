@@ -6,6 +6,8 @@ export const BoxSafe = styled.SafeAreaView`
   flex: ${props => (props.flex ? props.flex : 1)};
   flex-direction: ${props => (props.fd ? props.fd : 'column')};
   position: relative;
+
+  margin : 0px;
 `
 
 export const Box = styled.View`
@@ -78,4 +80,7 @@ export const TouchableButton = styled.TouchableOpacity`
 
   max-height : 36px;
   justify-content : flex-end;
+
+  border-width : ${props => (props.bg === 'transparent' ? '2' : '0')}px;
+  border-color : ${props => (props.bg === 'transparent' ? colors.orange : colors.black)};
 `

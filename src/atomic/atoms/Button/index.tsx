@@ -17,7 +17,14 @@ function Button({ navigation, title, onPress, bg, textColor }) {
 
   return (
     <>
-      <TouchableButton pt={10} pb={10} bg={bg} border={4}>
+      <TouchableButton
+        onPress={onPress}
+        pt={10}
+        pb={10}
+        bg={bg}
+        border={4}
+        borderColor={colors.orange}
+      >
         <TextRegular size={14} color={textColor}>
           {title}
         </TextRegular>

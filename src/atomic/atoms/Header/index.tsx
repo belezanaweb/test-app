@@ -72,7 +72,7 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
           {showDarkModeButton && (
             <Switch
               trackColor={{ false: colors.gray, true: colors.gray }}
-              thumbColor={darkMode ? colors.gold : colors.white}
+              thumbColor={darkMode ? colors.orange : colors.white}
               ios_backgroundColor={colors.gray}
               onValueChange={toggleSwitch}
               value={darkMode}
