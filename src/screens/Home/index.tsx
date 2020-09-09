@@ -83,8 +83,6 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
       size: 6
     }
 
-    console.warn(body)
-
     _getProducts(body)
   }
 
@@ -107,7 +105,11 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
             </>
           )}
 
-          <Button
+          
+        </Box>
+        
+        <Box flex={0.05} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
+        <Button
             onPress={() => {
               showMoreProducts()
             }}
@@ -115,7 +117,7 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
             title={'Carregar mais Produtos'}
             textColor={colors.orange}
           />
-        </Box>
+          </Box>
       </BoxSafe>
     </>
   )

@@ -21,16 +21,16 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
     uri: image ? image : imgDefault,
     width: 108,
     height: 108,
-    cache : 'force-cache'
+    cache: 'force-cache'
   }
 
   return (
-    <BoxTouchable
-      ml={5}
+    <Box
       mb={10}
       bg={colors.white}
       border={4}
       position={'relative'}
+      shadow={true}
       style={{
         shadowColor: '#000',
         shadowOffset: {
@@ -40,12 +40,11 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
         shadowOpacity: 0.22,
         shadowRadius: 2.22,
 
-        elevation: 3
+        elevation: 5
       }}
-      pt={5}
-      pl={5}
-      pb={5}
-      pr={5}
+      pr={10}
+      pl={10}
+      pt={10}
       fd={'row'}
     >
       <Box mr={10} flex={0.3} bg={colors.white}>
@@ -68,9 +67,16 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
           R${originalPrice ? originalPrice.toFixed(2) : price.toFixed(2)}
         </TextRegular>
 
-        <Button bg={colors.orange} textColor={colors.white} title={'VER DETALHES'} />
+        <Button
+          bg={colors.orange}
+          textColor={colors.white}
+          title={'VER DETALHES'}
+          onPress={() => {
+            navigation.navigate('Product', { id: id })
+          }}
+        />
       </Box>
-    </BoxTouchable>
+    </Box>
   )
 }
 
