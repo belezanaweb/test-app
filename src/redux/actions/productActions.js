@@ -2,28 +2,28 @@ import * as types from './types';
 
 export function ProductRequest(data) {
   return {
-    type: types.PRODUCTS_REQUEST,
+    type: types.PRODUCT_REQUEST,
     data,
   };
 }
 
 export function ProductSuccess(data) {
   return {
-    type: types.PRODUCTS_SUCCESS,
+    type: types.PRODUCT_SUCCESS,
     data,
   };
 }
 
 export function ProductFailed(data) {
   return {
-    type: types.PRODUCTS_FAILED,
+    type: types.PRODUCT_FAILED,
     data,
   };
 }
 
 export function ProductClear(data) {
   return {
-    type: types.PRODUCTS_CLEAR,
+    type: types.PRODUCT_CLEAR,
     data,
   };
 }

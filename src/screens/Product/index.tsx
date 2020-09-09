@@ -26,7 +26,7 @@ import Icons from '../../atomic/atoms/Icons'
 import GeneralInfo from '../../atomic/organisms/GeneralInfo'
 import BoxTags from '../../atomic/organisms/BoxTags'
 
-function Product({ navigation, _getInfo, data }) {
+function Product({ navigation, _getInfo, dataProduct }) {
   const [id] = useState(navigation.state.params.id)
   const [title] = useState(navigation.state.params.title)
   const [image] = useState(navigation.state.params.image)
@@ -171,7 +171,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     _getInfo: data => {
-      dispatch(productsAction.ProductRequest(data))
+      dispatch(productAction.ProductRequest(data))
     }
   }
 }

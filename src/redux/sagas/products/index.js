@@ -28,7 +28,7 @@ export function* getProducts(data) {
 export function* getInfo(data) {
   let id = data.data
 
-  const url = ``
+  const url = `products/${id}`
 
   try {
     const response = yield call(api.get, url)
