@@ -1,45 +1,52 @@
-# Mobile Test
+﻿Project to evaluate Beleza na Web Team.
 
-Esta é uma avaliação básica de código.
+:heavy_check_mark:  **TypeScript**: I'm working with TypeScript for the latest six months. I believe that it helps with documentation of code and decreases mental effort to understand the code.
 
-O objetivo é conhecer um pouco a forma como você resolveria problemas com que lidamos no dia-a-dia e a sua habilidade/experiência em criar e organizar um projeto de app multi-plataforma.
 
-Recomendamos que você não gaste mais do que 4 - 6 horas.
+:heavy_check_mark: **Context API** : I work day-to-day with Rematch, but in this case, I prefer to use Context API because it's... simple! Besides that, I see more benefits to use it, for example, fewer configurations and fewer steps to environment setup. By the way, I have been noticing that the community has been giving up the Redux also.
 
-Fique à vontade para nos enviar qualquer sugestão ou dúvida que surja durante o projeto.
+:heavy_check_mark: **styled-components**: 
+The reason I chose the styled-components, it very simple and productive to create components.
 
-Faça um fork deste repositório e desenvolva seu projeto dentro da pasta [`src`](./src). O projeto foi criado com `npx react-native init test_app`.
 
-# Tarefas
+**Install dependencies:**
 
-O teste consiste em duas telas: uma lista de produtos e a página do produto.
+    yarn 
+or
 
-O nosso time de produto preparou esse [layout](https://www.figma.com/file/Dbpn1mqdq2d350NEXojF2v/test-mobile?node-id=392%3A0) para o projeto. A implementação deve ser Pixel perfect.
+    npm install
 
-1. Consumindo o endpoint `https://pacific-wave-51314.herokuapp.com/products?page=<page_num>&size=<page_size>`, faça uma tela mostrando a lista de produtos retornada
+:heavy_check_mark: **jest + react library testing** : I am initiating in tests, so I chose these tools because the community recommends.
+**Run tests:**
 
-- A lista deve suportar paginação
-- As páginas devem ser carregadas apenas quando forem ser exibidas para o usuário
-- A imagem exibida deve vir do `imageObjects` com `featured: true`
-- Extra: para melhorar a performance, é possível descarregar da memória os itens que já passaram e não são mais exibidos na tela?
+    yarn test
 
-2. Ao clicar em um produto, o app deve consumir o endpoint `https://pacific-wave-51314.herokuapp.com/products/<product_sku>` para exibir a tela de produto
+**Run device**:
 
-- Caso o payload do produto tenha payload `inventory.quantity > 0`, deve ser exibido o botão de adicionar ao carrinho; caso contrário, deve ser exibido o botão de "AVISE-ME"
-- Ao clicar em "COMPRE", deve ser exibida uma modal de confirmação de adição à sacola
-- Clicar em "AVISE-ME" abre uma modal para o usuário digitar seu nome e e-mail
-- Os botões das modais apenas fecham elas
-- Ao voltar para a lista de produtos, ela deve estar disponível para o usuário sem fazer uma nova requisição à API
+    yarn start
 
-# O que vamos avaliar
+:grin: **Plus:**
+**Plop:** It is a little tool that saves you time and also helps to create new files with consistency.
 
-- Organização do código;
-- Mensagens (em inglês) e mudanças nos commits;
-- Composição/reutilização de classes (DRY);
-- Testes unitários;
-- O motivo de ter escolhido a arquitetura e cada tech da stack;
-- Como rodar sua aplicação 😉
 
-# Como enviar
+**create templates:**
+ `generate <component>`
+generate: component, styles and test:
+ 
+![enter image description here](https://media.giphy.com/media/LnhryGkQPUJzGqbBAv/giphy.gif)
 
-Ao finalizar o teste, submeta um pull request para o repositório que nosso time será notificado. Se tiver alguma observação, escreva no pull request.
+
+:green_heart: **CI e DependaBot**: These tools help to maintain an updated and reliable repository.
+
+![enter image description here](https://media.giphy.com/media/S2wvuySTMdA2vOVnTX/giphy.gif)
+
+
+
+:construction: points for improvement:
+- responsive layout (or adaptative, I don't know).
+- tests: I am initiating with tests, I need to get my tests level up. 
+
+
+
+
+I really hope you like it.    :pray:
