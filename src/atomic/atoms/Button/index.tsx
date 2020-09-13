@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { View, Platform, StatusBar, Switch } from 'react-native'
 
 import { connect } from 'react-redux'
 import * as appAction from '../../../redux/actions/appActions'
-
-import { useNetInfo } from '@react-native-community/netinfo'
 
 import colors from '../../constants/colors'
 

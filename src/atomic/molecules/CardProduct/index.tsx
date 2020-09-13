@@ -15,11 +15,9 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
   const imgDefault =
     'https://lh3.googleusercontent.com/RiRMSl_w2LMN-a32b1l64KfrRxVyoBf5yJFzvCTLv4Q6E7IQIB5G__lMw6d-GJ2qUw'
 
-  console.log(id, image, title)
-
   const cat = {
     uri: image ? image : imgDefault,
-    width: 108,
+
     height: 108,
     cache: 'force-cache'
   }
@@ -32,19 +30,16 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
       position={'relative'}
       shadow={true}
       style={{
-        shadowColor: '#000',
         shadowOffset: {
-          width: 0,
-          height: 1
+          width: 3,
+          height: -6
         },
-        shadowOpacity: 0.22,
-        shadowRadius: 2.22,
-
-        elevation: 5
+        shadowOpacity: 0.1,
+        shadowRadius: 2
       }}
-      pr={10}
+      pr={5}
       pl={10}
-      pt={10}
+      pt={5}
       fd={'row'}
     >
       <Box mr={10} flex={0.3} bg={colors.white}>
@@ -54,19 +49,36 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
         </TextRegular>
       </Box>
 
-      <Box flex={0.7} bg={colors.white}>
-        <TextRegular size={12} mr={5} mb={5} align={'flex-start'} color={colors.black}>
-          {title}
-        </TextRegular>
+      <Box flex={0.7} bg={colors.white} pb={5}>
+        <Box flex={1} bg={'transparent'}>
+          <TextRegular size={12} mr={5} mb={15} align={'flex-start'} color={colors.black}>
+            {title}
+          </TextRegular>
 
-        <TextRegular size={11} mr={5} mb={5} align={'flex-start'} color={colors.gray}>
-          R${price.toFixed(2)}
-        </TextRegular>
+          {originalPrice !== price && (
+            <TextRegular
+              decoration={'line-through'}
+              size={11}
+              mr={5}
+              mb={5}
+              align={'flex-start'}
+              color={colors.gray}
+            >
+              R${originalPrice.toFixed(2)}
+            </TextRegular>
+          )}
 
-        <TextRegular size={14} mr={5} mb={5} align={'flex-start'} color={colors.orange}>
-          R${originalPrice ? originalPrice.toFixed(2) : price.toFixed(2)}
-        </TextRegular>
-
+          <TextRegular
+            weight={'bold'}
+            size={14}
+            mr={5}
+            mb={5}
+            align={'flex-start'}
+            color={colors.orange}
+          >
+            R${originalPrice ? originalPrice.toFixed(2) : price.toFixed(2)}
+          </TextRegular>
+        </Box>
         <Button
           bg={colors.orange}
           textColor={colors.white}

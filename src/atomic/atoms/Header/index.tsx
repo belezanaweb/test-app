@@ -53,11 +53,11 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
               navigation.goBack()
             }}
           >
-            <Icons name="chevron-left" size={18} color={colors.black} />
+            <Icons name="chevron-left" size={18} color={darkMode ? colors.orange : colors.black} />
           </BackButton>
         )}
 
-        <TextRegular size={14} align={'center'} color={darkMode ? colors.gold : colors.black}>
+        <TextRegular size={14} align={'center'} color={darkMode ? colors.orange : colors.black}>
           {title}
         </TextRegular>
 

@@ -74,7 +74,7 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
     )
   }
 
-  function showMoreProducts () {
+  function showMoreProducts() {
     let next = page + 1
     setPage(next)
 
@@ -104,20 +104,18 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
               />
             </>
           )}
-
-          
         </Box>
-        
-        <Box flex={0.05} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
-        <Button
+
+        <Box flex={0.10} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
+          <Button
             onPress={() => {
               showMoreProducts()
             }}
             bg={'transparent'}
-            title={'Carregar mais Produtos'}
+            title={'CARREGAR MAIS PRODUTOS'}
             textColor={colors.orange}
           />
-          </Box>
+        </Box>
       </BoxSafe>
     </>
   )

@@ -14,7 +14,7 @@ export const PRODUCTS_REQUEST = 'PRODUCTS_REQUEST';
 export const PRODUCTS_SUCCESS = 'PRODUCTS_SUCCESS';
 export const PRODUCTS_FAILED = 'PRODUCTS_FAILED';
 
-//product (info about)
+//product (info about it)
 export const PRODUCT_REQUEST = 'PRODUCT_REQUEST';
 export const PRODUCT_SUCCESS = 'PRODUCT_SUCCESS';
 export const PRODUCT_FAILED = 'PRODUCT_FAILED';
