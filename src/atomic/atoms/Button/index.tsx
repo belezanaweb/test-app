@@ -22,7 +22,7 @@ function Button({ navigation, title, onPress, bg, textColor }) {
         border={4}
         borderColor={colors.orange}
       >
-        <TextRegular size={14} color={textColor}>
+        <TextRegular weight={'bold'} size={14} color={textColor}>
           {title}
         </TextRegular>
       </TouchableButton>

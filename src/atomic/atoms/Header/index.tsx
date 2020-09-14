@@ -57,7 +57,7 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
           </BackButton>
         )}
 
-        <TextRegular size={14} align={'center'} color={darkMode ? colors.orange : colors.black}>
+        <TextRegular weight={'bold'} size={14} align={'center'} color={darkMode ? colors.orange : colors.black}>
           {title}
         </TextRegular>
 

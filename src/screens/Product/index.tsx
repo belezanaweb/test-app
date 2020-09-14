@@ -12,23 +12,21 @@ import { connect } from 'react-redux'
 import * as productAction from '../../redux/actions/productActions'
 
 import { TextRegular } from '../../atomic/atoms/Titles'
-
+import Button from '../../atomic/atoms/Button'
 import { find } from 'lodash'
 
 function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const [id] = useState(navigation.state.params.id)
+  const [image] = useState(navigation.state.params.image)
 
   const imgDefault =
     'https://lh3.googleusercontent.com/RiRMSl_w2LMN-a32b1l64KfrRxVyoBf5yJFzvCTLv4Q6E7IQIB5G__lMw6d-GJ2qUw'
 
   const [opacity] = useState(new Animated.Value(0))
-
-  const animatedStyle = {
-    opacity: opacity
-  }
-
   const [cat, setCat] = useState('')
   const [showImage, setShowImage] = useState(false)
+
+  const [accordion, setAccordion] = useState(false)
 
   //getting request token
   useEffect(() => {
@@ -39,15 +37,8 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
     //find image featured
     const { sku, name, releaseDate, priceSpecification } = dataProduct.data
 
-    const image = find(dataProduct.data.imageObjects, function (img) {
-      return img.featured === true
-    })
-
-    const originalPrice = priceSpecification.originalPrice
-    const price = priceSpecification.price
-
     setCat({
-      uri: image ? image.large : imgDefault,
+      uri: image ? image : imgDefault,
       width: 163,
       height: 163
     })
@@ -88,14 +79,29 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
             </View>
 
             <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
-              <TextRegular size={17} align={'flex-start'} color={colors.gray}>
-                6x de R$ {(dataProduct.data.priceSpecification.price / 6).toFixed(2)}
-              </TextRegular>
+              {dataProduct.data.priceSpecification.installments && (
+                <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
+                  {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R${' '}
+                  {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
+                </TextRegular>
+              )}
 
-              <TextRegular size={17} align={'flex-start'} color={colors.gray}>
+              <TextRegular mb={13} size={17} align={'flex-end'} color={colors.gray}>
                 cod: {dataProduct.data.sku}
               </TextRegular>
             </View>
+
+            <Button title={'COMPRE'} bg={colors.orange} textColor={colors.white} />
+
+            <TextRegular weight={'500'} mt={18} align={'flex-start'} size={16}>
+              Descrição do Produto
+            </TextRegular>
+
+            {!accordion && (
+              <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
+                {dataProduct.data.details.shortDescription}
+              </TextRegular>
+            )}
           </Box>
         )}
       </Box>

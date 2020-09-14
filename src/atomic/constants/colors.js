@@ -9,7 +9,9 @@ const colors = {
   gray: '#C4C4C4',
   bordo: '#5E2129',
   orange: '#FF6C00',
-  lightGray : '#E5E5E5',
+  lightGray: '#E5E5E5',
+  darkGray: '#6F6F6F',
+  grayseven: '#777777'
 }
 
 export default colors

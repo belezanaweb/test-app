@@ -43,7 +43,7 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
       fd={'row'}
     >
       <Box mr={10} flex={0.3} bg={colors.white}>
-        <Image source={cat}  />
+        <Image source={cat} />
         <TextRegular size={12} ml={margin} mt={margin} mb={5} align={'center'} color={colors.gray}>
           cod: {id}
         </TextRegular>
@@ -68,7 +68,14 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
             </TextRegular>
           )}
 
-          <TextRegular weight={'bold'} size={14} mr={5} mb={5} align={'flex-start'} color={colors.orange}>
+          <TextRegular
+            weight={'bold'}
+            size={14}
+            mr={5}
+            mb={5}
+            align={'flex-start'}
+            color={colors.orange}
+          >
             R${originalPrice ? originalPrice.toFixed(2) : price.toFixed(2)}
           </TextRegular>
         </Box>
@@ -77,7 +84,7 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
           textColor={colors.white}
           title={'VER DETALHES'}
           onPress={() => {
-            navigation.navigate('Product', { id: id })
+            navigation.navigate('Product', { id: id, image: image })
           }}
         />
       </Box>
