@@ -13,6 +13,7 @@ import * as productAction from '../../redux/actions/productActions'
 
 import { TextRegular } from '../../atomic/atoms/Titles'
 import Button from '../../atomic/atoms/Button'
+import Accordon from '../../atomic/atoms/Accordon'
 import { find } from 'lodash'
 
 function Product({ navigation, _getInfo, dataProduct, darkMode }) {
@@ -97,11 +98,12 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
               Descrição do Produto
             </TextRegular>
 
-            {!accordion && (
-              <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
-                {dataProduct.data.details.shortDescription}
-              </TextRegular>
-            )}
+            <Accordon
+              title={'Continue lendo'}
+              subtitle={dataProduct.data.details.occasion}
+              content={dataProduct.data.details.description}
+              open={accordion}
+            />
           </Box>
         )}
       </Box>

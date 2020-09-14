@@ -106,7 +106,7 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
           )}
         </Box>
 
-        <Box flex={0.10} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
+        <Box flex={0.1} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
           <Button
             onPress={() => {
               showMoreProducts()

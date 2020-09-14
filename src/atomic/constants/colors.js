@@ -11,7 +11,8 @@ const colors = {
   orange: '#FF6C00',
   lightGray: '#E5E5E5',
   darkGray: '#6F6F6F',
-  grayseven: '#777777'
+  grayseven: '#777777',
+  purple : '#A43287',
 }
 
 export default colors
