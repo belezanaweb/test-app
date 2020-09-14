@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Image, Dimensions, ScrollView, Animated, PixelRatio } from 'react-native'
+import { Image, Dimensions, ScrollView, Animated, PixelRatio, View } from 'react-native'
 
 import { BoxSafe, Box } from '../../atomic/atoms/Spaces'
 
@@ -13,39 +13,47 @@ import * as productAction from '../../redux/actions/productActions'
 
 import { TextRegular } from '../../atomic/atoms/Titles'
 
+import { find } from 'lodash'
+
 function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const [id] = useState(navigation.state.params.id)
-  const [title] = useState(navigation.state.params.title)
-  const [image] = useState(navigation.state.params.image)
+
+  const imgDefault =
+    'https://lh3.googleusercontent.com/RiRMSl_w2LMN-a32b1l64KfrRxVyoBf5yJFzvCTLv4Q6E7IQIB5G__lMw6d-GJ2qUw'
 
   const [opacity] = useState(new Animated.Value(0))
-  const [left] = useState(new Animated.Value(0))
 
-  const animatedTagStyle = {
+  const animatedStyle = {
     opacity: opacity
   }
+
+  const [cat, setCat] = useState('')
+  const [showImage, setShowImage] = useState(false)
 
   //getting request token
   useEffect(() => {
     _getInfo(id)
-
-    //startAnimations()
   }, [])
 
-  // const startAnimations = () => {
-  //   Animated.parallel([
-  //     Animated.timing(opacity, {
-  //       toValue: 1,
-  //       duration: 1500,
-  //       useNativeDriver: true
-  //     }),
-  //     Animated.timing(left, {
-  //       toValue: 1,
-  //       duration: 1500,
-  //       useNativeDriver: true
-  //     })
-  //   ]).start()
-  // }
+  useEffect(() => {
+    //find image featured
+    const { sku, name, releaseDate, priceSpecification } = dataProduct.data
+
+    const image = find(dataProduct.data.imageObjects, function (img) {
+      return img.featured === true
+    })
+
+    const originalPrice = priceSpecification.originalPrice
+    const price = priceSpecification.price
+
+    setCat({
+      uri: image ? image.large : imgDefault,
+      width: 163,
+      height: 163
+    })
+
+    setShowImage(true)
+  }, [dataProduct])
 
   return (
     <>
@@ -54,8 +62,40 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
         {dataProduct.isLoading ? (
           <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
         ) : (
-          <Box border={4} flex={1} bg={colors.white} pl={5} pr={5} pt={5} pb={5}>
-            <TextRegular>{dataProduct.data.name}</TextRegular>
+          <Box border={4} flex={1} bg={colors.white} pl={10} pr={10} pt={8} pb={10}>
+            <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
+              {dataProduct.data.name}
+            </TextRegular>
+            {showImage && <Image style={{ alignSelf: 'center', marginBottom: 21 }} source={cat} />}
+
+            {/* <TextRegular
+              decoration={'line-through'}
+              size={14}
+              align={'flex-start'}
+              color={colors.gray}
+            >
+              R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
+            </TextRegular> */}
+
+            <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+              <TextRegular size={24} weight={'bold'} color={colors.orange}>
+                R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
+              </TextRegular>
+
+              <TextRegular size={24} weight={'bold'}>
+                {dataProduct.data.brand.name}
+              </TextRegular>
+            </View>
+
+            <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+              <TextRegular size={17} align={'flex-start'} color={colors.gray}>
+                6x de R$ {(dataProduct.data.priceSpecification.price / 6).toFixed(2)}
+              </TextRegular>
+
+              <TextRegular size={17} align={'flex-start'} color={colors.gray}>
+                cod: {dataProduct.data.sku}
+              </TextRegular>
+            </View>
           </Box>
         )}
       </Box>
