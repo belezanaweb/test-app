@@ -7,7 +7,7 @@ export const BoxSafe = styled.SafeAreaView`
   flex-direction: ${props => (props.fd ? props.fd : 'column')};
   position: relative;
 
-  margin : 0px;
+  margin: 0px;
 `
 
 export const Box = styled.View`
@@ -74,13 +74,17 @@ export const TouchableButton = styled.TouchableOpacity`
   margin-left: ${props => (props.ml ? props.ml : 0)}px;
   margin-bottom: ${props => (props.mb ? props.mb : 0)}px;
   position: ${props => (props.position ? props.position : 'relative')};
+  top: ${props => (props.position === 'absolute' ? props.top : 0)}px;
+  bottom: ${props => (props.position === 'absolute' ? props.bottom : 0)}px;
+  left: ${props => (props.position === 'absolute' ? props.left : 0)}px;
+  right: ${props => (props.position === 'absolute' ? props.right : 0)}px;
 
   border-radius: ${props => (props.border ? props.border : 0)}px;
   overflow: ${props => (props.overflow ? props.overflow : 'hidden')};
 
-  max-height : 36px;
-  justify-content : flex-end;
+  max-height: 36px;
+  justify-content: flex-end;
 
-  border-width : ${props => (props.bg === 'transparent' ? '2' : '0')}px;
-  border-color : ${props => (props.bg === 'transparent' ? colors.orange : colors.black)};
+  border-width: ${props => (props.bg === 'transparent' ? '2' : '0')}px;
+  border-color: ${props => (props.bg === 'transparent' ? colors.orange : colors.black)};
 `

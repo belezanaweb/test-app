@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Image, Dimensions, ScrollView, Animated, PixelRatio, View } from 'react-native'
 
-import { BoxSafe, Box } from '../../atomic/atoms/Spaces'
+import { BoxSafe, Box, TouchableButton } from '../../atomic/atoms/Spaces'
 
 import Header from '../../atomic/atoms/Header'
 
@@ -14,6 +14,7 @@ import * as productAction from '../../redux/actions/productActions'
 import { TextRegular } from '../../atomic/atoms/Titles'
 import Button from '../../atomic/atoms/Button'
 import Accordon from '../../atomic/atoms/Accordon'
+import Icons from '../../atomic/atoms/Icons'
 import { find } from 'lodash'
 
 function Product({ navigation, _getInfo, dataProduct, darkMode }) {
@@ -28,6 +29,8 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const [showImage, setShowImage] = useState(false)
 
   const [accordion, setAccordion] = useState(false)
+
+  const scrollViewRef = useRef()
 
   //getting request token
   useEffect(() => {
@@ -55,12 +58,19 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
           <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
         ) : (
           <Box border={4} flex={1} bg={colors.white} pl={10} pr={10} pt={8} pb={10}>
-            <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
-              {dataProduct.data.name}
-            </TextRegular>
-            {showImage && <Image style={{ alignSelf: 'center', marginBottom: 21 }} source={cat} />}
+            <ScrollView
+              ref={scrollViewRef}
+              scrollEnabled={accordion}
+              style={{ marginBottom: 0, flex: 1 }}
+            >
+              <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
+                {dataProduct.data.name}
+              </TextRegular>
+              {showImage && (
+                <Image style={{ alignSelf: 'center', marginBottom: 21 }} source={cat} />
+              )}
 
-            {/* <TextRegular
+              {/* <TextRegular
               decoration={'line-through'}
               size={14}
               align={'flex-start'}
@@ -69,41 +79,65 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
               R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
             </TextRegular> */}
 
-            <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
-              <TextRegular size={24} weight={'bold'} color={colors.orange}>
-                R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
-              </TextRegular>
-
-              <TextRegular size={24} weight={'bold'}>
-                {dataProduct.data.brand.name}
-              </TextRegular>
-            </View>
-
-            <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
-              {dataProduct.data.priceSpecification.installments && (
-                <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
-                  {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R${' '}
-                  {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
+              <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+                <TextRegular size={24} weight={'bold'} color={colors.orange}>
+                  R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
                 </TextRegular>
-              )}
 
-              <TextRegular mb={13} size={17} align={'flex-end'} color={colors.gray}>
-                cod: {dataProduct.data.sku}
+                <TextRegular size={24} weight={'bold'}>
+                  {dataProduct.data.brand.name}
+                </TextRegular>
+              </View>
+
+              <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+                {dataProduct.data.priceSpecification.installments && (
+                  <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
+                    {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R${' '}
+                    {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
+                  </TextRegular>
+                )}
+
+                <TextRegular mb={13} size={17} align={'flex-end'} color={colors.gray}>
+                  cod: {dataProduct.data.sku}
+                </TextRegular>
+              </View>
+
+              <Button title={'COMPRE'} bg={colors.orange} textColor={colors.white} />
+
+              <TextRegular weight={'500'} mt={18} align={'flex-start'} size={16}>
+                Descrição do Produto
               </TextRegular>
-            </View>
 
-            <Button title={'COMPRE'} bg={colors.orange} textColor={colors.white} />
+              <Accordon
+                title={'Continue lendo'}
+                subtitle={dataProduct.data.details.occasion}
+                content={dataProduct.data.details.description}
+                isOpen={accordion}
+              />
+            </ScrollView>
+            <TouchableButton
+              mt={30}
+              onPress={() => {
+                setAccordion(!accordion)
+                if (accordion === false) {
+                  scrollViewRef.current.scrollToEnd({ animated: true })
+                } else {
+                  scrollViewRef.current.scrollTo({ y: 0, animated: true })
+                }
+              }}
+            >
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <TextRegular weight={'500'} size={13} color={colors.purple}>
+                  Continular lendo
+                </TextRegular>
 
-            <TextRegular weight={'500'} mt={18} align={'flex-start'} size={16}>
-              Descrição do Produto
-            </TextRegular>
-
-            <Accordon
-              title={'Continue lendo'}
-              subtitle={dataProduct.data.details.occasion}
-              content={dataProduct.data.details.description}
-              open={accordion}
-            />
+                <Icons
+                  name={!accordion ? 'chevron-down' : 'chevron-up'}
+                  color={colors.purple}
+                  size={13}
+                />
+              </View>
+            </TouchableButton>
           </Box>
         )}
       </Box>
