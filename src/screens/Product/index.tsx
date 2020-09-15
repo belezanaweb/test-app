@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Image, ScrollView, View, StyleSheet } from 'react-native'
+import { Image, ScrollView, View, StyleSheet, TextInput } from 'react-native'
 import Modal from 'react-native-modal'
 
 import { Box, TouchableButton } from '../../atomic/atoms/Spaces'
@@ -14,6 +14,7 @@ import * as productAction from '../../redux/actions/productActions'
 
 import { TextRegular } from '../../atomic/atoms/Titles'
 import Button from '../../atomic/atoms/Button'
+import Input from '../../atomic/atoms/Input'
 import Accordon from '../../atomic/atoms/Accordon'
 import Icons from '../../atomic/atoms/Icons'
 
@@ -29,6 +30,8 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const [showImage, setShowImage] = useState(false)
   const [accordion, setAccordion] = useState(false)
   const [modal, setModal] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
   const scrollViewRef = useRef()
 
@@ -71,13 +74,13 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const renderWarning = () => {
     return (
       <>
-        <TextRegular size={14} mb={25}>
-          Te avisaremos quando este produto estiver disponível
+        <TextRegular size={14} mb={15}>
+          Insira seus dados e avisaremos quando este produto estiver disponível
         </TextRegular>
-        <Image style={{ alignSelf: 'center' }} source={catModal} />
-        <TextRegular size={13} mt={25}>
-          {dataProduct.data.name}
-        </TextRegular>
+
+        <Input placeholder={'Nome'} onChangeText={text => setName(text)} defaultValue={name} />
+
+        <Input placeholder={'Email'} onChangeText={text => setEmail(text)} defaultValue={email} />
       </>
     )
   }
@@ -142,7 +145,7 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
               <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
                 {dataProduct.data.priceSpecification.installments && (
                   <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
-                    {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R${' '}
+                    {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R$
                     {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
                   </TextRegular>
                 )}
@@ -227,12 +230,12 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
       >
         <Box bg={'transparent'} style={{ flex: 0.5 }}>
           <Box bg={'transparent'}>
-            {!dataProduct.data.inventory.quantity > 0 ? renderBag() : renderWarning()}
+            {dataProduct.data.inventory.quantity > 0 ? renderBag() : renderWarning()}
           </Box>
           <Button
             bg={colors.orange}
             textColor={colors.white}
-            title="Fechar"
+            title={dataProduct.data.inventory.quantity > 0 ? 'Fechar' : 'Enviar'}
             pt={10}
             pb={10}
             pl={10}

@@ -22,7 +22,7 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
     _setDarkMode(!darkMode)
   }
 
-  const showDarkModeButton = true
+  const showDarkModeButton = false
 
   return (
     <>
