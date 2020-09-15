@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Image, Dimensions, ScrollView, Animated, PixelRatio, View } from 'react-native'
+import { Image, ScrollView, View, StyleSheet } from 'react-native'
+import Modal from 'react-native-modal'
 
-import { BoxSafe, Box, TouchableButton } from '../../atomic/atoms/Spaces'
+import { Box, TouchableButton } from '../../atomic/atoms/Spaces'
 
 import Header from '../../atomic/atoms/Header'
 
@@ -15,7 +16,6 @@ import { TextRegular } from '../../atomic/atoms/Titles'
 import Button from '../../atomic/atoms/Button'
 import Accordon from '../../atomic/atoms/Accordon'
 import Icons from '../../atomic/atoms/Icons'
-import { find } from 'lodash'
 
 function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const [id] = useState(navigation.state.params.id)
@@ -24,11 +24,11 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
   const imgDefault =
     'https://lh3.googleusercontent.com/RiRMSl_w2LMN-a32b1l64KfrRxVyoBf5yJFzvCTLv4Q6E7IQIB5G__lMw6d-GJ2qUw'
 
-  const [opacity] = useState(new Animated.Value(0))
   const [cat, setCat] = useState('')
+  const [catModal, setCatModal] = useState('')
   const [showImage, setShowImage] = useState(false)
-
   const [accordion, setAccordion] = useState(false)
+  const [modal, setModal] = useState(false)
 
   const scrollViewRef = useRef()
 
@@ -47,17 +47,67 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
       height: 163
     })
 
+    setCatModal({
+      uri: image ? image : imgDefault,
+      width: 83,
+      height: 83
+    })
+
     setShowImage(true)
   }, [dataProduct])
+
+  const renderBag = () => {
+    return (
+      <>
+        <TextRegular mb={25}>Já adicionamos na sua sacola!</TextRegular>
+        <Image style={{ alignSelf: 'center' }} source={catModal} />
+        <TextRegular size={13} mt={25}>
+          {dataProduct.data.name}
+        </TextRegular>
+      </>
+    )
+  }
+
+  const renderWarning = () => {
+    return (
+      <>
+        <TextRegular size={14} mb={25}>
+          Te avisaremos quando este produto estiver disponível
+        </TextRegular>
+        <Image style={{ alignSelf: 'center' }} source={catModal} />
+        <TextRegular size={13} mt={25}>
+          {dataProduct.data.name}
+        </TextRegular>
+      </>
+    )
+  }
 
   return (
     <>
       <Header backButton={true} title={'DETALHES DO PRODUTO'} navigation={navigation} />
       <Box pl={10} pr={10} pb={10} bg={colors.lightGray}>
         {dataProduct.isLoading ? (
-          <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
+          <Loading name={'spinner'} size={30} color={colors.orange}></Loading>
         ) : (
-          <Box border={4} flex={1} bg={colors.white} pl={10} pr={10} pt={8} pb={10}>
+          <Box
+            border={4}
+            flex={1}
+            bg={colors.white}
+            pl={10}
+            pr={10}
+            pt={8}
+            pb={10}
+            style={{
+              shadowColor: colors.black,
+              shadowOffset: {
+                width: 0,
+                height: 2
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5
+            }}
+          >
             <ScrollView
               ref={scrollViewRef}
               scrollEnabled={accordion}
@@ -102,14 +152,31 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
                 </TextRegular>
               </View>
 
-              <Button title={'COMPRE'} bg={colors.orange} textColor={colors.white} />
+              {dataProduct.data.inventory.quantity > 0 ? (
+                <Button
+                  onPress={() => {
+                    setModal(true)
+                  }}
+                  title={'COMPRE'}
+                  bg={colors.orange}
+                  textColor={colors.white}
+                />
+              ) : (
+                <Button
+                  onPress={() => {
+                    setModal(true)
+                  }}
+                  title={'AVISE-ME'}
+                  bg={'transparent'}
+                  textColor={colors.orange}
+                />
+              )}
 
-              <TextRegular weight={'500'} mt={18} align={'flex-start'} size={16}>
+              <TextRegular weight={'500'} mt={18} mb={5} align={'flex-start'} size={16}>
                 Descrição do Produto
               </TextRegular>
 
               <Accordon
-                title={'Continue lendo'}
                 subtitle={dataProduct.data.details.occasion}
                 content={dataProduct.data.details.description}
                 isOpen={accordion}
@@ -126,7 +193,15 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
                 }
               }}
             >
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  borderTopWidth: 1,
+                  borderColor: colors.lightGray,
+                  paddingTop: 8
+                }}
+              >
                 <TextRegular weight={'500'} size={13} color={colors.purple}>
                   Continular lendo
                 </TextRegular>
@@ -141,6 +216,31 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
           </Box>
         )}
       </Box>
+
+      <Modal
+        isVisible={modal}
+        style={styles.modalView}
+        hasBackdrop={true}
+        backdropColor={colors.orange}
+        backdropOpacity={0.6}
+        onBackdropPress={() => setModal(false)}
+      >
+        <Box bg={'transparent'} style={{ flex: 0.5 }}>
+          <Box bg={'transparent'}>
+            {!dataProduct.data.inventory.quantity > 0 ? renderBag() : renderWarning()}
+          </Box>
+          <Button
+            bg={colors.orange}
+            textColor={colors.white}
+            title="Fechar"
+            pt={10}
+            pb={10}
+            pl={10}
+            pr={10}
+            onPress={() => setModal(false)}
+          />
+        </Box>
+      </Modal>
     </>
   )
 }
@@ -159,3 +259,23 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product)
+
+const styles = StyleSheet.create({
+  modalView: {
+    flex: 0.5,
+    margin: 15,
+    marginTop: 40,
+    backgroundColor: colors.white,
+    borderRadius: 4,
+    padding: 15,
+    alignItems: 'center',
+    shadowColor: colors.black,
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  }
+})

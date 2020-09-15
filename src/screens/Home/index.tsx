@@ -92,7 +92,7 @@ function Home({ navigation, _getProducts, dataProducts, darkMode }) {
       <BoxSafe>
         <Box flex={1} pl={10} pr={10} pb={10} bg={darkMode ? '' : colors.lightGray}>
           {dataProducts.isLoading ? (
-            <Loading name={'spinner'} size={30} color={colors.gold}></Loading>
+            <Loading name={'spinner'} size={30} color={colors.orange}></Loading>
           ) : (
             <>
               <FlatList

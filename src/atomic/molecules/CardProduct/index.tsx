@@ -28,14 +28,15 @@ function CardProduct({ title, image, id, navigation, date, originalPrice, price 
       bg={colors.white}
       border={4}
       position={'relative'}
-      shadow={true}
       style={{
+        shadowColor: colors.black,
         shadowOffset: {
-          width: 3,
-          height: -6
+          width: 0,
+          height: 2
         },
-        shadowOpacity: 0.1,
-        shadowRadius: 2
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
       }}
       pr={5}
       pl={10}

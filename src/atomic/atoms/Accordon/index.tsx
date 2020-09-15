@@ -11,31 +11,31 @@ import Icons from '../../atoms/Icons'
 import HTMLView from 'react-native-htmlview'
 
 function Accordon({ title, subtitle, content }) {
-  const [isOpen, setIsOpen] = useState(false)
-
   const openLink = url => {
     url = `https://belezanaweb.com.br${url}`
 
     Linking.openURL(url)
   }
 
+  const regex = /(<([^>]+)>)/gi
+
   return (
     <>
       <Box pb={3} bg={'transparent'}>
-        {!isOpen && (
-          <>
-            <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
-              <HTMLView
-                onLinkPress={url => openLink(url)}
-                value={`<p>${content
-                  .replace('<br><br>', '</p><p>')
-                  .replace('</p><p></p>', '')
-                  .replace('&nbsp;', '')}</p>`}
-                stylesheet={styles}
-              />
-            </TextRegular>
-          </>
-        )}
+        <>
+          <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
+            <HTMLView
+              onLinkPress={url => openLink(url)}
+              value={`<p>${content
+
+                .replace('<br>', '')
+                .replace('<p>', '')
+                .replace('</p>', '')
+                .replace('&nbsp;', '')}</p>`}
+              stylesheet={styles}
+            />
+          </TextRegular>
+        </>
       </Box>
     </>
   )
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     fontSize: 12,
     lineHeight: 14,
     fontFamily: 'Roboto',
-    margin: 0
+    margin: 0,
+    fontWeight: 'normal'
   },
   a: {
     fontFamily: 'Roboto',
