@@ -17,7 +17,6 @@ const DashboardStack = createStackNavigator(
         width: '100%',
         backgroundColor: 'transparent',
         paddingTop: `${Platform.OS === 'ios' ? getStatusBarHeight(true) : 0}`,
-
       },
       headerTitleStyle: {
         color: '#212121',
