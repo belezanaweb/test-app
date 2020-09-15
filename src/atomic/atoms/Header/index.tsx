@@ -28,7 +28,7 @@ function Header({ navigation, title, backButton, _setDarkMode, darkMode }) {
     <>
       <StatusBar barStyle={darkMode ? 'light-content' : 'dark-content'} />
 
-      {!netInfo.isConnected && (
+      {!netInfo.isConnected || !netInfo.isInternetReachable && (
         <SnackBar>
           <TextRegular size={12}>
             <Icons name="wifi" size={12} />
