@@ -114,7 +114,8 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
               <ScrollView
                 ref={scrollViewRef}
                 scrollEnabled={accordion}
-                style={{ marginBottom: 0, flex: 1 }}
+                style={{ marginBottom: 0, flex: 1, position: 'relative' }}
+                showsVerticalScrollIndicator={accordion}
               >
                 <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
                   {dataProduct.data.name}
@@ -175,7 +176,7 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
                     />
                   )}
 
-                <TextRegular weight={'500'} mt={18} mb={5} align={'flex-start'} size={16}>
+                <TextRegular weight={'500'} mt={18} align={'flex-start'} size={16}>
                   Descrição do Produto
               </TextRegular>
 
@@ -184,9 +185,9 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
                   content={dataProduct.data.details.description}
                   isOpen={accordion}
                 />
+                <View style={{ position: 'absolute', bottom: 1, left: 0, width: '100%', height: 25, opacity: accordion ? 0 : 0.5, backgroundColor: colors.white }} />
               </ScrollView>
               <TouchableButton
-                mt={30}
                 onPress={() => {
                   setAccordion(!accordion)
                   if (accordion === false) {

@@ -22,11 +22,11 @@ function Accordon({ title, subtitle, content }) {
   return (
     <>
       <Box pb={3} bg={'transparent'}>
-        <>
-          <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
-            {content.replace(regex, '')}
-          </TextRegular>
-        </>
+
+        <TextRegular color={colors.grayseven} align={'flex-start'} size={12}>
+          {content.replace(regex, '')}
+        </TextRegular>
+
       </Box>
     </>
   )
