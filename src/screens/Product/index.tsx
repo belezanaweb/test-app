@@ -92,38 +92,38 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
         {dataProduct.isLoading ? (
           <Loading name={'spinner'} size={30} color={colors.orange}></Loading>
         ) : (
-          <Box
-            border={4}
-            flex={1}
-            bg={colors.white}
-            pl={10}
-            pr={10}
-            pt={8}
-            pb={10}
-            style={{
-              shadowColor: colors.black,
-              shadowOffset: {
-                width: 0,
-                height: 2
-              },
-              shadowOpacity: 0.25,
-              shadowRadius: 3.84,
-              elevation: 5
-            }}
-          >
-            <ScrollView
-              ref={scrollViewRef}
-              scrollEnabled={accordion}
-              style={{ marginBottom: 0, flex: 1 }}
+            <Box
+              border={4}
+              flex={1}
+              bg={colors.white}
+              pl={10}
+              pr={10}
+              pt={8}
+              pb={10}
+              style={{
+                shadowColor: colors.black,
+                shadowOffset: {
+                  width: 0,
+                  height: 2
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+                elevation: 5
+              }}
             >
-              <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
-                {dataProduct.data.name}
-              </TextRegular>
-              {showImage && (
-                <Image style={{ alignSelf: 'center', marginBottom: 21 }} source={cat} />
-              )}
+              <ScrollView
+                ref={scrollViewRef}
+                scrollEnabled={accordion}
+                style={{ marginBottom: 0, flex: 1 }}
+              >
+                <TextRegular size={20} weight={'500'} align={'flex-start'} mb={12}>
+                  {dataProduct.data.name}
+                </TextRegular>
+                {showImage && (
+                  <Image style={{ alignSelf: 'center', marginBottom: 21 }} source={cat} />
+                )}
 
-              {/* <TextRegular
+                {/* <TextRegular
               decoration={'line-through'}
               size={14}
               align={'flex-start'}
@@ -132,118 +132,120 @@ function Product({ navigation, _getInfo, dataProduct, darkMode }) {
               R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
             </TextRegular> */}
 
-              <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
-                <TextRegular size={24} weight={'bold'} color={colors.orange}>
-                  R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
-                </TextRegular>
-
-                <TextRegular size={24} weight={'bold'}>
-                  {dataProduct.data.brand.name}
-                </TextRegular>
-              </View>
-
-              <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
-                {dataProduct.data.priceSpecification.installments && (
-                  <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
-                    {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R$
-                    {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
+                <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+                  <TextRegular size={24} weight={'bold'} color={colors.orange}>
+                    R$ {dataProduct.data.priceSpecification.originalPrice.toFixed(2)}
                   </TextRegular>
-                )}
 
-                <TextRegular mb={13} size={17} align={'flex-end'} color={colors.gray}>
-                  cod: {dataProduct.data.sku}
-                </TextRegular>
-              </View>
+                  <TextRegular size={24} weight={'bold'}>
+                    {dataProduct.data.brand.name}
+                  </TextRegular>
+                </View>
 
-              {dataProduct.data.inventory.quantity > 0 ? (
-                <Button
-                  onPress={() => {
-                    setModal(true)
-                  }}
-                  title={'COMPRE'}
-                  bg={colors.orange}
-                  textColor={colors.white}
-                />
-              ) : (
-                <Button
-                  onPress={() => {
-                    setModal(true)
-                  }}
-                  title={'AVISE-ME'}
-                  bg={'transparent'}
-                  textColor={colors.orange}
-                />
-              )}
+                <View flexDirection={'row'} style={{ justifyContent: 'space-between' }}>
+                  {dataProduct.data.priceSpecification.installments && (
+                    <TextRegular size={17} align={'flex-start'} color={colors.darkGray}>
+                      {dataProduct.data.priceSpecification.installments.numberOfPayments}x de R$
+                    {dataProduct.data.priceSpecification.installments.monthlyPayment.toFixed(2)}
+                    </TextRegular>
+                  )}
 
-              <TextRegular weight={'500'} mt={18} mb={5} align={'flex-start'} size={16}>
-                Descrição do Produto
+                  <TextRegular mb={13} size={17} align={'flex-end'} color={colors.gray}>
+                    cod: {dataProduct.data.sku}
+                  </TextRegular>
+                </View>
+
+                {dataProduct.data.inventory.quantity > 0 ? (
+                  <Button
+                    onPress={() => {
+                      setModal(true)
+                    }}
+                    title={'COMPRE'}
+                    bg={colors.orange}
+                    textColor={colors.white}
+                  />
+                ) : (
+                    <Button
+                      onPress={() => {
+                        setModal(true)
+                      }}
+                      title={'AVISE-ME'}
+                      bg={'transparent'}
+                      textColor={colors.orange}
+                    />
+                  )}
+
+                <TextRegular weight={'500'} mt={18} mb={5} align={'flex-start'} size={16}>
+                  Descrição do Produto
               </TextRegular>
 
-              <Accordon
-                subtitle={dataProduct.data.details.occasion}
-                content={dataProduct.data.details.description}
-                isOpen={accordion}
-              />
-            </ScrollView>
-            <TouchableButton
-              mt={30}
-              onPress={() => {
-                setAccordion(!accordion)
-                if (accordion === false) {
-                  scrollViewRef.current.scrollToEnd({ animated: true })
-                } else {
-                  scrollViewRef.current.scrollTo({ y: 0, animated: true })
-                }
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  borderTopWidth: 1,
-                  borderColor: colors.lightGray,
-                  paddingTop: 8
+                <Accordon
+                  subtitle={dataProduct.data.details.occasion}
+                  content={dataProduct.data.details.description}
+                  isOpen={accordion}
+                />
+              </ScrollView>
+              <TouchableButton
+                mt={30}
+                onPress={() => {
+                  setAccordion(!accordion)
+                  if (accordion === false) {
+                    scrollViewRef.current.scrollToEnd({ animated: true })
+                  } else {
+                    scrollViewRef.current.scrollTo({ y: 0, animated: true })
+                  }
                 }}
               >
-                <TextRegular weight={'500'} size={13} color={colors.purple}>
-                  Continular lendo
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    borderTopWidth: 1,
+                    borderColor: colors.lightGray,
+                    paddingTop: 8
+                  }}
+                >
+                  <TextRegular weight={'500'} size={13} color={colors.purple}>
+                    Continular lendo
                 </TextRegular>
 
-                <Icons
-                  name={!accordion ? 'chevron-down' : 'chevron-up'}
-                  color={colors.purple}
-                  size={13}
-                />
-              </View>
-            </TouchableButton>
-          </Box>
-        )}
+                  <Icons
+                    name={!accordion ? 'chevron-down' : 'chevron-up'}
+                    color={colors.purple}
+                    size={13}
+                  />
+                </View>
+              </TouchableButton>
+              <Modal
+                isVisible={modal}
+                style={styles.modalView}
+                hasBackdrop={true}
+                backdropColor={colors.orange}
+                backdropOpacity={0.6}
+                onBackdropPress={() => setModal(false)}
+              >
+                <Box bg={'transparent'} style={{ flex: 0.5 }}>
+                  <Box bg={'transparent'}>
+                    {dataProduct.data.inventory.quantity > 0 ? renderBag() : renderWarning()}
+                  </Box>
+                  <Button
+                    bg={colors.orange}
+                    textColor={colors.white}
+                    title={dataProduct.data.inventory.quantity > 0 ? 'Fechar' : 'Enviar'}
+                    pt={10}
+                    pb={10}
+                    pl={10}
+                    pr={10}
+                    onPress={() => setModal(false)}
+                  />
+                </Box>
+              </Modal>
+            </Box>
+
+          )}
       </Box>
 
-      <Modal
-        isVisible={modal}
-        style={styles.modalView}
-        hasBackdrop={true}
-        backdropColor={colors.orange}
-        backdropOpacity={0.6}
-        onBackdropPress={() => setModal(false)}
-      >
-        <Box bg={'transparent'} style={{ flex: 0.5 }}>
-          <Box bg={'transparent'}>
-            {dataProduct.data.inventory.quantity > 0 ? renderBag() : renderWarning()}
-          </Box>
-          <Button
-            bg={colors.orange}
-            textColor={colors.white}
-            title={dataProduct.data.inventory.quantity > 0 ? 'Fechar' : 'Enviar'}
-            pt={10}
-            pb={10}
-            pl={10}
-            pr={10}
-            onPress={() => setModal(false)}
-          />
-        </Box>
-      </Modal>
+
     </>
   )
 }
