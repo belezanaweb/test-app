@@ -24,16 +24,7 @@ function Accordon({ title, subtitle, content }) {
       <Box pb={3} bg={'transparent'}>
         <>
           <TextRegular color={colors.grayseven} mt={5} align={'flex-start'} size={12}>
-            <HTMLView
-              onLinkPress={url => openLink(url)}
-              value={`<p>${content
-
-                .replace('<br>', '')
-                .replace('<p>', '')
-                .replace('</p>', '')
-                .replace('&nbsp;', '')}</p>`}
-              stylesheet={styles}
-            />
+            {content.replace(regex, '')}
           </TextRegular>
         </>
       </Box>
