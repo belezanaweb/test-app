@@ -3,6 +3,9 @@
     /* Basic Options */
     "target": "ES6",
     "module": "commonjs",
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+  ],
     "allowJs": true,
     "resolveJsonModule": true,
     "jsx": "react",
