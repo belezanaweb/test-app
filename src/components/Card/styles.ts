@@ -5,6 +5,7 @@ export const Container = styled.View`
   flex-direction: row;
   background: ${colors.white};
   padding: ${fonts['smallest']};
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `
 
 export const ContainerImage = styled.View`

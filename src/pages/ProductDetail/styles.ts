@@ -9,8 +9,10 @@ export const Container = styled.View`
   padding: ${fonts['smallest']};
   margin: ${fonts['smallest']};
   background: white;
+  border-radius: 4px;
   flex: 1;
   margin-bottom: ${fonts['mediumSmall']};
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
 `
 
 export const Title = styled.Text`
@@ -74,7 +76,6 @@ export const Code = styled.Text`
 
 export const TitleDescription = styled.Text`
   font-size: ${fonts['mediumLarge']};
-  letter-spacing: ${fonts['letterSpacing']};
   color: ${colors.secondary};
   font-weight: 500;
   margin-top: ${fonts['xxLarge']};

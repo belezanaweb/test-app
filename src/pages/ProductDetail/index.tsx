@@ -118,7 +118,7 @@ const ProductDetail = ({ route }: ProductDetailProps) => {
           </S.WrapperPrice>
           <S.WrapperCode>
             <S.Brand>{brand?.name}</S.Brand>
-            <S.Code>{`cod ${sku}`}</S.Code>
+            <S.Code>{`cod: ${sku}`}</S.Code>
           </S.WrapperCode>
         </S.Wrapper>
         <Button
