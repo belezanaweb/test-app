@@ -1,5 +1,4 @@
 import React, { useState, createContext, useContext } from 'react'
-
 interface Product {
   image: {
     imageUrl: string
@@ -9,13 +8,15 @@ interface Product {
 }
 
 interface ProductContextData {
-  products: Product[];
-  setProducts: React.Dispatch<React.SetStateAction<any>>;
+  products: Product[]
+  setProducts: React.Dispatch<React.SetStateAction<any>>
 }
 
-export const ProductsContext = createContext<ProductContextData>([] as unknown as ProductContextData)
+export const ProductsContext = createContext<ProductContextData>(
+  ([] as unknown) as ProductContextData,
+)
 
-const  Products: React.FC = ({ children })  => {
+const Products: React.FC = ({ children }) => {
   const [products, setProducts] = useState([])
 
   return (

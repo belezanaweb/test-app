@@ -1,24 +1,39 @@
 import React from 'react'
 import * as S from './styles'
-import { ActivityIndicator } from 'react-native'
 
 interface ButtonInterface {
   testID: string
   children: string
   onPress: () => void
-  isLoading: boolean
+  isLoading?: boolean
+  outline?: boolean
+  styleOptional?: any
 }
 
-const Button = ({ testID, children, onPress,isLoading }: ButtonInterface) => {
+const Button = ({
+  testID,
+  children,
+  onPress,
+  isLoading,
+  styleOptional,
+  outline = false,
+}: ButtonInterface) => {
   return (
-      <S.Button onPress={onPress} testID={`button ${testID}`}>
-      {isLoading ?
-       <ActivityIndicator style={{ flex: 1 }} color="white" size="small" />
-        :
-         <S.Title testID={`title ${testID}`}>{children}</S.Title> }
-      </S.Button>
+    <S.Button
+      style={styleOptional}
+      outline={outline}
+      onPress={onPress}
+      testID={`button ${testID}`}
+    >
+      {isLoading ? (
+        <S.ContainerLoading isLoading={isLoading} />
+      ) : (
+        <S.Title outline={outline} testID={`title ${testID}`}>
+          {children}
+        </S.Title>
+      )}
+    </S.Button>
   )
 }
-
 
 export default React.memo(Button)

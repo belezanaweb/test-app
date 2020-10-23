@@ -1,20 +1,36 @@
 import styled from 'styled-components/native'
-import { colors } from '../variables'
+import { colors, fonts } from '../variables'
+import { ActivityIndicator } from 'react-native'
 
-export const Title = styled.Text`
-  color: ${colors.white};
-  font-size: 14px;
-  line-height: 16px;
+interface LoadingProps {
+  isLoading: boolean
+}
+
+interface ButtonProps {
+  outline?: boolean
+}
+
+interface TextProps extends ButtonProps {}
+
+export const Title = styled.Text<TextProps>`
+  font-size: ${fonts['medium']};
   font-weight: 700;
+  color: ${props => (props.outline ? colors.primary : colors.white)};
   text-transform: uppercase;
 `
 
-export const Button = styled.TouchableOpacity`
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: ${colors.primary};
+export const Button = styled.TouchableOpacity<ButtonProps>`
+  background: ${props => (props.outline ? 'transparent' : colors.primary)};
+  border: ${props => (props.outline ? `2px solid ${colors.primary}` : 'none')};
   border-radius: 4px;
   align-items: center;
-  height: 36px;
+  height: ${fonts['buttonHeight']};
   justify-content: center;
+`
+
+export const ContainerLoading = styled(ActivityIndicator).attrs({
+  color: colors.orangeDarkest,
+  size: 'small',
+})<LoadingProps>`
+  flex: 1;
 `

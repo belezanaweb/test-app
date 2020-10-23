@@ -2,17 +2,31 @@ import api from './api'
 
 const pageSize = 8
 
-export const listProducts = async (pageNumber: number) => {
-  const { data } = await api.get(`/products?page=${pageNumber}&size=${pageSize}`)
-
-  const productsNoramalizeds = data.map(normalizeProduct)
-
-  return { data: productsNoramalizeds }
+interface ProductState {
+  imageObjects: any
 }
 
-const normalizeProduct = product => {
+export const listProducts = async (pageNumber: number) => {
+  const { data } = await api.get(
+    `/products?page=${pageNumber}&size=${pageSize}`,
+  )
+
+  const normalize = data.map(normalizeProduct)
+
+  return { data: normalize }
+}
+
+export const filterProduct = async (sku: string) => {
+  const { data } = await api.get(`/products/${sku}`)
+
+  const normalize = normalizeProduct(data)
+
+  return { data: normalize }
+}
+
+const normalizeProduct = (product: ProductState) => {
   return {
     ...product,
-    image: product.imageObjects.find(img => img.featured)
+    image: product.imageObjects.find((img: any) => img.featured),
   }
 }
