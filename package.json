@@ -10,9 +10,12 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "axios": "^0.21.0",
     "babel-plugin-root-import": "^6.6.0",
     "react": "16.13.1",
-    "react-native": "0.63.2"
+    "react-native": "0.63.2",
+    "react-native-config": "^1.4.0",
+    "swr": "^0.3.6"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
