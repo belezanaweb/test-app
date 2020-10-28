@@ -14,7 +14,7 @@
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
+      "~/*": ["src/*"],
     }
   },
   "exclude": [
