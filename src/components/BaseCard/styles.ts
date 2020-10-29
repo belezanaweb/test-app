@@ -8,6 +8,6 @@ export const CardContainer = styled.View`
   shadow-opacity: 0.25;
   shadow-radius: 3.84px;
   elevation: 2;
-  margin-top: 5px;
+  margin-horizontal: 10px;
   padding: 5px;
 `
