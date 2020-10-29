@@ -4,7 +4,7 @@ export const colors = {
 };
 
 export const fonts = {
-  font: 'Roboto',
+  fontName: 'Roboto',
 };
 
 export const theme = {
