@@ -10,7 +10,9 @@ interface IPrimaryButton {
 const PrimaryButton = ({ text }: IPrimaryButton) => {
   return (
     <BaseButton background={theme.colors.orange} borderColor={theme.colors.orange}>
-      <BaseButtonText color={theme.colors.white}>{text}</BaseButtonText>
+      <BaseButtonText testID="text" color={theme.colors.white}>
+        {text}
+      </BaseButtonText>
     </BaseButton>
   )
 }

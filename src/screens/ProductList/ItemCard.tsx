@@ -15,29 +15,32 @@ import {
   ProductPriceContainer
 } from './styles'
 
-const ItemCard = ({ product }) => {
+export const ItemCard = ({ product }) => {
   const featuredImage = product.imageObjects.find(image => image.featured)
   return (
     <BaseCard>
       <ItemContainer>
         <ProductImageContainer>
           <ProductImage
+            testID="productImage"
             source={{
               uri: featuredImage ? featuredImage?.medium : product.imageObjects[0].medium
             }}
           />
-          <CodText>{`cod: ${product?.priceSpecification?.sku}`}</CodText>
+          <CodText testID="productCode">{`cod: ${product?.priceSpecification?.sku}`}</CodText>
         </ProductImageContainer>
         <Container>
           <Container>
-            <ProductDescription>{product.name}</ProductDescription>
+            <ProductDescription testID="productName">{product.name}</ProductDescription>
             <ProductPriceContainer>
               {product.priceSpecification.originalPrice > product.priceSpecification.price && (
-                <DiscountPrice>
+                <DiscountPrice testID="discountPrice">
                   {currencyFormat(product.priceSpecification.originalPrice)}
                 </DiscountPrice>
               )}
-              <ProductPrice>{currencyFormat(product.priceSpecification.price)}</ProductPrice>
+              <ProductPrice testID="productPrice">
+                {currencyFormat(product.priceSpecification.price)}
+              </ProductPrice>
             </ProductPriceContainer>
           </Container>
           <PrimaryButton text="ver detalhes" />

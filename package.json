@@ -40,6 +40,8 @@
     "@storybook/addon-ondevice-knobs": "^5.3.23",
     "@storybook/react-native": "^5.3.23",
     "@storybook/react-native-server": "^5.3.23",
+    "@testing-library/jest-native": "^3.4.3",
+    "@testing-library/react-native": "^7.1.0",
     "@types/react-native": "^0.63.30",
     "@types/styled-components": "^5.1.4",
     "babel-jest": "^25.1.0",
@@ -53,7 +55,25 @@
     "react-test-renderer": "16.13.1"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@?react-navigation)"
+    ],
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./mock.js"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "config": {
     "react-native-storybook-loader": {
