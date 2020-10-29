@@ -5,6 +5,7 @@ import { ActivityIndicator, FlatList } from 'react-native'
 import { SecondaryButton } from '~/components'
 import { useFetch } from '~/hooks/useFetch'
 import { Container, PageHeader } from '~/styles/baseStyles'
+import { theme } from '~/styles/theme'
 import ItemCard from './ItemCard'
 import { PaddingSeparatorContainer } from './styles'
 
@@ -35,7 +36,7 @@ export default function ProductList() {
           if (products.length / 5 < page && products.length % 5 === 0) {
             return (
               <PaddingSeparatorContainer>
-                <ActivityIndicator size="large" />
+                <ActivityIndicator size="large" color={theme.colors.orange} />
               </PaddingSeparatorContainer>
             )
           }
