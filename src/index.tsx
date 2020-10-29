@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler'
 
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components/native'
 import Routes from './routes'
 import { SafeAreaContainer } from './styles/baseStyles'
 import { theme } from './styles/theme'
