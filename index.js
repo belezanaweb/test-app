@@ -1,6 +1,8 @@
-/**
- * @format
- */
+import { Config } from 'react-native-config'
+
+if (Config.STORYBOOK === 'true') {
+  import('./storybook').then(storybook => storybook)
+}
 
 import { AppRegistry } from 'react-native'
 import App from './src'
