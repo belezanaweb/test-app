@@ -11,7 +11,7 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (products.items.length === 0) {
+    if (products.items.length < itemsPerRequest) {
       dispatch(fetchProducts(itemsPerRequest))
     }
   }, [products.items.length, itemsPerRequest, dispatch])
