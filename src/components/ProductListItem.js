@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import formatCurrency from '../utils/formatCurrency'
+import Button from './Button'
 
 const ProductListItem = ({ title, sku, image, currentPrice, previousPrice, onButtonPress }) => (
   <Container>
@@ -16,9 +17,9 @@ const ProductListItem = ({ title, sku, image, currentPrice, previousPrice, onBut
         )}
         <ProductCurrentCost>{formatCurrency(currentPrice)}</ProductCurrentCost>
       </ProductCostContainer>
-      <PrimaryButton onPress={() => onButtonPress(sku)}>
-        <PrimaryButtonText>VER DETALHES</PrimaryButtonText>
-      </PrimaryButton>
+      <Button onPress={() => onButtonPress(sku)} primary>
+        VER DETALHES
+      </Button>
     </RightContent>
   </Container>
 )
@@ -83,22 +84,6 @@ const ProductCurrentCost = styled.Text`
 const ProductImage = styled.Image`
   height: 108px;
   width: 108px;
-`
-
-const PrimaryButton = styled.Pressable`
-  justify-content: center;
-  height: 36px;
-  background: #ff6c00;
-  border-radius: 4px;
-`
-
-const PrimaryButtonText = styled.Text`
-  text-align: center;
-  color: #ffffff;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 14px;
-  line-height: 16px;
 `
 
 export default ProductListItem

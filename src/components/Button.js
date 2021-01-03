@@ -1,16 +1,16 @@
 import React from 'react'
 import styled from 'styled-components/native'
 
-const FullWidthButton = props => (
+const Button = props => (
   <ButtonContainer {...props}>
-    <ButtonLabel>{props.children}</ButtonLabel>
+    <ButtonLabel primary={props.primary}>{props.children}</ButtonLabel>
   </ButtonContainer>
 )
 
 const ButtonContainer = styled.Pressable`
   justify-content: center;
   height: 36px;
-  background: #ffffff;
+  background: ${props => (props.primary ? '#ff6c00' : '#ffffff')};
   border: 2px solid #ff6c00;
   border-radius: 4px;
 `
@@ -22,7 +22,7 @@ const ButtonLabel = styled.Text`
   font-size: 14px;
   line-height: 16px;
   text-transform: uppercase;
-  color: #ff6c00;
+  color: ${props => (props.primary ? '#ffffff' : '#ff6c00')};
 `
 
-export default FullWidthButton
+export default Button

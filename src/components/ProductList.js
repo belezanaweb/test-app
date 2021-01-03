@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ListItem from '../components/ProductListItem'
-import FullWidthButton from '../components/FullWidthButton'
+import Button from './Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '../stores/products/productsAction'
 import styled from 'styled-components'
@@ -38,9 +38,9 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
           })}
         </ListContainer>
         {!products.finished && (
-          <FullWidthButton onPress={() => dispatch(fetchProducts(itemsPerRequest))}>
+          <Button secondary onPress={() => dispatch(fetchProducts(itemsPerRequest))}>
             Carregar mais produtos
-          </FullWidthButton>
+          </Button>
         )}
       </Container>
     </ScrollView>
