@@ -8,7 +8,6 @@ const FullWidthButton = props => (
 )
 
 const ButtonContainer = styled.Pressable`
-  margin-top: 10px;
   justify-content: center;
   height: 36px;
   background: #ffffff;

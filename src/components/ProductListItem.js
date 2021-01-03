@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/native'
 import formatCurrency from '../utils/formatCurrency'
-import { PropTypes } from 'prop-types'
 
 const ProductListItem = ({ title, sku, image, currentPrice, previousPrice, onButtonPress }) => (
   <Container>
@@ -23,10 +22,6 @@ const ProductListItem = ({ title, sku, image, currentPrice, previousPrice, onBut
     </RightContent>
   </Container>
 )
-
-ProductListItem.propTypes = {
-  title: PropTypes
-}
 
 const Container = styled.View`
   flex: 1;

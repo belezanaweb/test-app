@@ -18,33 +18,41 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <ListContainer>
-        {products.items.map(product => {
-          const featuredImageObject = product.imageObjects.find(imageObject => imageObject.featured)
-          return (
-            <ListItem
-              currentPrice={product.priceSpecification.price}
-              image={featuredImageObject?.small}
-              key={product.sku}
-              onButtonPress={onButtonPress}
-              previousPrice={product.priceSpecification.maxPrice}
-              sku={product.sku}
-              title={product.name}
-            />
-          )
-        })}
+      <Container>
+        <ListContainer>
+          {products.items.map(product => {
+            const featuredImageObject = product.imageObjects.find(
+              imageObject => imageObject.featured
+            )
+            return (
+              <ListItem
+                currentPrice={product.priceSpecification.price}
+                image={featuredImageObject?.small}
+                key={product.sku}
+                onButtonPress={onButtonPress}
+                previousPrice={product.priceSpecification.maxPrice}
+                sku={product.sku}
+                title={product.name}
+              />
+            )
+          })}
+        </ListContainer>
         {!products.finished && (
           <FullWidthButton onPress={() => dispatch(fetchProducts(itemsPerRequest))}>
             Carregar mais produtos
           </FullWidthButton>
         )}
-      </ListContainer>
+      </Container>
     </ScrollView>
   )
 }
 
+const Container = styled.ScrollView`
+  padding: 0 10px 10px 10px;
+`
+
 const ListContainer = styled.View`
-  margin: 10px;
+  margin-bottom: 10px;
 `
 
 export default ProductList
