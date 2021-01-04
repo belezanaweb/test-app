@@ -7,6 +7,7 @@
  */
 import 'react-native-gesture-handler'
 import React from 'react'
+import { SafeAreaView } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import store from '../src/stores/rootStore'
@@ -19,16 +20,18 @@ const Stack = createStackNavigator()
 
 const App: () => React$Node = () => {
   return (
-    <ModalServiceProvider>
-      <NavigationContainer>
-        <Provider store={store}>
-          <Stack.Navigator headerMode="none" initialRouteName="Home">
-            <Stack.Screen component={ProductListScreen} name="Home" />
-            <Stack.Screen component={ProductDetailsScreen} name="ProductDetails" />
-          </Stack.Navigator>
-        </Provider>
-      </NavigationContainer>
-    </ModalServiceProvider>
+    <SafeAreaView style={{ flex: 1 }}>
+      <ModalServiceProvider>
+        <NavigationContainer>
+          <Provider store={store}>
+            <Stack.Navigator headerMode="none" initialRouteName="Home">
+              <Stack.Screen component={ProductListScreen} name="Home" />
+              <Stack.Screen component={ProductDetailsScreen} name="ProductDetails" />
+            </Stack.Navigator>
+          </Provider>
+        </NavigationContainer>
+      </ModalServiceProvider>
+    </SafeAreaView>
   )
 }
 

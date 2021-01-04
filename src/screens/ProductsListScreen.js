@@ -4,19 +4,15 @@ import ProductList from '../components/ProductList'
 
 const ProductListScreen = ({ navigation }) => {
   return (
-    <FlexSafeAreaView>
+    <>
       <ListHeader>Lista de Produtos</ListHeader>
       <ProductList
         itemsPerRequest={3}
         onButtonPress={productSku => navigation.navigate('ProductDetails', { productSku })}
       />
-    </FlexSafeAreaView>
+    </>
   )
 }
-
-const FlexSafeAreaView = styled.SafeAreaView`
-  flex: 1;
-`
 
 const ListHeader = styled.Text`
   font-family: Roboto;

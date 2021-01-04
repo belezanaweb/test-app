@@ -5,16 +5,12 @@ import ProductDetails from '../components/ProductDetails'
 const ProductDetailsScreen = ({ route }) => {
   const { productSku } = route.params
   return (
-    <FlexSafeAreaView>
+    <>
       <ListHeader>Detalhes do produto</ListHeader>
       <ProductDetails productSku={productSku} />
-    </FlexSafeAreaView>
+    </>
   )
 }
-
-const FlexSafeAreaView = styled.SafeAreaView`
-  flex: 1;
-`
 
 const ListHeader = styled.Text`
   font-family: Roboto;
