@@ -6,6 +6,7 @@ import { fetchProductDetails } from '../stores/products/productsAction'
 import formatCurrency from '../utils/formatCurrency'
 import Button from './Button'
 import Accordion from './Accordion'
+import Loading from './Loading'
 import NewsLetterForm from './NewsLetterForm'
 import { ModalServiceContext } from './ModalService'
 import removeHtmlTags from '../utils/removeHtmlTags'
@@ -101,7 +102,7 @@ const ProductDetails = ({ productSku }) => {
       </ScrollView>
     )
   }
-  return <ProductName>LOADING</ProductName>
+  return <Loading />
 }
 
 const Container = styled.View`

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '../stores/products/productsAction'
 import styled from 'styled-components'
 import { ScrollView } from 'react-native'
+import Loading from './Loading'
 
 const ProductList = ({ itemsPerRequest, onButtonPress }) => {
   const products = useSelector(state => state.products)
@@ -17,33 +18,36 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
   }, [products.items.length, itemsPerRequest, dispatch])
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Container>
-        <ListContainer>
-          {products.items.map(product => {
-            const featuredImageObject = product.imageObjects.find(
-              imageObject => imageObject.featured
-            )
-            return (
-              <ListItem
-                currentPrice={product.priceSpecification.price}
-                image={featuredImageObject?.small}
-                key={product.sku}
-                onButtonPress={onButtonPress}
-                previousPrice={product.priceSpecification.maxPrice}
-                sku={product.sku}
-                title={product.name}
-              />
-            )
-          })}
-        </ListContainer>
-        {!products.finished && (
-          <Button secondary onPress={() => dispatch(fetchProducts(itemsPerRequest))}>
-            Carregar mais produtos
-          </Button>
-        )}
-      </Container>
-    </ScrollView>
+    <>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <Container>
+          <ListContainer>
+            {products.items.map(product => {
+              const featuredImageObject = product.imageObjects.find(
+                imageObject => imageObject.featured
+              )
+              return (
+                <ListItem
+                  currentPrice={product.priceSpecification.price}
+                  image={featuredImageObject?.small}
+                  key={product.sku}
+                  onButtonPress={onButtonPress}
+                  previousPrice={product.priceSpecification.maxPrice}
+                  sku={product.sku}
+                  title={product.name}
+                />
+              )
+            })}
+          </ListContainer>
+          {!products.finished && !products.loading && (
+            <Button onPress={() => dispatch(fetchProducts(itemsPerRequest))} secondary>
+              Carregar mais produtos
+            </Button>
+          )}
+        </Container>
+      </ScrollView>
+      {products.loading && <Loading />}
+    </>
   )
 }
 
