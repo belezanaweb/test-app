@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import ProductList from '../components/ProductList'
+import ProductDetails from '../components/ProductDetails'
 
-const ProductListScreen = ({ navigation }) => {
+const ProductDetailsScreen = ({ route }) => {
+  const { productSku } = route.params
   return (
     <FlexSafeAreaView>
-      <ListHeader>Lista de Produtos</ListHeader>
-      <ProductList
-        itemsPerRequest={10}
-        onButtonPress={productSku => navigation.navigate('ProductDetails', { productSku })}
-      />
+      <ListHeader>Detalhes do produto</ListHeader>
+      <ProductDetails productSku={productSku} />
     </FlexSafeAreaView>
   )
 }
@@ -28,4 +26,4 @@ const ListHeader = styled.Text`
   text-transform: uppercase;
 `
 
-export default ProductListScreen
+export default ProductDetailsScreen

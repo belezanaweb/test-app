@@ -11,19 +11,24 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import store from '../src/stores/rootStore'
 import { Provider } from 'react-redux'
+import { ModalServiceProvider } from './components/ModalService'
 import ProductListScreen from '../src/screens/ProductsListScreen'
+import ProductDetailsScreen from '../src/screens/ProductsDetailsScreen'
 
 const Stack = createStackNavigator()
 
 const App: () => React$Node = () => {
   return (
-    <NavigationContainer>
-      <Provider store={store}>
-        <Stack.Navigator headerMode="none" initialRouteName="Home">
-          <Stack.Screen component={ProductListScreen} name="Home" />
-        </Stack.Navigator>
-      </Provider>
-    </NavigationContainer>
+    <ModalServiceProvider>
+      <NavigationContainer>
+        <Provider store={store}>
+          <Stack.Navigator headerMode="none" initialRouteName="Home">
+            <Stack.Screen component={ProductListScreen} name="Home" />
+            <Stack.Screen component={ProductDetailsScreen} name="ProductDetails" />
+          </Stack.Navigator>
+        </Provider>
+      </NavigationContainer>
+    </ModalServiceProvider>
   )
 }
 

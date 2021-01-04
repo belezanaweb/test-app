@@ -18,3 +18,18 @@ export const fetchProducts = (size = 10) => (dispatch, getState) => {
       dispatch({ type: 'FETCH_PRODUCTS_FAIL', error })
     })
 }
+
+export const fetchProductDetails = sku => dispatch => {
+  dispatch({ type: 'FETCH_PRODUCT_DETAILS' })
+  return axiosInstance
+    .get(`products/${sku}`)
+    .then(response => {
+      dispatch({
+        type: 'FETCH_PRODUCT_DETAILS_SUCCESS',
+        data: response.data
+      })
+    })
+    .catch(error => {
+      dispatch({ type: 'FETCH_PRODUCT_DETAILS_FAIL', error })
+    })
+}
