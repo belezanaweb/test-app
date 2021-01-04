@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import ListItem from '../components/ProductListItem'
+import ProductListItem from '../components/ProductListItem'
 import Button from './Button'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProducts } from '../stores/products/productsAction'
@@ -22,14 +22,15 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Container>
           <ListContainer>
-            {products.items.map(product => {
+            {products.items.map((product, index) => {
               const featuredImageObject = product.imageObjects.find(
                 imageObject => imageObject.featured
               )
               return (
-                <ListItem
+                <ProductListItem
                   currentPrice={product.priceSpecification.price}
                   image={featuredImageObject?.small}
+                  isFirstItem={index === 0}
                   key={product.sku}
                   onButtonPress={onButtonPress}
                   previousPrice={product.priceSpecification.maxPrice}

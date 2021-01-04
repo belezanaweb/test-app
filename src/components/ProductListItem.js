@@ -3,8 +3,16 @@ import styled from 'styled-components/native'
 import formatCurrency from '../utils/formatCurrency'
 import Button from './Button'
 
-const ProductListItem = ({ title, sku, image, currentPrice, previousPrice, onButtonPress }) => (
-  <Container>
+const ProductListItem = ({
+  title,
+  sku,
+  image,
+  currentPrice,
+  previousPrice,
+  onButtonPress,
+  isFirstItem
+}) => (
+  <Container isFirstItem={isFirstItem}>
     <LeftContent>
       <ProductImage source={{ uri: image }} />
       <ProductCode>Cod: {sku}</ProductCode>
@@ -29,7 +37,7 @@ const Container = styled.View`
   flex-direction: row;
   height: 145px;
   padding: 5px;
-  margin-top: 10px;
+  margin-top: ${props => (props.isFirstItem ? '0' : '10px')};
   background: #ffffff;
   border-radius: 4px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
