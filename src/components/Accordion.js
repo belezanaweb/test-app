@@ -49,6 +49,7 @@ const Button = styled.Pressable`
   align-items: center;
 `
 const ButtonLabel = styled.Text`
+  font-family: Roboto;
   font-weight: 500;
   font-size: 13px;
   line-height: 19px;
@@ -64,6 +65,7 @@ const Divider = styled.View`
 const Container = styled.View``
 
 const Title = styled.Text`
+  font-family: Roboto;
   margin: 5px 0;
   font-weight: 500;
   font-size: 16px;
@@ -73,6 +75,7 @@ const Title = styled.Text`
 `
 
 const Body = styled.Text`
+  font-family: Roboto;
   font-size: 12px;
   line-height: 19px;
   color: #777777;

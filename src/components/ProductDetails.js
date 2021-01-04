@@ -112,6 +112,7 @@ const Container = styled.View`
 `
 
 const ProductName = styled.Text`
+  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -138,6 +139,7 @@ const ProductInfoContainer = styled.View`
 `
 
 const ProductCode = styled.Text`
+  font-family: Roboto;
   font-size: 14px;
   line-height: 16px;
   text-align: right;
@@ -145,6 +147,7 @@ const ProductCode = styled.Text`
 `
 
 const ProductBrand = styled.Text`
+  font-family: Roboto;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -156,6 +159,7 @@ const LeftContainer = styled.View``
 const RightContainer = styled.View``
 
 const ProductPreviousCost = styled.Text`
+  font-family: Roboto;
   font-weight: normal;
   font-size: 14px;
   line-height: 18px;
@@ -164,12 +168,14 @@ const ProductPreviousCost = styled.Text`
 `
 
 const ProductCurrentCost = styled.Text`
+  font-family: Roboto;
   font-weight: 500;
   font-size: 24px;
   color: #ff6c00;
 `
 
 const ProductPaymentMethod = styled.Text`
+  font-family: Roboto;
   font-weight: normal;
   font-size: 17px;
   color: #6f6f6f;

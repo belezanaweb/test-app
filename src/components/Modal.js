@@ -47,12 +47,14 @@ const ModalInnerContainer = styled.View`
 `
 
 const ModalTitle = styled.Text`
+  font-family: Roboto;
   color: #ff6c00;
   font-weight: bold;
   font-size: 17px;
 `
 
 const ModalText = styled.Text`
+  font-family: Roboto;
   margin-top: 12px;
   color: #555;
   font-size: 17px;

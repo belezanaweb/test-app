@@ -46,6 +46,7 @@ const RightContent = styled.View`
 `
 
 const ProductCode = styled.Text`
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
@@ -55,6 +56,7 @@ const ProductCode = styled.Text`
 `
 
 const ProductName = styled.Text`
+  font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -65,6 +67,7 @@ const ProductName = styled.Text`
 const ProductCostContainer = styled.View``
 
 const ProductPreviousCost = styled.Text`
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 11px;
@@ -74,6 +77,7 @@ const ProductPreviousCost = styled.Text`
 `
 
 const ProductCurrentCost = styled.Text`
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 14px;

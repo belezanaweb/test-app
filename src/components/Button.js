@@ -16,6 +16,7 @@ const ButtonContainer = styled.Pressable`
 `
 
 const ButtonLabel = styled.Text`
+  font-family: Roboto;
   text-align: center;
   font-style: normal;
   font-weight: bold;

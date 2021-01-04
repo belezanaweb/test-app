@@ -7,7 +7,7 @@ const ProductListScreen = ({ navigation }) => {
     <FlexSafeAreaView>
       <ListHeader>Lista de Produtos</ListHeader>
       <ProductList
-        itemsPerRequest={10}
+        itemsPerRequest={3}
         onButtonPress={productSku => navigation.navigate('ProductDetails', { productSku })}
       />
     </FlexSafeAreaView>
@@ -19,6 +19,7 @@ const FlexSafeAreaView = styled.SafeAreaView`
 `
 
 const ListHeader = styled.Text`
+  font-family: Roboto;
   margin: 8px 0 9px 0;
   font-style: normal;
   font-weight: bold;
