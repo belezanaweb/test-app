@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { ScrollView } from 'react-native'
+import { FlatList } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import ProductListItem from '../ProductListItem'
 import Button from '../Button'
@@ -17,36 +17,38 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
     }
   }, [productStore.items.length, itemsPerRequest, dispatch])
 
+  const renderItem = ({ item, index }) => {
+    const featuredImageObject = item.imageObjects.find(imageObject => imageObject.featured)
+    return (
+      <ProductListItem
+        currentPrice={item.priceSpecification.price}
+        image={featuredImageObject?.small}
+        isFirstItem={index === 0}
+        key={item.sku}
+        onButtonPress={onButtonPress}
+        previousPrice={item.priceSpecification.maxPrice}
+        sku={item.sku}
+        title={item.name}
+      />
+    )
+  }
+
   return (
     <>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Container>
-          <ListContainer>
-            {productStore.items.map((product, index) => {
-              const featuredImageObject = product.imageObjects.find(
-                imageObject => imageObject.featured
-              )
-              return (
-                <ProductListItem
-                  currentPrice={product.priceSpecification.price}
-                  image={featuredImageObject?.small}
-                  isFirstItem={index === 0}
-                  key={product.sku}
-                  onButtonPress={onButtonPress}
-                  previousPrice={product.priceSpecification.maxPrice}
-                  sku={product.sku}
-                  title={product.name}
-                />
-              )
-            })}
-          </ListContainer>
-          {!productStore.finished && !productStore.isFetchingList && (
-            <Button onPress={() => dispatch(fetchProducts(itemsPerRequest))} secondary>
-              Carregar mais produtos
-            </Button>
-          )}
-        </Container>
-      </ScrollView>
+      <Container>
+        <ListContainer>
+          <FlatList
+            data={productStore.items}
+            keyExtractor={item => item.sku}
+            renderItem={renderItem}
+          />
+        </ListContainer>
+        {!productStore.finished && !productStore.isFetchingList && (
+          <Button onPress={() => dispatch(fetchProducts(itemsPerRequest))} secondary>
+            Carregar mais produtos
+          </Button>
+        )}
+      </Container>
       {productStore.isFetchingList && <Loading />}
     </>
   )
