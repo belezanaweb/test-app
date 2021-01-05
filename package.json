@@ -7,9 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "commit": "git-cz",
+    "clean": "rm -rf node_modules && rm -rf package-lock.json && rm -rf yarn.lock && rm -rf ios/Pods && rm -rf ios/Podfile.lock"
   },
   "dependencies": {
+    "git-cz": "^4.7.6",
     "react": "16.13.1",
     "react-native": "0.63.2"
   },
