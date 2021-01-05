@@ -1,13 +1,6 @@
-import React from 'react'
 import styled from 'styled-components/native'
 
-const Button = props => (
-  <ButtonContainer {...props}>
-    <ButtonLabel primary={props.primary}>{props.children}</ButtonLabel>
-  </ButtonContainer>
-)
-
-const ButtonContainer = styled.Pressable`
+export const ButtonContainer = styled.Pressable`
   justify-content: center;
   height: 36px;
   background: ${props => (props.primary ? '#ff6c00' : '#ffffff')};
@@ -15,7 +8,7 @@ const ButtonContainer = styled.Pressable`
   border-radius: 4px;
 `
 
-const ButtonLabel = styled.Text`
+export const ButtonLabel = styled.Text`
   font-family: Roboto;
   text-align: center;
   font-style: normal;
@@ -25,5 +18,3 @@ const ButtonLabel = styled.Text`
   text-transform: uppercase;
   color: ${props => (props.primary ? '#ffffff' : '#ff6c00')};
 `
-
-export default Button

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
-import ProductListItem from '../components/ProductListItem'
-import Button from './Button'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchProducts } from '../stores/products/productsAction'
-import styled from 'styled-components'
 import { ScrollView } from 'react-native'
-import Loading from './Loading'
+import { useSelector, useDispatch } from 'react-redux'
+import ProductListItem from '../ProductListItem'
+import Button from '../Button'
+import { fetchProducts } from '../../stores/products/productsAction'
+import Loading from '../Loading'
+import { Container, ListContainer } from './ProductList.styles'
 
 const ProductList = ({ itemsPerRequest, onButtonPress }) => {
   const products = useSelector(state => state.products)
@@ -51,13 +51,5 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
     </>
   )
 }
-
-const Container = styled.ScrollView`
-  padding: 0 10px 10px 10px;
-`
-
-const ListContainer = styled.View`
-  margin-bottom: 10px;
-`
 
 export default ProductList
