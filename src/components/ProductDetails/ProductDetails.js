@@ -26,7 +26,7 @@ import {
 } from './ProductDetails.styles'
 
 const ProductDetails = ({ productSku }) => {
-  const products = useSelector(state => state.products)
+  const productStore = useSelector(state => state.products)
   const dispatch = useDispatch()
   const modal = useContext(ModalServiceContext)
 
@@ -34,8 +34,8 @@ const ProductDetails = ({ productSku }) => {
     dispatch(fetchProductDetails(productSku))
   }, [dispatch, productSku])
 
-  if (products.selectedItem) {
-    const featuredImageObject = products.selectedItem.imageObjects.find(
+  if (productStore.selectedItem) {
+    const featuredImageObject = productStore.selectedItem.imageObjects.find(
       imageObject => imageObject.featured
     )
 
@@ -49,7 +49,7 @@ const ProductDetails = ({ productSku }) => {
       details: { description },
       brand: { name: brandName },
       inventory: { quantity }
-    } = products.selectedItem
+    } = productStore.selectedItem
 
     const openCartModal = () =>
       modal.openModal({
