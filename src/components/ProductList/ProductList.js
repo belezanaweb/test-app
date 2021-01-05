@@ -40,14 +40,14 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
               )
             })}
           </ListContainer>
-          {!productStore.finished && !productStore.loading && (
+          {!productStore.finished && !productStore.isFetchingList && (
             <Button onPress={() => dispatch(fetchProducts(itemsPerRequest))} secondary>
               Carregar mais produtos
             </Button>
           )}
         </Container>
       </ScrollView>
-      {productStore.loading && <Loading />}
+      {productStore.isFetchingList && <Loading />}
     </>
   )
 }
