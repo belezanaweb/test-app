@@ -23,7 +23,7 @@ export const ModalInnerContainer = styled.View`
 
 export const ModalTitle = styled.Text`
   font-family: Roboto;
-  color: #ff6c00;
+  color: ${props => props.theme.colors.primary};
   font-weight: bold;
   font-size: 17px;
 `
@@ -31,7 +31,7 @@ export const ModalTitle = styled.Text`
 export const ModalText = styled.Text`
   font-family: Roboto;
   margin-top: 12px;
-  color: #555;
+  color: ${props => props.theme.colors.black1};
   font-size: 17px;
 `
 

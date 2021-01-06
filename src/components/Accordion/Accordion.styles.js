@@ -20,7 +20,7 @@ export const ButtonLabel = styled.Text`
   font-weight: 500;
   font-size: 13px;
   line-height: 19px;
-  color: #a43287;
+  color: ${props => props.theme.colors.accordionButton};
 `
 
 export const Divider = styled.View`
@@ -38,12 +38,12 @@ export const Title = styled.Text`
   font-size: 16px;
   line-height: 19px;
   letter-spacing: 0.307692px;
-  color: #212121;
+  color: ${props => props.theme.colors.black1};
 `
 
 export const Body = styled.Text`
   font-family: Roboto;
   font-size: 12px;
   line-height: 19px;
-  color: #777777;
+  color: ${props => props.theme.colors.grey5};
 `

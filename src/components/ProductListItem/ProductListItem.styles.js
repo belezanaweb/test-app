@@ -27,7 +27,7 @@ export const ProductCode = styled.Text`
   font-size: 12px;
   line-height: 14px;
   text-align: center;
-  color: #c4c4c4;
+  color: ${props => props.theme.colors.grey1};
 `
 
 export const ProductName = styled.Text`
@@ -36,7 +36,7 @@ export const ProductName = styled.Text`
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  color: #212121;
+  color: ${props => props.theme.colors.black1};
 `
 
 export const ProductCostContainer = styled.View``
@@ -48,7 +48,7 @@ export const ProductPreviousCost = styled.Text`
   font-size: 11px;
   line-height: 13px;
   text-decoration-line: line-through;
-  color: #999999;
+  color: ${props => props.theme.colors.grey2};
 `
 
 export const ProductCurrentCost = styled.Text`
@@ -57,7 +57,7 @@ export const ProductCurrentCost = styled.Text`
   font-weight: bold;
   font-size: 14px;
   line-height: 16px;
-  color: #e66100;
+  color: ${props => props.theme.colors.primaryDark};
 `
 
 export const ProductImage = styled.Image`

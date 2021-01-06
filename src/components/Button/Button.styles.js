@@ -3,8 +3,8 @@ import styled from 'styled-components/native'
 export const ButtonContainer = styled.Pressable`
   justify-content: center;
   height: 36px;
-  background: ${props => (props.primary ? '#ff6c00' : '#ffffff')};
-  border: 2px solid #ff6c00;
+  background: ${props => (props.primary ? props.theme.colors.primary : '#ffffff')};
+  border: 2px solid ${props => props.theme.colors.primary};
   border-radius: 4px;
 `
 
@@ -16,5 +16,5 @@ export const ButtonLabel = styled.Text`
   font-size: 14px;
   line-height: 16px;
   text-transform: uppercase;
-  color: ${props => (props.primary ? '#ffffff' : '#ff6c00')};
+  color: ${props => (props.primary ? '#ffffff' : props.theme.colors.primary)};
 `

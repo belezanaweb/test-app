@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
+import { ThemeContext } from 'styled-components/native'
 import {
   Container,
   Title,
@@ -12,6 +13,7 @@ import {
 
 const Accordion = ({ title, body }) => {
   const [open, setOpen] = useState(false)
+  const theme = useContext(ThemeContext)
   return (
     <>
       <Container>
@@ -30,12 +32,12 @@ const Accordion = ({ title, body }) => {
       {open ? (
         <Button onPress={() => setOpen(false)}>
           <ButtonLabel>Minimizar</ButtonLabel>
-          <Icon color={'#a43287'} name="chevron-up-outline" size={15} />
+          <Icon color={theme.colors.accordionButton} name="chevron-up-outline" size={15} />
         </Button>
       ) : (
         <Button onPress={() => setOpen(true)}>
           <ButtonLabel>Continue Lendo</ButtonLabel>
-          <Icon color={'#a43287'} name="chevron-down-outline" size={15} />
+          <Icon color={theme.colors.accordionButton} name="chevron-down-outline" size={15} />
         </Button>
       )}
     </>

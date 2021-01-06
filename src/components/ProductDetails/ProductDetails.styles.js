@@ -12,7 +12,7 @@ export const ProductName = styled.Text`
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
-  color: #212121;
+  color: ${props => props.theme.colors.black1};
 `
 
 export const ProductImageContainer = styled.View`
@@ -38,7 +38,7 @@ export const ProductCode = styled.Text`
   font-size: 14px;
   line-height: 16px;
   text-align: right;
-  color: #c4c4c4;
+  color: ${props => props.theme.colors.grey1};
 `
 
 export const ProductBrand = styled.Text`
@@ -47,7 +47,7 @@ export const ProductBrand = styled.Text`
   font-size: 20px;
   line-height: 24px;
   text-align: right;
-  color: #212121;
+  color: ${props => props.theme.colors.black1};
 `
 
 export const LeftContainer = styled.View``
@@ -59,21 +59,21 @@ export const ProductPreviousCost = styled.Text`
   font-size: 14px;
   line-height: 18px;
   text-decoration-line: line-through;
-  color: #cccccc;
+  color: ${props => props.theme.colors.grey3};
 `
 
 export const ProductCurrentCost = styled.Text`
   font-family: Roboto;
   font-weight: 500;
   font-size: 24px;
-  color: #ff6c00;
+  color: ${props => props.theme.colors.primary};
 `
 
 export const ProductPaymentMethod = styled.Text`
   font-family: Roboto;
   font-weight: normal;
   font-size: 17px;
-  color: #6f6f6f;
+  color: ${props => props.theme.colors.grey4};
 `
 
 export const ButtonContainer = styled.View`
