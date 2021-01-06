@@ -19,6 +19,32 @@ export type product = {
   details: details;
   presentation: presentation;
   priceSpecification: priceSpecification;
+  benefit: benefit;
+  aggregateRating: aggregateRating;
+  departments: Array<department>;
+  integrations: Array<integration>;
+  marketable: marketable;
+  badge: Array<string>;
+  compositionId: string;
+  showcasePreviews: Array<{
+    title: string;
+    url: string;
+  }>;
+  breadcrumb: Array<{
+    name: string;
+    url: string;
+    links: Array<link>;
+  }>;
+  aggregatedSkus: Array<string>;
+  soldSeparately: boolean;
+  hidden: boolean;
+  lastUpdate: {
+    updatedById: string;
+    updatedByEmail: string;
+    updateAt: string;
+  };
+  links: Array<link>;
+  hasGiftBenefits: boolean;
 };
 
 export type seo = {
@@ -59,7 +85,7 @@ export type brand = {
   slugName: string;
   imageObject: imageObject;
   description: string;
-  links: Array<{ rel: string; href: string }>;
+  links: Array<link>;
 };
 
 export type line = {
@@ -77,9 +103,12 @@ export type organization = {
   id: number;
   name: string;
   slugName: string;
-  links: Array<{ rel: string; href: string }>;
+  links: Array<link>;
 };
-
+export type link = {
+  rel: string;
+  href: string;
+};
 export type details = {
   shortDescription: string;
   description: string;
@@ -109,4 +138,82 @@ export type priceSpecification = {
     numberOfPayments: number;
     monthlyPayment: number;
   };
+};
+
+export type benefit = {
+  offerId: string;
+  offerTitle: string;
+  offerHintDescription: string;
+  type: string;
+  target: string;
+  gifts: product;
+  period: period;
+};
+
+export type period = {
+  begin: string;
+  showStopwatch: boolean;
+};
+export type aggregateRating = {
+  ratingValue: number;
+  ratingCount: number;
+};
+export type department = {
+  id: string;
+  slugName: string;
+  name: string;
+  categories: Array<category>;
+  category: any;
+  priority: number;
+  links: Array<link>;
+};
+
+export type category = {
+  id: string;
+  slugName: string;
+  name: string;
+  attribute: attribute;
+  subcategory: any;
+  links: Array<link>;
+};
+
+export type attribute = {
+  id: string;
+  name: string;
+  slugName: string;
+  required: boolean;
+  filterable: boolean;
+  groupUpdate: boolean;
+  values: Array<{
+    id: string;
+    name: string;
+    slugName: string;
+    disabled: boolean;
+    value: string;
+    checked: boolean;
+    links: Array<link>;
+  }>;
+  links: Array<link>;
+};
+
+export type integration = {
+  externalCategories?: {
+    id: string;
+    link: link;
+    breadCrumb: string;
+  };
+  name?: string;
+  source: string;
+};
+export type marketable = {
+  isMarketable: boolean;
+  hasDescription: boolean;
+  hasPriceSpecification: boolean;
+  isGift: boolean;
+  discontinued: boolean;
+  hasImage: boolean;
+  inconsistent: boolean;
+  hidden: boolean;
+  atLeastOneInventoryHasStockForAllItems: boolean;
+  hasScaleValue: boolean;
 };
