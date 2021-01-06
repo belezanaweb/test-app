@@ -7,8 +7,7 @@
  */
 import 'react-native-gesture-handler'
 import React from 'react'
-import { SafeAreaView } from 'react-native'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components/native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import store from '../src/stores/rootStore'
@@ -23,7 +22,7 @@ const Stack = createStackNavigator()
 const App = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <FlexSafeAreaView>
         <ModalServiceProvider>
           <NavigationContainer>
             <Provider store={store}>
@@ -34,9 +33,13 @@ const App = () => {
             </Provider>
           </NavigationContainer>
         </ModalServiceProvider>
-      </SafeAreaView>
+      </FlexSafeAreaView>
     </ThemeProvider>
   )
 }
+
+const FlexSafeAreaView = styled.SafeAreaView`
+  flex: 1;
+`
 
 export default App
