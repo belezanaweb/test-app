@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react'
+import PropTypes from 'prop-types'
 import Icon from 'react-native-vector-icons/dist/Ionicons'
 import { ThemeContext } from 'styled-components/native'
 import {
@@ -44,4 +45,8 @@ const Accordion = ({ title, body }) => {
   )
 }
 
+Accordion.propTypes = {
+  title: PropTypes.string,
+  body: PropTypes.string.isRequired
+}
 export default Accordion

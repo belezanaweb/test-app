@@ -1,5 +1,7 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Modal from 'react-native-modal'
+
 import {
   ModalInnerContainer,
   ButtonContainer,
@@ -33,5 +35,16 @@ const CustomModal = props => (
     </ModalInnerContainer>
   </Modal>
 )
+
+CustomModal.propTypes = {
+  title: PropTypes.string,
+  text: PropTypes.string,
+  children: PropTypes.element,
+  innerComponent: PropTypes.element,
+  cancelButtonText: PropTypes.string,
+  cancelButtonOnPress: PropTypes.func,
+  acceptButtonText: PropTypes.string,
+  acceptButtonOnPress: PropTypes.func
+}
 
 export default CustomModal

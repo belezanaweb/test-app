@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react'
+import PropTypes from 'prop-types'
 import { ScrollView } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchProductDetails } from '../../stores/products/productsAction'
@@ -117,6 +118,10 @@ const ProductDetails = ({ productSku }) => {
     )
   }
   return <Loading />
+}
+
+ProductDetails.propTypes = {
+  productSku: PropTypes.string.isRequired
 }
 
 export default ProductDetails

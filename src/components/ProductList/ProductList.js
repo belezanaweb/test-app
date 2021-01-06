@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from 'react-redux'
 import ProductListItem from '../ProductListItem'
 import { fetchProducts } from '../../stores/products/productsAction'
@@ -31,10 +32,24 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
     )
   }
 
+  renderItem.propTypes = {
+    item: PropTypes.shape({
+      imageObjects: PropTypes.array.isRequired,
+      priceSpecification: PropTypes.shape({
+        price: PropTypes.number.isRequired,
+        maxPrice: PropTypes.number
+      }),
+      sku: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired
+    }),
+    index: PropTypes.number.isRequired
+  }
+
   return (
     <>
       <ProductsFlatList
         data={productStore.items}
+        /* eslint-disable-next-line react/prop-types */
         keyExtractor={item => item.sku}
         ListFooterComponent={() => {
           if (!productStore.finished && !productStore.isFetchingList) {
@@ -51,6 +66,11 @@ const ProductList = ({ itemsPerRequest, onButtonPress }) => {
       {productStore.isFetchingList && <Loading />}
     </>
   )
+}
+
+ProductList.propTypes = {
+  itemsPerRequest: PropTypes.number.isRequired,
+  onButtonPress: PropTypes.func.isRequired
 }
 
 export default ProductList

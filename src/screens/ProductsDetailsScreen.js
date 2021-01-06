@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ProductDetails from '../components/ProductDetails'
 import Header from '../components/Header'
 
@@ -10,6 +11,10 @@ const ProductDetailsScreen = ({ route }) => {
       <ProductDetails productSku={productSku} />
     </>
   )
+}
+
+ProductDetailsScreen.propTypes = {
+  route: PropTypes.object.isRequired
 }
 
 export default ProductDetailsScreen

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ProductList from '../components/ProductList'
 import Header from '../components/Header'
 
@@ -12,6 +13,10 @@ const ProductListScreen = ({ navigation }) => {
       />
     </>
   )
+}
+
+ProductListScreen.propTypes = {
+  navigation: PropTypes.object.isRequired
 }
 
 export default ProductListScreen

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Modal from '../Modal'
 
 const ModalServiceContext = React.createContext(Promise.reject)
@@ -55,6 +56,10 @@ const ModalServiceProvider = ({ children }) => {
       )}
     </>
   )
+}
+
+ModalServiceProvider.propTypes = {
+  children: PropTypes.element
 }
 
 export { ModalServiceContext, ModalServiceProvider }
