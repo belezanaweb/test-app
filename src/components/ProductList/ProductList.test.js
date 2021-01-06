@@ -3,8 +3,10 @@ import { Provider } from 'react-redux'
 import { render, fireEvent, waitFor, act } from '@testing-library/react-native'
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
+import { ThemeProvider } from 'styled-components/native'
 import ProductList from './ProductList'
 import rootReducer from '../../stores/rootReducer'
+import { defaultTheme } from '../../themes'
 
 const mockStore = configureStore([thunk])
 const createState = initialState => actions => actions.reduce(rootReducer, initialState)
@@ -27,9 +29,11 @@ test('button dispatch redux action to loads more items', async () => {
   const itemsPerRequest = 3
 
   const { getByText } = render(
-    <Provider store={store}>
-      <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
-    </Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
+      </Provider>
+    </ThemeProvider>
   )
 
   // when ProductList mounts, a 'FETCH_PRODUCTS' action type is always dispatched
@@ -48,9 +52,11 @@ test('flatlist initializes with no items', async () => {
   const itemsPerRequest = 3
 
   const { queryAllByText } = render(
-    <Provider store={store}>
-      <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
-    </Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
+      </Provider>
+    </ThemeProvider>
   )
 
   const listItemButton = queryAllByText('VER DETALHES')
@@ -93,9 +99,11 @@ test('flatlist items changes according to product store items', async () => {
   const itemsPerRequest = 0
 
   const { queryAllByText, getByText } = render(
-    <Provider store={store}>
-      <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
-    </Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
+      </Provider>
+    </ThemeProvider>
   )
 
   expect(queryAllByText('Item 1')).toBeTruthy()
@@ -114,9 +122,11 @@ test('loading component shows up when data is fetching', async () => {
   const itemsPerRequest = 0
 
   const { queryByTestId } = render(
-    <Provider store={store}>
-      <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
-    </Provider>
+    <ThemeProvider theme={defaultTheme}>
+      <Provider store={store}>
+        <ProductList itemsPerRequest={itemsPerRequest} onButtonPress={mockFn} />
+      </Provider>
+    </ThemeProvider>
   )
 
   expect(queryByTestId('LoadingComponent')).toBeNull()
