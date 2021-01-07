@@ -1,7 +1,7 @@
 export type product = {
   sku: string;
   name: string;
-  mediaObject: Array<{ contentUrl: string }>;
+  mediaObject: { contentUrl: string };
   releaseDate: string;
   novelty: boolean;
   gift: boolean;
@@ -172,7 +172,7 @@ export type category = {
   id: string;
   slugName: string;
   name: string;
-  attribute: attribute;
+  attributes: attribute;
   subcategory: any;
   links: Array<link>;
 };
