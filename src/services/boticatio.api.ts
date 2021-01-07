@@ -10,7 +10,10 @@ const products = (page: number, size: number) =>
           size,
         },
       })
-      .then((response) => resolve(response.data))
+      .then((response) => {
+        resolve(response.data);
+        console.log('chamando pagina ', page);
+      })
       .catch((error) => reject(error));
   });
 

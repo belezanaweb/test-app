@@ -2,17 +2,12 @@ import React, { useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { products, productsDetail } from '../../services/boticatio.api';
-
+import useBoticario from '../../hooks/useBoticario';
 const Home = () => {
+  const { productList, setPage, productDetail, setSku } = useBoticario();
   const navigation = useNavigation();
-  useEffect(() => {
-    products(1, 2).then((response) => {
-      const teste = response;
-    });
-    productsDetail('54417').then((response) => {
-      const teste = response;
-    });
-  }, []);
+  useEffect(() => {}, [productDetail]);
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Produtos</Text>
