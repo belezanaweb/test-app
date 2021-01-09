@@ -5,11 +5,13 @@ import Text from '../../atoms/Text';
 type props = {
   title: string;
   description: string;
+  numberOfLines?: number;
 };
 
 const ProductDescritption: React.FC<props> = ({
   title,
   description,
+  numberOfLines = 5,
 }): JSX.Element => {
   return (
     <View
@@ -27,8 +29,13 @@ const ProductDescritption: React.FC<props> = ({
         {title}
       </Text>
 
-      <Text color="#6F6F6F" fontWeight="400" size={15}>
-        cod: {description}
+      <Text
+        color="#6F6F6F"
+        fontWeight="400"
+        size={15}
+        numberOfLines={numberOfLines}
+      >
+        {description}
       </Text>
     </View>
   );

@@ -9,13 +9,13 @@ import Button from '../../atoms/Button';
 
 type props = {
   product: product;
+  onPress: () => void;
 };
-const ItemCard: React.FC<props> = ({ product }): JSX.Element => {
+const ItemCard: React.FC<props> = ({ product, onPress }): JSX.Element => {
   const { name, priceSpecification, imageObjects } = product;
   const { originalPrice, price, sku } = priceSpecification;
-  debugger;
   const [imageObject] = imageObjects.filter((item) => item.featured);
-  debugger;
+
   return (
     <Card flex={3} style={{ marginBottom: 15, maxHeight: 250 }}>
       <View
@@ -56,7 +56,7 @@ const ItemCard: React.FC<props> = ({ product }): JSX.Element => {
             current={price}
             old={price === originalPrice ? undefined : originalPrice}
           />
-          <Button title="VER DETALHES" onPress={() => {}} />
+          <Button title="VER DETALHES" onPress={onPress} />
         </View>
       </View>
     </Card>

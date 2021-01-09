@@ -6,13 +6,25 @@ type props = {
   type?: 'big' | 'medium';
 };
 
+const mode = ['contain', 'cover'] as const;
 const Image: React.FC<props> = ({ uri, type = 'big' }): JSX.Element => {
   const sizeBtyType = {
-    big: { width: '40%', height: '50%' },
-    medium: { width: '100%', height: '80%' },
+    big: {
+      style: { width: '100%', height: '100%' },
+      resizeMode: mode[0],
+    },
+    medium: {
+      style: { width: '100%', height: '80%' },
+      resizeMode: mode[1],
+    },
   };
+
   return (
-    <Img source={{ uri: uri }} resizeMode="cover" style={sizeBtyType[type]} />
+    <Img
+      source={{ uri: uri }}
+      resizeMode={sizeBtyType[type].resizeMode}
+      style={sizeBtyType[type].style}
+    />
   );
 };
 
