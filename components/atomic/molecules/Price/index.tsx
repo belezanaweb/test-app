@@ -21,7 +21,7 @@ const Price: React.FC<props> = ({
   const [paymentInfo, setPaymentInfo] = useState<string>();
   const sizeByType = {
     big: {
-      old: 14,
+      old: 20,
       current: 32,
       quote: 17,
     },
@@ -62,7 +62,7 @@ const Price: React.FC<props> = ({
   return (
     <View style={{ alignItems: 'flex-start' }}>
       {old && (
-        <Text color="#999999" size={sizeByType[type].old} lineThrough>
+        <Text color="#CCCCCC" size={sizeByType[type].old} lineThrough>
           {oldPrice}
         </Text>
       )}

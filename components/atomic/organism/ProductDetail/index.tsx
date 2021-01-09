@@ -43,7 +43,12 @@ const ProductDetail: React.FC<props> = ({ product, onPress }): JSX.Element => {
             flex: 2,
           }}
         >
-          <Price current={price} split={numberOfPayments} type="big" />
+          <Price
+            old={originalPrice === price ? undefined : originalPrice}
+            current={price}
+            split={numberOfPayments}
+            type="big"
+          />
           <ProductCode name={brand.line.name} sku={sku} />
         </View>
         <View style={{ flex: 5 }}>
