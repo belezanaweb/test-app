@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image as Img } from 'react-native';
+import { Image as Img } from 'react-native';
 
 type props = {
   uri: string;
