@@ -19,8 +19,6 @@ describe('Tests of useBoticario', () => {
 
     await waitForNextUpdate();
     const productsList = result.current.productList;
-    const productDetail = result.current.productDetail;
-
     expect(productsList.length).toEqual(8);
   });
 });
