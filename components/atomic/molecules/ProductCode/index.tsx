@@ -7,7 +7,7 @@ type props = {
   sku: string;
 };
 
-const Price: React.FC<props> = ({ name, sku }): JSX.Element => {
+const ProductCode: React.FC<props> = ({ name, sku }): JSX.Element => {
   return (
     <View style={{ alignItems: 'flex-end' }}>
       <Text size={20} color="black" fontWeight="500">
@@ -21,4 +21,4 @@ const Price: React.FC<props> = ({ name, sku }): JSX.Element => {
   );
 };
 
-export default Price;
+export default ProductCode;
