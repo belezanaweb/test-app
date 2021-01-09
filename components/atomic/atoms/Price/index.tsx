@@ -61,15 +61,19 @@ const Price: React.FC<props> = ({
 
   return (
     <View style={{ alignItems: 'center' }}>
-      <Text color="#999999" size={sizeByType[type].old} lineThrough>
-        {oldPrice}
-      </Text>
+      {old && (
+        <Text color="#999999" size={sizeByType[type].old} lineThrough>
+          {oldPrice}
+        </Text>
+      )}
       <Text size={sizeByType[type].current} color="#E66100" fontWeight="700">
         {currentPrice}
       </Text>
-      <Text color="#6F6F6F" fontWeight="400" size={sizeByType[type].quote}>
-        {paymentInfo}
-      </Text>
+      {split && (
+        <Text color="#6F6F6F" fontWeight="400" size={sizeByType[type].quote}>
+          {paymentInfo}
+        </Text>
+      )}
     </View>
   );
 };
