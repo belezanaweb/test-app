@@ -26,8 +26,8 @@ const Price: React.FC<props> = ({
       quote: 17,
     },
     medium: {
-      old: 11,
-      current: 14,
+      old: 15,
+      current: 25,
       quote: 12,
     },
   };
@@ -60,7 +60,7 @@ const Price: React.FC<props> = ({
   }, [split, quota]);
 
   return (
-    <View style={{ alignItems: 'center' }}>
+    <View style={{ alignItems: 'flex-start' }}>
       {old && (
         <Text color="#999999" size={sizeByType[type].old} lineThrough>
           {oldPrice}

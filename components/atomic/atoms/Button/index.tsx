@@ -6,12 +6,14 @@ type props = {
   title: string;
   type?: 'primary' | 'secundary';
   onPress: () => void;
+  style?: any;
 };
 
 const Button: React.FC<props> = ({
   title,
   onPress,
   type = 'primary',
+  style,
 }): JSX.Element => {
   const styleByType: any = {
     primary: {
@@ -38,7 +40,10 @@ const Button: React.FC<props> = ({
     },
   };
   return (
-    <TouchableOpacity style={styleByType[type].style} onPress={onPress}>
+    <TouchableOpacity
+      style={[styleByType[type].style, style]}
+      onPress={onPress}
+    >
       <Text color={styleByType[type].colorText} size={20} fontWeight="700">
         {title}
       </Text>

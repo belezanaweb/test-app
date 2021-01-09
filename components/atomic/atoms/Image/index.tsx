@@ -9,7 +9,7 @@ type props = {
 const Image: React.FC<props> = ({ uri, type = 'big' }): JSX.Element => {
   const sizeBtyType = {
     big: { width: '40%', height: '50%' },
-    medium: { width: '25%', height: '35%' },
+    medium: { width: '100%', height: '80%' },
   };
   return (
     <Img source={{ uri: uri }} resizeMode="cover" style={sizeBtyType[type]} />
