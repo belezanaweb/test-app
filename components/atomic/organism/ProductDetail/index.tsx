@@ -18,7 +18,7 @@ const dialogInfos = {
   input: {
     title: 'Esta é uma ótima escolha!',
     description:
-      'Mas infelizmente não está disponivel agora, deixe seu nome e e-mail que vamos te avisar quando estiver dispoível.',
+      'Mas infelizmente não está disponivel agora, deixe seu nome e e-mail que vamos te avisar quando estiver disponível.',
   },
 };
 
