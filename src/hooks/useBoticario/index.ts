@@ -7,14 +7,14 @@ const useBoticario = () => {
   const [productDetail, setProductDetail] = useState<product>();
   const [page, setPage] = useState<number>(1);
   const [sku, setSku] = useState<string>();
-  const [size] = useState<number>(3);
+  const [size] = useState<number>(13);
 
   const productsCache = useMemo(
     () =>
       new Promise<product[]>(async (resolve, reject) => {
         try {
           const _productList = await products(page, size);
-          resolve(_productList);
+          resolve(_productList.length ? _productList : []);
         } catch (error) {
           reject(error);
         }
@@ -36,12 +36,16 @@ const useBoticario = () => {
 
   useEffect(() => {
     productsCache.then((newList) => {
-      setProductList(newList);
+      if (page * size > productList.length) {
+        setProductList((old) => old.concat(newList));
+      }
     });
   }, [page]);
 
   useEffect(() => {
-    productDetailCache.then((newDetail) => setProductDetail(newDetail));
+    productDetailCache.then((newDetail) => {
+      setProductDetail(newDetail);
+    });
   }, [sku]);
 
   return { productList, productDetail, setPage, setSku };

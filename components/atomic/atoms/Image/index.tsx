@@ -6,7 +6,7 @@ type props = {
   type?: 'big' | 'medium';
 };
 
-const mode = ['contain', 'cover'] as const;
+const mode = ['contain', 'contain'] as const;
 const Image: React.FC<props> = ({ uri, type = 'big' }): JSX.Element => {
   const sizeBtyType = {
     big: {
