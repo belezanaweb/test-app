@@ -1,45 +1,42 @@
-# Mobile Test
+# Estrutura de diretórios
 
-Esta é uma avaliação básica de código.
+Este projeto foi configurado para a utlização de TypeScript e para obter a melhor organização possível do projeto `test_app` está contém os seguintes diretórios:
+[`components`](./components):
 
-O objetivo é conhecer um pouco a forma como você resolveria problemas com que lidamos no dia-a-dia e a sua habilidade/experiência em criar e organizar um projeto de app multi-plataforma.
+> Onde estão os códigos referentes a componentes visuais. Vale destacar que os componentes estão organizados seguindo a metodologia Atomic Design
 
-Recomendamos que você não gaste mais do que 4 - 6 horas.
+[`src/hooks`](./src/hooks).
 
-Fique à vontade para nos enviar qualquer sugestão ou dúvida que surja durante o projeto.
+> Neste diretório está presente o Hook customizado useBoticario. Seu uso é um exemplo prático de separação de responsabilidades. Neste projeto o useBoticario ficou responsável por controlar a requisição de novos produtos, paginação e cache.  
+>  Em projetos maiores um Hook customizado pode ter mais responsabilidade, tais como processamento de dados para telas e implementação de regras de negócios em nível mobile.
 
-Faça um fork deste repositório e desenvolva seu projeto dentro da pasta [`src`](./src). O projeto foi criado com `npx react-native init test_app`.
+> Vale ressaltar que neste diretório está presente o teste do Hook customizado. O teste foi simplificado e tem o propósito de ilustrar a viabilidade de reduzir a responsabilidade da tela com processamento de dados e delegar isso a um Hook customizado.
 
-# Tarefas
+[`src/routes`](./src/routes).
 
-O teste consiste em duas telas: uma lista de produtos e a página do produto.
+> Neste diretório estão as configurações referente à navegação do aplicativo. Neste projeto foi utilizado a biblioteca `react-native-navigation` por ser uma biblioteca consolidada, com boa documentação e bom suporte a React Hooks.
 
-O nosso time de produto preparou esse [layout](https://www.figma.com/file/Dbpn1mqdq2d350NEXojF2v/test-mobile?node-id=392%3A0) para o projeto. A implementação deve ser Pixel perfect.
+[`src/screens`](./src/screens).
 
-1. Consumindo o endpoint `https://pacific-wave-51314.herokuapp.com/products?page=<page_num>&size=<page_size>`, faça uma tela mostrando a lista de produtos retornada
+> Neste diretório estão as duas telas principais do projeto, a Home e a Detail.
 
-- A lista deve suportar paginação
-- As páginas devem ser carregadas apenas quando forem ser exibidas para o usuário
-- A imagem exibida deve vir do `imageObjects` com `featured: true`
-- Extra: para melhorar a performance, é possível descarregar da memória os itens que já passaram e não são mais exibidos na tela?
+[`src/services`](./src/services).
 
-2. Ao clicar em um produto, o app deve consumir o endpoint `https://pacific-wave-51314.herokuapp.com/products/<product_sku>` para exibir a tela de produto
+> Este é um dos diretórios fundamentais deste projeto. Nele estão os arquivos: (i)`boticario.service.js` - responsável por prover uma instância axios conectada ao domínio `pacific-wave-51314.herokuapp.com`, neste projeto o uso deste arquivo foi minimo, porém ele pode ser utilizado para fazer interceptações nas requisições e injetar informações a header, tais como Bearer Token, atributos customizados entre outros; (ii)`boticario.api.ts` - responsável por fazer o mapeamento de rotas utilizadas pelo projeto.
 
-- Caso o payload do produto tenha payload `inventory.quantity > 0`, deve ser exibido o botão de adicionar ao carrinho; caso contrário, deve ser exibido o botão de "AVISE-ME"
-- Ao clicar em "COMPRE", deve ser exibida uma modal de confirmação de adição à sacola
-- Clicar em "AVISE-ME" abre uma modal para o usuário digitar seu nome e e-mail
-- Os botões das modais apenas fecham elas
-- Ao voltar para a lista de produtos, ela deve estar disponível para o usuário sem fazer uma nova requisição à API
+[`src/util`](./src/util).
 
-# O que vamos avaliar
+> Neste diretório encontram-se as tipagens utilizadas no projeto.
 
-- Organização do código;
-- Mensagens (em inglês) e mudanças nos commits;
-- Composição/reutilização de classes (DRY);
-- Testes unitários;
-- O motivo de ter escolhido a arquitetura e cada tech da stack;
-- Como rodar sua aplicação 😉
+# Dependências
 
-# Como enviar
+`@react-navigation `: Bibliteca de Navegação
+`axios`: Biblioteca de requisições http
+`git-cz`: Biblioteca de apoio a commits
+`react-native-dialog `: Biblioteca de modal Alert e Input
 
-Ao finalizar o teste, submeta um pull request para o repositório que nosso time será notificado. Se tiver alguma observação, escreva no pull request.
+# Como executar o projeto
+
+Ao baixar o projeto execute: `yarn install`, `cd ios/`, `pod install`, `cd ..`
+
+> [ios]: `yarn ios` > [android]: `yarn android`
