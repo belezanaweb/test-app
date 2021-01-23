@@ -1,0 +1,20 @@
+{
+  "common": {
+    "currency": "R$",
+    "locale": "pt-BR"
+  },
+  "productList": {
+    "screenName": "LISTA DE PRODUTOS",
+    "labelProductCod": "cod",
+    "btnLoadMore": "CARREGAR MAIS PRODURTOS",
+    "btnSeeMoreProductDetails": "VER DETALHES"
+  },
+  "productDetail": {
+    "screenName": "DETALHES DO PRODUTO",
+    "labelProductDescription": "COMPRE",
+    "labelProductCod": "cod",
+    "labelReadMore": "Continuar Lendo",
+    "btnBuy": "COMPRE",
+    "btnNotify": "AVISE-ME"
+  }
+}
