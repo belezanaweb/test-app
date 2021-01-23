@@ -12,6 +12,7 @@ module.exports = {
           '@router': './src/router',
           '@services': './src/services',
           '@shared': './src/shared',
+          '@utils': './src/utils',
         },
       },
     ],

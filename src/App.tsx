@@ -1,16 +1,21 @@
-import React, { Fragment } from 'react';
-import { SafeAreaView, StatusBar, Text, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Router from 'router';
+import GenericSafeAreaView from 'shared/components/GenericSafeAreaView';
+import GenericStatusBar from 'shared/components/GenericStatusBar';
+import { theme } from 'shared/theme';
+import { ThemeProvider } from 'styled-components';
 
 const App: React.FC = () => {
   return (
-    <Fragment>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <View>
-          <Text>Primeiro commit!</Text>
-        </View>
-      </SafeAreaView>
-    </Fragment>
+    <>
+      <ThemeProvider theme={theme}>
+        <GenericStatusBar />
+        <GenericSafeAreaView>
+          <Router />
+        </GenericSafeAreaView>
+      </ThemeProvider>
+    </>
   );
 };
 
