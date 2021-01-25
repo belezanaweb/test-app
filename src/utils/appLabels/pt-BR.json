@@ -3,7 +3,7 @@
     "currency": "R$",
     "locale": "pt-BR"
   },
-  "productList": {
+  "homeScreen": {
     "screenName": "LISTA DE PRODUTOS",
     "labelProductCod": "cod",
     "btnLoadMore": "CARREGAR MAIS PRODURTOS",

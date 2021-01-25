@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyledSafeAreaView } from './styles';
 
-const GenericSafeAreaView: React.FC = ({ children }) => {
+const CommonSafeAreaView: React.FC = ({ children }) => {
   return <StyledSafeAreaView>{children}</StyledSafeAreaView>;
 };
 
-export default GenericSafeAreaView;
+export default CommonSafeAreaView;
