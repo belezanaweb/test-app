@@ -1,8 +1,5 @@
 module.exports = {
   extends: [
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
     '@react-native-community',
@@ -10,11 +7,16 @@ module.exports = {
   ],
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   rules: {
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     'no-console': 'off',
     'react/prop-types': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
   },
 };
