@@ -3,6 +3,10 @@
     "currency": "BRL",
     "locale": "pt-BR"
   },
+  "error": {
+    "generic": "Houve um erro inesperado. Por favor, tente novamente mais tarde.",
+    "endProductList": "Nossos produtos acabaram."
+  },
   "homeScreen": {
     "screenName": "LISTA DE PRODUTOS",
     "labelProductCod": "cod:",

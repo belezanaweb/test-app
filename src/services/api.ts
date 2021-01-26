@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { showToast } from 'utils';
+import appLabels from 'utils/appLabels';
 import { GetProductsProps } from 'utils/types/Api';
 import Product from 'utils/types/Product';
 
@@ -28,9 +29,7 @@ export async function getProductList({
     });
     return res.data;
   } catch (error) {
-    showToast(
-      'Houve um erro inesperado. Por favor, tente novamente mais tarde.',
-    );
+    showToast(appLabels.error.generic);
     throw error;
   }
 }

@@ -4,6 +4,7 @@ import { getProductList } from 'services/api';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
 import Page from 'shared/styles/Page';
 import { showToast } from 'utils';
+import appLabels from 'utils/appLabels';
 import Product from 'utils/types/Product';
 import BtnLoadMore from './components/BtnLoadMore';
 import ProductCard from './components/ProductCard';
@@ -22,7 +23,7 @@ const HomeScreen: React.FC = () => {
           prevProductList ? [...prevProductList, ...response] : response,
         );
       } else {
-        showToast('Nossos produtos acabaram.');
+        showToast(appLabels.error.endProductList);
       }
       setIsFetchingProducts(false);
       setIsFetchingFirstTime(false);
