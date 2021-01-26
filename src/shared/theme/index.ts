@@ -11,13 +11,26 @@ export const theme: DefaultTheme = {
     secondary: '#FFFFFF',
     background: '#E5E5E5',
     statusBar: '#ffffff',
+    smooth: '#C4C4C4',
+    dashed: '#999999',
+    contrast: '#6F6F6F',
   },
   dimensions: {
+    common: {
+      margin: {
+        extraSmall: 3,
+        small: 5,
+        normal: 10,
+        large: 16,
+        extraLarge: 18,
+      },
+    },
     text: {
       size: {
         small: 11,
         normal: 12,
         large: 14,
+        extraLarge: 17,
       },
       weight: {
         normal: 400,
@@ -37,6 +50,16 @@ export const theme: DefaultTheme = {
     },
     button: {
       height: 36,
+    },
+    image: {
+      small: {
+        height: 108,
+        width: 108,
+      },
+      large: {
+        height: 163,
+        width: 163,
+      },
     },
   },
 };
