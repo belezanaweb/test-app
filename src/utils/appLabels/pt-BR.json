@@ -1,11 +1,11 @@
 {
   "common": {
-    "currency": "R$",
+    "currency": "BRL",
     "locale": "pt-BR"
   },
   "homeScreen": {
     "screenName": "LISTA DE PRODUTOS",
-    "labelProductCod": "cod",
+    "labelProductCod": "cod:",
     "btnLoadMore": "CARREGAR MAIS PRODURTOS",
     "btnSeeMoreProductDetails": "VER DETALHES"
   },
