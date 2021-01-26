@@ -1,7 +1,24 @@
 import styled from 'styled-components/native';
-import { COMMON_BUTTON_TYPES, ICommonButton } from './index';
+import { TouchableOpacityProps } from 'react-native';
 import { moderateScale } from 'react-native-size-matters';
 import { getFontWeight } from 'utils';
+
+export enum COMMON_BUTTON_TYPES {
+  OUTLINE = 'OUTLINE',
+  NORMAL = 'NORMAL',
+}
+
+export interface ICommonButton extends TouchableOpacityProps {
+  /**
+    `string` that will be rendered in the button
+  */
+  text: string;
+  /**
+    @param OUTLINE will show button with white background and text with theme primary color.
+    @param NORMAL will show button with trheme primary color in background and white text.
+  */
+  type: COMMON_BUTTON_TYPES;
+}
 
 type TextProps = {
   type: COMMON_BUTTON_TYPES;
@@ -9,6 +26,7 @@ type TextProps = {
 
 export const StyledButton = styled.TouchableOpacity<ICommonButton>`
   height: ${({ theme }) => moderateScale(theme.dimensions.button.height)}px;
+  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
   width: 100%;
   ${({ theme, type }) => {
     switch (type) {
@@ -29,7 +47,7 @@ export const StyledButton = styled.TouchableOpacity<ICommonButton>`
 
 export const StyledButtonText = styled.Text<TextProps>`
   align-self: center;
-  font-family: ${() => getFontWeight({ weight: 'bold' })};
+  font-family: ${getFontWeight({ weight: 'bold' })};
   font-size: ${({ theme }) =>
     moderateScale(theme.dimensions.text.size.large)}px;
   ${({ theme, type }) => {
