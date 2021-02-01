@@ -5,11 +5,12 @@ import FullScreenLoading from 'shared/components/FullScreenLoading';
 import Page from 'shared/styles/Page';
 import { showToast } from 'utils';
 import appLabels from 'utils/appLabels';
-import Product from 'utils/types/Product';
+import Product from 'shared/types/Product';
 import BtnLoadMore from './components/BtnLoadMore';
 import ProductCard from './components/ProductCard';
+import { HomeProps } from 'shared/types/Router';
 
-const HomeScreen: React.FC = () => {
+const Home: React.FC<HomeProps> = ({ navigation }) => {
   const [productList, setProductList] = useState<Product[]>();
   const [isFetchingFirstTime, setIsFetchingFirstTime] = useState(true);
   const [isFetchingProducts, setIsFetchingProducts] = useState(false);
@@ -55,10 +56,12 @@ const HomeScreen: React.FC = () => {
           />
         )}
         windowSize={4}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => (
+          <ProductCard product={item} navigation={navigation} />
+        )}
       />
     </Page>
   );
 };
 
-export default HomeScreen;
+export default Home;

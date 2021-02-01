@@ -1,13 +1,13 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import CommonButton from 'shared/components/CommonButton';
 import { COMMON_BUTTON_TYPES } from 'shared/components/CommonButton/styles';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
+import Product from 'shared/types/Product';
+import { HomeNavigationProp } from 'shared/types/Router';
 import { getFeaturedImage, getFormatedCurrency } from 'utils';
 import appLabels from 'utils/appLabels';
-import Product from 'utils/types/Product';
 import {
   DescriptionPriceWrapper,
   LeftContainer,
@@ -19,19 +19,17 @@ import {
 
 type ProductCardProps = {
   product: Product;
+  navigation: HomeNavigationProp;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const navigation = useNavigation();
+const ProductCard: React.FC<ProductCardProps> = ({ product, navigation }) => {
   const productImage = getFeaturedImage(product.imageObjects);
   const maxPrice = getFormatedCurrency(product.priceSpecification.maxPrice);
   const price = getFormatedCurrency(product.priceSpecification.price);
   const hasPriceDifference = price < maxPrice;
 
   function handleBtnMoreProductDetails() {
-    navigation.navigate('ProductDetail', {
-      sku: product.sku,
-    });
+    navigation.push('ProductDetail', { sku: product.sku });
   }
 
   const shadowStyle = StyleSheet.create({

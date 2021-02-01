@@ -3,7 +3,7 @@ import { moderateScale } from 'react-native-size-matters';
 
 export const ProductCardContainer = styled.View`
   background-color: ${({ theme }) => theme.palette.common.white};
-  border-radius: ${({ theme }) => theme.borderRadius}px;
+  border-radius: ${({ theme }) => theme.dimensions.common.borderRadius}px;
   flex-direction: row;
   margin: ${({ theme }) =>
     moderateScale(theme.dimensions.common.margin.normal)}px;
