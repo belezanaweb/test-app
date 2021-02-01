@@ -1,7 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
-export const theme: DefaultTheme = {
-  borderRadius: '4',
+const theme: DefaultTheme = {
   palette: {
     common: {
       black: '#212121',
@@ -24,6 +23,7 @@ export const theme: DefaultTheme = {
         large: 16,
         extraLarge: 18,
       },
+      borderRadius: 4,
     },
     text: {
       size: {
@@ -63,3 +63,5 @@ export const theme: DefaultTheme = {
     },
   },
 };
+
+export default theme;

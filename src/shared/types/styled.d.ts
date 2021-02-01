@@ -3,7 +3,6 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    borderRadius: string;
     palette: {
       common: {
         black: string;
@@ -26,6 +25,7 @@ declare module 'styled-components' {
           large: number;
           extraLarge: number;
         };
+        borderRadius: number;
       };
       text: {
         size: {
