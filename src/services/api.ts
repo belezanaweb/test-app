@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { showToast } from 'utils';
 import appLabels from 'utils/appLabels';
-import { GetProductsProps } from 'utils/types/Api';
-import Product from 'utils/types/Product';
+import { GetProductsProps } from 'shared/types/Api';
+import Product from 'shared/types/Product';
 
 const BASE_URL = 'https://pacific-wave-51314.herokuapp.com';
 

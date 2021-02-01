@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Animated, { Easing } from 'react-native-reanimated';
-import { theme } from 'shared/theme';
+import theme from 'shared/styles/theme';
 import { LoadingContainer } from './styles';
 
 const AnimatedLoadingContainer = Animated.createAnimatedComponent(

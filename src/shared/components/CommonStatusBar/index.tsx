@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { theme } from 'shared/theme';
+import theme from 'shared/styles/theme';
 
 const CommonStatusBar: React.FC = () => {
   return (

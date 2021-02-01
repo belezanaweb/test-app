@@ -27,7 +27,6 @@ type TextProps = {
 export const StyledButton = styled.TouchableOpacity<ICommonButton>`
   height: ${({ theme }) => moderateScale(theme.dimensions.button.height)}px;
   opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
-  width: 100%;
   ${({ theme, type }) => {
     switch (type) {
       case COMMON_BUTTON_TYPES.NORMAL:
@@ -41,13 +40,14 @@ export const StyledButton = styled.TouchableOpacity<ICommonButton>`
         return `background-color: ${theme.palette.primary};`;
     }
   }};
-  border-radius: ${({ theme }) => theme.borderRadius}px;
+  border-radius: ${({ theme }) => theme.dimensions.common.borderRadius}px;
   justify-content: center;
 `;
 
 export const StyledButtonText = styled.Text<TextProps>`
   align-self: center;
   font-family: ${getFontWeight({ weight: 'bold' })};
+  margin: ${moderateScale(5)}px;
   font-size: ${({ theme }) =>
     moderateScale(theme.dimensions.text.size.large)}px;
   ${({ theme, type }) => {

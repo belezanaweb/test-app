@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Router from 'router';
 import CommonSafeAreaView from 'shared/components/CommonSafeAreaView';
 import CommonStatusBar from 'shared/components/CommonStatusBar';
-import { theme } from 'shared/theme';
+import theme from 'shared/styles/theme';
 import { ThemeProvider } from 'styled-components';
 
 const App: React.FC = () => {

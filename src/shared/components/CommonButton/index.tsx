@@ -1,6 +1,6 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { theme } from 'shared/theme';
+import theme from 'shared/styles/theme';
 import { ICommonButton, StyledButton, StyledButtonText } from './styles';
 
 export const CommonButton: React.FC<ICommonButton> = props => {

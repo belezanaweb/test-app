@@ -1,7 +1,7 @@
 import { Alert, Platform, ToastAndroid } from 'react-native';
-import { theme } from 'shared/theme';
+import theme from 'shared/styles/theme';
 import appLabels from './appLabels';
-import { ImageObject } from './types/Product';
+import { ImageObject } from 'shared/types/Product';
 
 type getFontWeightProps = {
   weight: 'normal' | 'bold';
