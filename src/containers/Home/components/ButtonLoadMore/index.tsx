@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { memo } from 'react';
 import CommonButton from 'shared/components/CommonButton';
 import { COMMON_BUTTON_TYPES } from 'shared/components/CommonButton/styles';
 import appLabels from 'utils/appLabels';
-import { BtnLoadMoreWrapper } from './styles';
+import { ButtonLoadMoreWrapper } from './styles';
 
-type BtnLoadMoreProps = {
+type ButtonLoadMoreProps = {
   onPress: () => void;
   isLoading?: boolean;
 };
 
-const BtnLoadMore: React.FC<BtnLoadMoreProps> = ({ onPress, isLoading }) => {
+const ButtonLoadMore: React.FC<ButtonLoadMoreProps> = ({
+  onPress,
+  isLoading,
+}) => {
   return (
-    <BtnLoadMoreWrapper>
+    <ButtonLoadMoreWrapper>
       <CommonButton
         disabled={isLoading}
         text={appLabels.homeScreen.btnLoadMore}
         type={COMMON_BUTTON_TYPES.OUTLINE}
         onPress={onPress}
       />
-    </BtnLoadMoreWrapper>
+    </ButtonLoadMoreWrapper>
   );
 };
 
-export default BtnLoadMore;
+export default memo(ButtonLoadMore);

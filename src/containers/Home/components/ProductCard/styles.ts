@@ -16,12 +16,6 @@ export const LeftContainer = styled.View`
   justify-content: space-between;
 `;
 
-export const ProductCardImage = styled.Image`
-  height: ${({ theme }) =>
-    moderateScale(theme.dimensions.image.small.height)}px;
-  width: ${({ theme }) => moderateScale(theme.dimensions.image.small.width)}px;
-`;
-
 export const ProductCardCode = styled.View`
   margin-top: ${({ theme }) =>
     moderateScale(theme.dimensions.common.margin.large)}px;

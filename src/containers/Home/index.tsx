@@ -1,64 +1,78 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList } from 'react-native-gesture-handler';
-import { getProductList } from 'services/api';
+import { FlatList } from 'react-native';
+import { getProducts } from 'services/api';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
 import Page from 'shared/styles/Page';
+import Product from 'shared/types/Product';
+import { HomeProps } from 'shared/types/Router';
 import { showToast } from 'utils';
 import appLabels from 'utils/appLabels';
-import Product from 'shared/types/Product';
-import BtnLoadMore from './components/BtnLoadMore';
+import ButtonLoadMore from './components/ButtonLoadMore';
 import ProductCard from './components/ProductCard';
-import { HomeProps } from 'shared/types/Router';
 
-const Home: React.FC<HomeProps> = ({ navigation }) => {
-  const [productList, setProductList] = useState<Product[]>();
-  const [isFetchingFirstTime, setIsFetchingFirstTime] = useState(true);
-  const [isFetchingProducts, setIsFetchingProducts] = useState(false);
+const Home: React.FC<HomeProps> = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [isFetchingProducts, setIsFetchingProducts] = useState(true);
+  const [isFirstFetchProducts, setIsFirstFetchProducts] = useState(true);
   const [page, setPage] = useState(1);
 
-  const fetchProducts = useCallback(async () => {
+  const fetchProducts = useCallback(async (fetchPage?: number) => {
+    console.log('fetch');
     try {
-      const response = await getProductList({ page: page, size: 10 });
+      const response = await getProducts({ page: fetchPage || 1, size: 10 });
       if (response) {
-        setProductList(prevProductList =>
-          prevProductList ? [...prevProductList, ...response] : response,
-        );
+        // works with spread operator too: [...prevProducts, ...response]
+        // Array.concat() and spread are non mutating array iterators
+        setProducts(prevProducts => prevProducts.concat(response));
       } else {
         showToast(appLabels.error.endProductList);
       }
       setIsFetchingProducts(false);
-      setIsFetchingFirstTime(false);
+      setIsFirstFetchProducts(false);
+      setPage(prevPage => prevPage + 1);
     } catch (error) {
       setIsFetchingProducts(false);
-      setIsFetchingFirstTime(false);
+      setIsFirstFetchProducts(false);
+      setPage(prevPage => prevPage - 1);
     }
-  }, [page]);
+  }, []);
 
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
 
-  function handleBtnShowMorePress() {
-    setPage(prevPage => prevPage + 1);
-    setIsFetchingProducts(true);
-  }
+  const handleLoadMorePress = () => {
+    if (!isFetchingProducts) {
+      setIsFetchingProducts(true);
+      fetchProducts(page);
+    }
+  };
 
+  /**
+   * I have used windowSize=5 only for proposal of this test, to see components dismounting
+   * More information here: https://reactnative.dev/docs/optimizing-flatlist-configuration
+   *
+   * ***NOTE***
+   * windowSize is different then removeClippedSubviews:
+   * - windowSize: determines how much items are mounted simultaneously. Default is 21;
+   * - removeClippedSubviews: exclude views outside of the viewport from the native rendering.
+   *   But does not save significant memory because the views are not deallocated, only detached.
+   */
   return (
     <Page>
-      <FullScreenLoading active={isFetchingFirstTime} />
+      <FullScreenLoading active={isFirstFetchProducts} />
       <FlatList<Product>
-        keyExtractor={item => item.sku + Math.random()}
-        data={productList}
+        keyExtractor={item => item.sku}
+        data={products}
+        windowSize={5}
+        ListEmptyComponent={() => <></>}
         ListFooterComponent={() => (
-          <BtnLoadMore
-            onPress={handleBtnShowMorePress}
+          <ButtonLoadMore
+            onPress={handleLoadMorePress}
             isLoading={isFetchingProducts}
           />
         )}
-        windowSize={4}
-        renderItem={({ item }) => (
-          <ProductCard product={item} navigation={navigation} />
-        )}
+        renderItem={({ item }) => <ProductCard product={item} />}
       />
     </Page>
   );

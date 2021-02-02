@@ -16,7 +16,7 @@ const api = axios.create({
   },
 });
 
-export async function getProductList({
+export async function getProducts({
   page,
   size,
 }: GetProductsProps): Promise<Product[]> {
