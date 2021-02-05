@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import Close from 'assets/svg/close';
+import Close from 'assets/svg/Close';
 import React, { useState } from 'react';
 import { Keyboard, Platform } from 'react-native';
 import CommonButton from '../CommonButton';
