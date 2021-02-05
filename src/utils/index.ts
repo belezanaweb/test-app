@@ -1,7 +1,7 @@
 import { Alert, Platform, ToastAndroid } from 'react-native';
 import theme from 'shared/styles/theme';
 import appLabels from './appLabels';
-import { ImageObject } from 'shared/types/Product';
+import { ImageObject, PriceSpecification } from 'shared/types/Product';
 
 type getFontWeightProps = {
   weight: 'normal' | 'bold';
@@ -18,12 +18,19 @@ export function getFontWeight({ weight }: getFontWeightProps) {
   }
 }
 
-export function getFeaturedImage(imageObjects: ImageObject[]) {
+type getFeaturedImageProps = {
+  imageObjects: ImageObject[];
+  size?: 'thumbnail' | 'small' | 'medium' | 'large' | 'extraLarge' | 'imageUrl';
+};
+
+export function getFeaturedImage({
+  imageObjects,
+  size = 'small',
+}: getFeaturedImageProps) {
   const foundedImage = imageObjects.find(image => image.featured === true);
-  return (
-    foundedImage?.small ||
-    'https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png'
-  );
+  return foundedImage
+    ? foundedImage[size]
+    : 'https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png';
 }
 
 export function getFormatedCurrency(value: number) {
@@ -39,4 +46,11 @@ export function showToast(msg: string) {
   } else {
     Alert.alert(msg);
   }
+}
+
+export function getFormatedPrice(priceSpecification: PriceSpecification) {
+  const maxPrice = getFormatedCurrency(priceSpecification.maxPrice);
+  const price = getFormatedCurrency(priceSpecification.price);
+  const hasPriceDifference = price < maxPrice;
+  return { maxPrice, price, hasPriceDifference };
 }
