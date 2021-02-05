@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { getProducts } from 'services/api';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
-import Page from 'shared/styles/Page';
+import { Page } from 'shared/styles';
 import Product from 'shared/types/Product';
 import { HomeProps } from 'shared/types/Router';
 import { showToast } from 'utils';
@@ -10,14 +10,13 @@ import appLabels from 'utils/appLabels';
 import ButtonLoadMore from './components/ButtonLoadMore';
 import ProductCard from './components/ProductCard';
 
-const Home: React.FC<HomeProps> = () => {
+const Home: React.FC<HomeProps> = ({ navigation }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isFetchingProducts, setIsFetchingProducts] = useState(true);
   const [isFirstFetchProducts, setIsFirstFetchProducts] = useState(true);
   const [page, setPage] = useState(1);
 
   const fetchProducts = useCallback(async (fetchPage?: number) => {
-    console.log('fetch');
     try {
       const response = await getProducts({ page: fetchPage || 1, size: 10 });
       if (response) {
@@ -60,7 +59,6 @@ const Home: React.FC<HomeProps> = () => {
    */
   return (
     <Page>
-      <FullScreenLoading active={isFirstFetchProducts} />
       <FlatList<Product>
         keyExtractor={item => item.sku}
         data={products}
@@ -72,8 +70,11 @@ const Home: React.FC<HomeProps> = () => {
             isLoading={isFetchingProducts}
           />
         )}
-        renderItem={({ item }) => <ProductCard product={item} />}
+        renderItem={({ item }) => (
+          <ProductCard navigation={navigation} product={item} />
+        )}
       />
+      <FullScreenLoading active={isFirstFetchProducts} />
     </Page>
   );
 };

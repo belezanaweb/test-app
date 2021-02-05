@@ -1,16 +1,15 @@
-import React, { memo } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
+import React, { memo, useMemo } from 'react';
 import FastImage from 'react-native-fast-image';
 import { moderateScale } from 'react-native-size-matters';
 import CommonButton from 'shared/components/CommonButton';
 import { COMMON_BUTTON_TYPES } from 'shared/components/CommonButton/styles';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
+import { shadowStyle } from 'shared/styles';
 import theme from 'shared/styles/theme';
 import Product from 'shared/types/Product';
 import { HomeNavigationProp } from 'shared/types/Router';
-import { getFeaturedImage, getFormatedCurrency } from 'utils';
+import { getFeaturedImage, getFormatedPrice } from 'utils';
 import appLabels from 'utils/appLabels';
 import {
   DescriptionPriceWrapper,
@@ -22,47 +21,42 @@ import {
 
 type ProductCardProps = {
   product: Product;
+  navigation: HomeNavigationProp;
 };
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const productImage = getFeaturedImage(product.imageObjects);
-  const maxPrice = getFormatedCurrency(product.priceSpecification.maxPrice);
-  const price = getFormatedCurrency(product.priceSpecification.price);
-  const hasPriceDifference = price < maxPrice;
-  const navigation = useNavigation<HomeNavigationProp>();
+const ProductCard: React.FC<ProductCardProps> = ({ navigation, product }) => {
+  const productImage = useMemo(
+    () =>
+      getFeaturedImage({
+        imageObjects: product.imageObjects,
+        size: 'small',
+      }),
+    [product.imageObjects],
+  );
 
-  console.log('product.sku', product.sku);
+  const productImageDimensions = useMemo(() => {
+    return {
+      height: moderateScale(theme.dimensions.image.small.height),
+      width: moderateScale(theme.dimensions.image.small.width),
+    };
+  }, []);
 
-  function handleBtnMoreProductDetails() {
+  const { maxPrice, price, hasPriceDifference } = useMemo(
+    () => getFormatedPrice(product.priceSpecification),
+    [product.priceSpecification],
+  );
+
+  function handleBtnSeeMoreProductDetailsPress() {
     navigation.push('ProductDetail', { sku: product.sku });
   }
 
-  const styles = StyleSheet.create({
-    shadow: {
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.2,
-      shadowRadius: 4,
-
-      elevation: 4,
-    },
-    image: {
-      height: moderateScale(theme.dimensions.image.small.height),
-      width: moderateScale(theme.dimensions.image.small.width),
-    },
-  });
-
   return (
-    <ProductCardContainer style={styles.shadow}>
+    <ProductCardContainer style={shadowStyle}>
       <LeftContainer>
         <FastImage
-          style={styles.image}
+          style={productImageDimensions}
           source={{
             uri: productImage,
-            headers: { Authorization: '0123456789' },
             priority: 'low',
           }}
         />
@@ -87,7 +81,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <CommonButton
           text={appLabels.homeScreen.btnSeeMoreProductDetails}
           type={COMMON_BUTTON_TYPES.NORMAL}
-          onPress={handleBtnMoreProductDetails}
+          onPress={handleBtnSeeMoreProductDetailsPress}
         />
       </RightContainer>
     </ProductCardContainer>
