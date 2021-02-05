@@ -13,7 +13,7 @@ type FullScreenLoadingProps = {
 };
 
 const FullScreenLoading: React.FC<FullScreenLoadingProps> = ({ active }) => {
-  const [rideLoading, setrideLoading] = useState(false);
+  const [isLoadingEnabled, setIsLoadingEnabled] = useState(false);
   const animatedValue = useRef(new Animated.Value(1));
 
   const fadeOut = Animated.timing(animatedValue.current, {
@@ -23,7 +23,7 @@ const FullScreenLoading: React.FC<FullScreenLoadingProps> = ({ active }) => {
   });
 
   const toggleLoadingVisibility = useCallback(() => {
-    fadeOut.start(() => setrideLoading(true));
+    fadeOut.start(() => setIsLoadingEnabled(true));
   }, [fadeOut]);
 
   useEffect(() => {
@@ -35,8 +35,12 @@ const FullScreenLoading: React.FC<FullScreenLoadingProps> = ({ active }) => {
   };
 
   return (
-    <AnimatedLoadingContainer style={animatedStyle} pointerEvents={'none'}>
-      {!rideLoading && (
+    <AnimatedLoadingContainer
+      needsOffscreenAlphaCompositing={isLoadingEnabled}
+      renderToHardwareTextureAndroid={isLoadingEnabled}
+      style={animatedStyle}
+      pointerEvents={'none'}>
+      {!isLoadingEnabled && (
         <ActivityIndicator size="large" color={theme.palette.primary} />
       )}
     </AnimatedLoadingContainer>
