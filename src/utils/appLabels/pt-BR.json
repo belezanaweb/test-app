@@ -15,9 +15,11 @@
   },
   "productDetail": {
     "screenName": "DETALHES DO PRODUTO",
-    "labelProductDescription": "COMPRE",
+    "labelProductDescription": "Descrição do produto",
+    "labelNumberOfInstallments": "x de ",
     "labelProductCod": "cod",
-    "labelReadMore": "Continuar Lendo",
+    "btnReadMoreClosed": "Continuar Lendo",
+    "btnReadMoreOpen": "Ver menos",
     "btnBuy": "COMPRE",
     "btnNotify": "AVISE-ME"
   }

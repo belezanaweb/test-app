@@ -7,6 +7,8 @@ declare module 'styled-components' {
       common: {
         black: string;
         white: string;
+        royalHeath: string;
+        softGrey: string;
       };
       primary: string;
       secondary: string;
@@ -33,6 +35,8 @@ declare module 'styled-components' {
           normal: number;
           large: number;
           extraLarge: number;
+          bigLarge: number;
+          ultraLarge: number;
         };
         weight: {
           normal: number;
