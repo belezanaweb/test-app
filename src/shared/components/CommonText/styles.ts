@@ -5,7 +5,11 @@ import { getFontWeight } from 'utils';
 
 export enum COMMON_TEXT_TYPES {
   NORMAL = 'NORMAL',
+  TITLE = 'TITLE',
+  SUBTITLE = 'SUBTITLE',
   PRIMARY = 'PRIMARY',
+  PRICE = 'PRICE',
+  ACCORDION = 'ACCORDION',
   SMOOTH = 'SMOOTH',
   DASHED = 'DASHED',
   CONTRAST = 'CONTRAST',
@@ -23,11 +27,34 @@ export const StyledCommonText = styled.Text<ICommonText>`
           font-family: ${getFontWeight({ weight: 'normal' })};
           font-size: ${moderateScale(theme.dimensions.text.size.normal)}px;
           color: ${theme.palette.common.black};`;
+      case COMMON_TEXT_TYPES.TITLE:
+        return `
+          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-size: ${moderateScale(theme.dimensions.text.size.bigLarge)}px;
+          font-weight: 500;
+          color: ${theme.palette.common.black};`;
+      case COMMON_TEXT_TYPES.SUBTITLE:
+        return `
+          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-size: ${moderateScale(theme.dimensions.text.size.extraLarge)}px;
+          font-weight: 500;
+          color: ${theme.palette.common.black};`;
       case COMMON_TEXT_TYPES.PRIMARY:
         return `
           font-family: ${getFontWeight({ weight: 'bold' })};
           font-size: ${moderateScale(theme.dimensions.text.size.large)}px;
           color: ${theme.palette.primary};`;
+      case COMMON_TEXT_TYPES.PRICE:
+        return `
+          font-family: ${getFontWeight({ weight: 'bold' })};
+          font-size: ${moderateScale(theme.dimensions.text.size.ultraLarge)}px;
+          color: ${theme.palette.primary};`;
+      case COMMON_TEXT_TYPES.ACCORDION:
+        return `
+          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-size: ${moderateScale(theme.dimensions.text.size.normal)}px;
+          font-weight: 500;
+          color: ${theme.palette.common.royalHeath};`;
       case COMMON_TEXT_TYPES.SMOOTH:
         return `
           font-family: ${getFontWeight({ weight: 'normal' })};

@@ -5,10 +5,12 @@ const theme: DefaultTheme = {
     common: {
       black: '#212121',
       white: '#ffffff',
+      royalHeath: '#A43287',
+      softGrey: '#E0E0E0',
     },
     primary: '#FF6C00',
     secondary: '#FFFFFF',
-    background: '#E5E5E5',
+    background: '#F8F8F8',
     statusBar: '#ffffff',
     smooth: '#C4C4C4',
     dashed: '#999999',
@@ -31,6 +33,8 @@ const theme: DefaultTheme = {
         normal: 12,
         large: 14,
         extraLarge: 17,
+        bigLarge: 20,
+        ultraLarge: 24,
       },
       weight: {
         normal: 400,
