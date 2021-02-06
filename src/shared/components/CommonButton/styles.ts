@@ -26,7 +26,7 @@ type TextProps = {
 
 export const StyledButton = styled.TouchableOpacity<ICommonButton>`
   height: ${({ theme }) => moderateScale(theme.dimensions.button.height)}px;
-  opacity: ${({ disabled }) => (disabled ? 0.5 : 1)};
+  opacity: ${({ disabled }) => (disabled ? 0.4 : 1)};
   ${({ theme, type }) => {
     switch (type) {
       case COMMON_BUTTON_TYPES.NORMAL:

@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import { getProductBySku } from 'services/api';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
-import { Page, shadowStyle } from 'shared/styles';
+import { shadowStyle } from 'shared/styles';
 import Product from 'shared/types/Product';
 import { ProductDetailProps } from 'shared/types/Router';
 import ProductView from './components/ProductView';
@@ -27,28 +27,11 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
     fetchProductBySku();
   }, [fetchProductBySku]);
 
-  /* I need to do this because exists an bug on android with opcity animation and elevation
-   * https://github.com/facebook/react-native/issues/23090
-   * the correct are:
-   * ./componentes/ProductView:
-   *  <ProductViewContainer style={shadowStyle}>
-   *   <ScrollView>
-   *    ...
-   *  </ProductViewContainer>
-   *
-   *   and  ./index:
-   *    <Page>
-   *     {product && <ProductView product={product} />}
-   *     <FullScreenLoading active={isFetching} />
-   *    </Page>
-   */
   return (
-    <Page>
-      <ProductViewContainer style={shadowStyle}>
-        {product && <ProductView product={product} />}
-        <FullScreenLoading active={isFetching} />
-      </ProductViewContainer>
-    </Page>
+    <ProductViewContainer style={shadowStyle}>
+      {product && <ProductView product={product} />}
+      <FullScreenLoading active={isFetching} />
+    </ProductViewContainer>
   );
 };
 
