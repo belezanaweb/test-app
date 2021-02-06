@@ -10,7 +10,9 @@
   "homeScreen": {
     "screenName": "LISTA DE PRODUTOS",
     "labelProductCod": "cod:",
+    "labelEmptyList": "Não há produtos por aqui.",
     "btnLoadMore": "CARREGAR MAIS PRODURTOS",
+    "btnTryAgain": "TENTAR NOVAMENTE",
     "btnSeeMoreProductDetails": "VER DETALHES"
   },
   "productDetail": {

@@ -16,23 +16,13 @@ const api = axios.create({
   },
 });
 
-export async function getProducts({
-  page,
-  size,
-}: GetProductsProps): Promise<Product[]> {
-  try {
-    const res = await api.get<Product[]>('/products', {
-      params: {
-        page,
-        size,
-      },
-    });
-    return res.data;
-  } catch (error) {
-    showToast(appLabels.error.generic);
-    throw error;
-  }
-}
+export const getProducts = ({ page, size }: GetProductsProps) =>
+  api.get<Product[]>('/products', {
+    params: {
+      page,
+      size,
+    },
+  });
 
 export async function getProductBySku({
   sku,

@@ -1,80 +1,62 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
-import { getProducts } from 'services/api';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
 import { Page } from 'shared/styles';
 import Product from 'shared/types/Product';
 import { HomeProps } from 'shared/types/Router';
-import { showToast } from 'utils';
-import appLabels from 'utils/appLabels';
+import useProducts from '../../utils/customHooks/useProducts';
 import ButtonLoadMore from './components/ButtonLoadMore';
+import EmptyList from './components/EmptyList';
 import ProductCard from './components/ProductCard';
 
-const Home: React.FC<HomeProps> = ({ navigation }) => {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isFetchingProducts, setIsFetchingProducts] = useState(true);
-  const [isFirstFetchProducts, setIsFirstFetchProducts] = useState(true);
-  const [page, setPage] = useState(1);
+/**
+ * I have used windowSize=5 only for proposal of this test, to see components dismounting
+ * More information here: https://reactnative.dev/docs/optimizing-flatlist-configuration
+ *
+ * ***NOTE***
+ * windowSize is different then removeClippedSubviews:
+ * - windowSize: determines how many items are mounted simultaneously. Default is 21;
+ * - removeClippedSubviews: exclude views outside of the viewport from the native rendering.
+ *   But does not save significant memory because the views are not deallocated, only detached.
+ */
 
-  const fetchProducts = useCallback(async (fetchPage?: number) => {
-    try {
-      const response = await getProducts({ page: fetchPage || 1, size: 10 });
-      if (response) {
-        // works with spread operator too: [...prevProducts, ...response]
-        // Array.concat() and spread are non mutating array iterators
-        setProducts(prevProducts => prevProducts.concat(response));
-      } else {
-        showToast(appLabels.error.endProductList);
-      }
-      setIsFetchingProducts(false);
-      setIsFirstFetchProducts(false);
-      setPage(prevPage => prevPage + 1);
-    } catch (error) {
-      setIsFetchingProducts(false);
-      setIsFirstFetchProducts(false);
-      setPage(prevPage => prevPage - 1);
-    }
-  }, []);
+const Home: React.FC<HomeProps> = ({ navigation }) => {
+  const [
+    products,
+    currentPage,
+    didFirstFetch,
+    isFetching,
+    fetchProducts,
+  ] = useProducts(1, 10);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    didFirstFetch && fetchProducts();
+  }, [fetchProducts, didFirstFetch]);
 
-  const handleLoadMorePress = () => {
-    if (!isFetchingProducts) {
-      setIsFetchingProducts(true);
-      fetchProducts(page);
-    }
+  const handleButtonLoadMorePress = () => {
+    !isFetching && fetchProducts(currentPage + 1);
   };
 
-  /**
-   * I have used windowSize=5 only for proposal of this test, to see components dismounting
-   * More information here: https://reactnative.dev/docs/optimizing-flatlist-configuration
-   *
-   * ***NOTE***
-   * windowSize is different then removeClippedSubviews:
-   * - windowSize: determines how much items are mounted simultaneously. Default is 21;
-   * - removeClippedSubviews: exclude views outside of the viewport from the native rendering.
-   *   But does not save significant memory because the views are not deallocated, only detached.
-   */
   return (
     <Page>
       <FlatList<Product>
         keyExtractor={item => item.sku}
         data={products}
+        removeClippedSubviews={true}
         windowSize={5}
-        ListEmptyComponent={() => <></>}
+        ListEmptyComponent={() => <EmptyList shouldRender={!isFetching} />}
         ListFooterComponent={() => (
           <ButtonLoadMore
-            onPress={handleLoadMorePress}
-            isLoading={isFetchingProducts}
+            onPress={handleButtonLoadMorePress}
+            isLoading={isFetching}
+            hasProducts={products.length > 0}
           />
         )}
         renderItem={({ item }) => (
           <ProductCard navigation={navigation} product={item} />
         )}
       />
-      <FullScreenLoading active={isFirstFetchProducts} />
+      <FullScreenLoading active={didFirstFetch} />
     </Page>
   );
 };

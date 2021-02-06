@@ -6,18 +6,24 @@ import { ButtonLoadMoreWrapper } from './styles';
 
 type ButtonLoadMoreProps = {
   onPress: () => void;
-  isLoading?: boolean;
+  isLoading: boolean;
+  hasProducts: boolean;
 };
 
 const ButtonLoadMore: React.FC<ButtonLoadMoreProps> = ({
   onPress,
   isLoading,
+  hasProducts,
 }) => {
   return (
     <ButtonLoadMoreWrapper>
       <CommonButton
         disabled={isLoading}
-        text={appLabels.homeScreen.btnLoadMore}
+        text={
+          hasProducts
+            ? appLabels.homeScreen.btnLoadMore
+            : appLabels.homeScreen.btnTryAgain
+        }
         type={COMMON_BUTTON_TYPES.OUTLINE}
         onPress={onPress}
       />
