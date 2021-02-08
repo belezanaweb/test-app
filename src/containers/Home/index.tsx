@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { FlatList } from 'react-native';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
 import { Page } from 'shared/styles';
-import Product from 'shared/types/Product';
-import { HomeProps } from 'shared/types/Router';
-import useProducts from '../../utils/customHooks/useProducts';
+import Product from 'utils/types/Product';
+import { HomeProps } from 'utils/types/Router';
+import { useProductsList } from '../../utils/customHooks/useProducts';
 import ButtonLoadMore from './components/ButtonLoadMore';
 import EmptyList from './components/EmptyList';
 import ProductCard from './components/ProductCard';
@@ -27,14 +27,16 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
     didFirstFetch,
     isFetching,
     fetchProducts,
-  ] = useProducts(1, 10);
+  ] = useProductsList(1, 10);
 
   useEffect(() => {
     didFirstFetch && fetchProducts();
   }, [fetchProducts, didFirstFetch]);
 
+  const hasProducts = useMemo(() => products.length > 0, [products]);
+
   const handleButtonLoadMorePress = () => {
-    !isFetching && fetchProducts(currentPage + 1);
+    !isFetching && fetchProducts(hasProducts ? currentPage + 1 : currentPage);
   };
 
   return (
@@ -42,14 +44,13 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
       <FlatList<Product>
         keyExtractor={item => item.sku}
         data={products}
-        removeClippedSubviews={true}
         windowSize={5}
-        ListEmptyComponent={() => <EmptyList shouldRender={!isFetching} />}
+        ListEmptyComponent={() => <EmptyList shouldRender={!hasProducts} />}
         ListFooterComponent={() => (
           <ButtonLoadMore
             onPress={handleButtonLoadMorePress}
             isLoading={isFetching}
-            hasProducts={products.length > 0}
+            hasProducts={hasProducts}
           />
         )}
         renderItem={({ item }) => (

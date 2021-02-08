@@ -7,8 +7,8 @@ import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
 import { shadowStyle } from 'shared/styles';
 import theme from 'shared/styles/theme';
-import Product from 'shared/types/Product';
-import { HomeNavigationProp } from 'shared/types/Router';
+import Product from 'utils/types/Product';
+import { HomeNavigationProp } from 'utils/types/Router';
 import { getFeaturedImage, getFormatedPrice } from 'utils';
 import appLabels from 'utils/appLabels';
 import {

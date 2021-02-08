@@ -6,32 +6,30 @@ import ProductDetail from 'containers/ProductDetail';
 import appLabels from 'utils/appLabels';
 import GlobalModal from 'shared/components/GlobalModal';
 import theme from 'shared/styles/theme';
-import { MainStackParamList, RootStackParamList } from 'shared/types/Router';
+import { MainStackParamList, RootStackParamList } from 'utils/types/Router';
 
 const MainStack = createStackNavigator<MainStackParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
 
-function MainStackScreen() {
-  return (
-    <MainStack.Navigator mode="card">
-      <MainStack.Screen
-        name="Home"
-        component={Home}
-        options={{
-          title: appLabels.homeScreen.screenName,
-          animationEnabled: false,
-          headerTitleAlign: 'center',
-          headerTitleStyle: { backgroundColor: theme.palette.background },
-        }}
-      />
-      <MainStack.Screen
-        name="ProductDetail"
-        component={ProductDetail}
-        options={{ title: appLabels.productDetail.screenName }}
-      />
-    </MainStack.Navigator>
-  );
-}
+const MainStackScreen = () => (
+  <MainStack.Navigator mode="card">
+    <MainStack.Screen
+      name="Home"
+      component={Home}
+      options={{
+        title: appLabels.homeScreen.screenName,
+        animationEnabled: false,
+        headerTitleAlign: 'center',
+        headerTitleStyle: { backgroundColor: theme.palette.background },
+      }}
+    />
+    <MainStack.Screen
+      name="ProductDetail"
+      component={ProductDetail}
+      options={{ title: appLabels.productDetail.screenName }}
+    />
+  </MainStack.Navigator>
+);
 
 const Router: React.FC = () => (
   <NavigationContainer>
