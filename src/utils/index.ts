@@ -1,7 +1,7 @@
 import { Alert, Platform, ToastAndroid } from 'react-native';
 import theme from 'shared/styles/theme';
 import appLabels from './appLabels';
-import { ImageObject, PriceSpecification } from 'shared/types/Product';
+import { ImageObject, PriceSpecification } from 'utils/types/Product';
 
 type getFontWeightProps = {
   weight: 'normal' | 'bold';
@@ -51,6 +51,7 @@ export function showToast(msg: string) {
 export function getFormatedPrice(priceSpecification: PriceSpecification) {
   const maxPrice = getFormatedCurrency(priceSpecification.maxPrice);
   const price = getFormatedCurrency(priceSpecification.price);
-  const hasPriceDifference = price < maxPrice;
+  const hasPriceDifference =
+    priceSpecification.price < priceSpecification.maxPrice;
   return { maxPrice, price, hasPriceDifference };
 }

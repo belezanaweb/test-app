@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import Animated, { Easing } from 'react-native-reanimated';
 import theme from 'shared/styles/theme';
@@ -13,34 +13,30 @@ type FullScreenLoadingProps = {
 };
 
 const FullScreenLoading: React.FC<FullScreenLoadingProps> = ({ active }) => {
-  const [isLoadingEnabled, setIsLoadingEnabled] = useState(false);
+  const [isLoadingDisabled, setIsLoadingDisabled] = useState(false);
   const animatedValue = useRef(new Animated.Value(1));
 
-  const fadeOut = Animated.timing(animatedValue.current, {
-    toValue: 0,
-    duration: 500,
-    easing: Easing.ease,
-  });
-
-  const toggleLoadingVisibility = useCallback(() => {
-    fadeOut.start(() => setIsLoadingEnabled(true));
-  }, [fadeOut]);
+  const fadeOut = useMemo(
+    () =>
+      Animated.timing(animatedValue.current, {
+        toValue: 0,
+        duration: 500,
+        easing: Easing.ease,
+      }),
+    [],
+  );
 
   useEffect(() => {
-    !active && toggleLoadingVisibility();
-  }, [active, toggleLoadingVisibility]);
+    !active && fadeOut.start(() => setIsLoadingDisabled(true));
+  }, [active, fadeOut]);
 
   const animatedStyle = {
     opacity: animatedValue.current,
   };
 
   return (
-    <AnimatedLoadingContainer
-      needsOffscreenAlphaCompositing={isLoadingEnabled}
-      renderToHardwareTextureAndroid={isLoadingEnabled}
-      style={animatedStyle}
-      pointerEvents={'none'}>
-      {!isLoadingEnabled && (
+    <AnimatedLoadingContainer style={animatedStyle} pointerEvents={'none'}>
+      {!isLoadingDisabled && (
         <ActivityIndicator size="large" color={theme.palette.primary} />
       )}
     </AnimatedLoadingContainer>

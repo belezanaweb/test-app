@@ -67,6 +67,9 @@ declare module 'styled-components' {
           width: number;
         };
       };
+      scrollView: {
+        paddingOffSet: number;
+      };
     };
   }
 }

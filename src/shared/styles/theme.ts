@@ -65,6 +65,9 @@ const theme: DefaultTheme = {
         width: 163,
       },
     },
+    scrollView: {
+      paddingOffSet: 10,
+    },
   },
 };
 
