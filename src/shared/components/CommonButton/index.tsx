@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ActivityIndicator } from 'react-native';
 import theme from 'shared/styles/theme';
 import { ICommonButton, StyledButton, StyledButtonText } from './styles';
@@ -15,4 +15,4 @@ export const CommonButton: React.FC<ICommonButton> = props => {
   );
 };
 
-export default CommonButton;
+export default memo(CommonButton);

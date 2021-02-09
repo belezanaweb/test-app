@@ -1,8 +1,6 @@
 import axios from 'axios';
-import { showToast } from 'utils';
-import appLabels from 'utils/appLabels';
-import { GetProductsProps, GetProductBySkuProps } from 'shared/types/Api';
-import Product from 'shared/types/Product';
+import { GetProductBySkuProps, GetProductsProps } from 'utils/types/Api';
+import Product from 'utils/types/Product';
 
 const BASE_URL = 'https://pacific-wave-51314.herokuapp.com';
 
@@ -24,16 +22,7 @@ export const getProducts = ({ page, size }: GetProductsProps) =>
     },
   });
 
-export async function getProductBySku({
-  sku,
-}: GetProductBySkuProps): Promise<Product> {
-  try {
-    const res = await api.get<Product>(`/products/${sku}`);
-    return res.data;
-  } catch (error) {
-    showToast(appLabels.error.generic);
-    throw error;
-  }
-}
+export const getProductBySku = ({ sku }: GetProductBySkuProps) =>
+  api.get<Product>(`/products/${sku}`);
 
 export default api;

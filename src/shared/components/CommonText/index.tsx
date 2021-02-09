@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import {
+  CommonTextContainer,
   COMMON_TEXT_TYPES,
   Dash,
   ICommonText,
   StyledCommonText,
-  CommonTextContainer,
 } from './styles';
 
 const CommonText: React.FC<ICommonText> = props => {
