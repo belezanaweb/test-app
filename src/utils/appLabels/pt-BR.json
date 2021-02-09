@@ -24,5 +24,17 @@
     "btnReadMoreOpen": "Ver menos",
     "btnBuy": "COMPRE",
     "btnNotify": "AVISE-ME"
+  },
+  "globalModal": {
+    "screenName": "Global Modal",
+    "labelTitle": "Atenção",
+    "labelSubtitleWithInventory": "Podemos confirmar a compra desse produto?",
+    "labelSubtitleWithoutInventory": "Informe seu nome e e-mail para ser informado quando houver estoque desse produto",
+    "labelName": "Nome",
+    "placeholderName": "Digite seu nome",
+    "labelEmail": "E-mail",
+    "placeholderEmail": "Digite seu e-mail",
+    "btnDisagree": "Cancelar",
+    "btnAgree": "Confirmar"
   }
 }

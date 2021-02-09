@@ -7,7 +7,7 @@ type MainStackParamList = {
 };
 type RootStackParamList = {
   MainStack: undefined;
-  GlobalModal?: { body: JSX.Element | JSX.Element[] };
+  GlobalModal: { hasInventory: boolean };
 };
 
 type HomeNavigationProp = CompositeNavigationProp<

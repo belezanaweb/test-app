@@ -42,14 +42,15 @@ const Router: React.FC = () => (
         cardStyleInterpolator: ({ current: { progress } }) => ({
           cardStyle: {
             opacity: progress.interpolate({
-              inputRange: [0, 0.5, 0.9, 1],
-              outputRange: [0, 0.25, 0.7, 1],
+              inputRange: [0.3, 0.6, 0.8, 1],
+              outputRange: [0, 0.2, 0.8, 1],
             }),
             transform: [
               {
-                translateY: progress.interpolate({
-                  inputRange: [0.5, 1],
-                  outputRange: [100, 0],
+                scale: progress.interpolate({
+                  inputRange: [0.6, 1],
+                  outputRange: [1.05, 1],
+                  extrapolate: 'clamp',
                 }),
               },
             ],

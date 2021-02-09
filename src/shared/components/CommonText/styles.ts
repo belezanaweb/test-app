@@ -17,9 +17,11 @@ export enum COMMON_TEXT_TYPES {
 
 export interface ICommonText extends TextProps {
   textType: COMMON_TEXT_TYPES;
+  centralised?: boolean;
 }
 
 export const StyledCommonText = styled.Text<ICommonText>`
+  text-align: ${({ centralised }) => (centralised ? 'center' : 'left')};
   ${({ theme, textType }) => {
     switch (textType) {
       case COMMON_TEXT_TYPES.NORMAL:

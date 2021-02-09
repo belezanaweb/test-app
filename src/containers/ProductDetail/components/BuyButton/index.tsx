@@ -14,8 +14,8 @@ const BuyButton: React.FC<BuyButtonProps> = ({ hasInventory }) => {
   const navigation = useNavigation<ProductDetailNavigationProp>();
 
   const handlePress = useCallback(() => {
-    navigation.navigate('GlobalModal');
-  }, [navigation]);
+    navigation.navigate('GlobalModal', { hasInventory: hasInventory });
+  }, [hasInventory, navigation]);
 
   return (
     <BuyButtonContainer>

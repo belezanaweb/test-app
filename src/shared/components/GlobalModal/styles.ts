@@ -16,10 +16,11 @@ export const Wrapper = styled.TouchableOpacity`
     moderateScale(theme.dimensions.common.borderRadius)}px;
   background-color: ${({ theme }) => theme.palette.common.white};
   min-height: ${moderateScale(200)}px;
-  min-width: ${moderateScale(200)}px;
+  min-width: ${moderateScale(270)}px;
   max-width: ${moderateScale(300)}px;
   justify-content: space-between;
-  padding: ${moderateScale(10)}px;
+  padding: ${({ theme }) =>
+    moderateScale(theme.dimensions.common.margin.normal)}px;
   overflow: hidden;
 `;
 
@@ -31,27 +32,42 @@ export const Header = styled.View`
 `;
 
 export const Body = styled.View`
-  justify-content: space-between;
-  min-height: ${moderateScale(150)}px;
+  justify-content: center;
+  min-height: ${moderateScale(100)}px;
   margin: ${moderateScale(10)}px 0px ${moderateScale(25)}px 0px;
+`;
+
+export const Subtitle = styled.View`
+  align-items: center;
 `;
 
 export const Footer = styled.View`
   flex-direction: row;
-  width: 100%;
   justify-content: space-between;
+`;
+
+export const TextInputWrapper = styled.View`
+  margin-top: ${({ theme }) =>
+    moderateScale(theme.dimensions.common.margin.normal)}px;
+  margin-bottom: ${({ theme }) =>
+    moderateScale(theme.dimensions.common.margin.small)}px;
 `;
 
 export const CloseWrapper = styled.TouchableOpacity`
   position: absolute;
-  right: 15px;
-  top: 10px;
+  right: ${({ theme }) =>
+    moderateScale(theme.dimensions.common.margin.normal)}px;
+  top: ${({ theme }) => moderateScale(theme.dimensions.common.margin.normal)}px;
 `;
 
 export const StyledInput = styled.TextInput`
   border: 1px solid ${({ theme }) => theme.palette.common.black};
   border-radius: ${({ theme }) =>
     moderateScale(theme.dimensions.common.borderRadius)}px;
-  padding: 10px;
-  width: 100%;
+  padding: ${({ theme }) =>
+    moderateScale(theme.dimensions.common.margin.normal)}px;
+`;
+
+export const ButtonWrapper = styled.View`
+  width: ${moderateScale(120)}px;
 `;
