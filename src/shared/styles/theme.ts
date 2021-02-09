@@ -68,6 +68,9 @@ const theme: DefaultTheme = {
     scrollView: {
       paddingOffSet: 10,
     },
+    gradient: {
+      height: 35,
+    },
   },
 };
 

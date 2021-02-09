@@ -70,6 +70,9 @@ declare module 'styled-components' {
       scrollView: {
         paddingOffSet: number;
       };
+      gradient: {
+        height: number;
+      };
     };
   }
 }
