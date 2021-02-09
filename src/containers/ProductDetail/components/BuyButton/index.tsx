@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { memo, useCallback } from 'react';
 import CommonButton from 'shared/components/CommonButton';
 import { COMMON_BUTTON_TYPES } from 'shared/components/CommonButton/styles';
+import { ProductDetailNavigationProp } from 'utils/types/Router';
 import appLabels from 'utils/appLabels';
 import { BuyButtonContainer } from './styles';
 
@@ -9,10 +11,17 @@ type BuyButtonProps = {
 };
 
 const BuyButton: React.FC<BuyButtonProps> = ({ hasInventory }) => {
+  const navigation = useNavigation<ProductDetailNavigationProp>();
+
+  const handlePress = useCallback(() => {
+    navigation.navigate('GlobalModal');
+  }, [navigation]);
+
   return (
     <BuyButtonContainer>
       <CommonButton
         delayPressIn={50}
+        onPress={handlePress}
         type={
           hasInventory
             ? COMMON_BUTTON_TYPES.NORMAL

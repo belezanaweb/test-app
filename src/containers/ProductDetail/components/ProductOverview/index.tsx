@@ -4,7 +4,7 @@ import { moderateScale } from 'react-native-size-matters';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
 import theme from 'shared/styles/theme';
-import Product from 'shared/types/Product';
+import Product from 'utils/types/Product';
 import { getFeaturedImage, getFormatedCurrency, getFormatedPrice } from 'utils';
 import appLabels from 'utils/appLabels';
 import { FirstLineOverview, ImageWrapper, SecondtLineOverview } from './styles';

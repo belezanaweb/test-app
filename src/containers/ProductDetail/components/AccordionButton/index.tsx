@@ -6,6 +6,7 @@ import Animated, { Easing } from 'react-native-reanimated';
 import { moderateScale } from 'react-native-size-matters';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
+import theme from 'shared/styles/theme';
 import appLabels from 'utils/appLabels';
 import { AccordionWrapper, LinearGradientWrapper } from './styles';
 
@@ -26,7 +27,7 @@ const AccordionButton: React.FC<AccordionButtonProps> = ({
   const { width } = useWindowDimensions();
   const gradienteDimensions = useMemo(() => {
     return {
-      height: moderateScale(30),
+      height: moderateScale(theme.dimensions.gradient.height),
       width: width,
     };
   }, [width]);
@@ -79,15 +80,6 @@ const AccordionButton: React.FC<AccordionButtonProps> = ({
       delayPressIn={50}
       activeOpacity={1}
       onPress={onOpenAccordion}>
-      <AnimatedLinearGradientWrapper
-        pointerEvents="none"
-        style={animatedOpacityStyle}>
-        <FastImage
-          style={gradienteDimensions}
-          source={require('assets/images/linearGradient.png')}
-        />
-      </AnimatedLinearGradientWrapper>
-
       <CommonText textType={COMMON_TEXT_TYPES.ACCORDION}>
         {isAccordionOpen
           ? appLabels.productDetail.btnReadMoreOpen
@@ -96,6 +88,14 @@ const AccordionButton: React.FC<AccordionButtonProps> = ({
       <Animated.View style={animatedRotateStyle}>
         <Arrow />
       </Animated.View>
+      <AnimatedLinearGradientWrapper
+        pointerEvents="none"
+        style={animatedOpacityStyle}>
+        <FastImage
+          style={gradienteDimensions}
+          source={require('assets/images/linearGradient.png')}
+        />
+      </AnimatedLinearGradientWrapper>
     </AccordionWrapper>
   );
 };

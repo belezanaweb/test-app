@@ -3,7 +3,7 @@ import { LayoutRectangle, View } from 'react-native';
 import HTML from 'react-native-render-html';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
-import Product from 'shared/types/Product';
+import Product from 'utils/types/Product';
 import { getFontWeight } from 'utils';
 import appLabels from 'utils/appLabels';
 

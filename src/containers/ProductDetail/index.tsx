@@ -1,31 +1,20 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import { getProductBySku } from 'services/api';
+import React, { memo, useEffect } from 'react';
 import FullScreenLoading from 'shared/components/FullScreenLoading';
 import { shadowStyle } from 'shared/styles';
-import Product from 'shared/types/Product';
-import { ProductDetailProps } from 'shared/types/Router';
+import { useProductDetail } from 'utils/customHooks/useProducts';
+import { ProductDetailProps } from 'utils/types/Router';
 import ProductView from './components/ProductView';
 import { ProductViewContainer } from './components/ProductView/styles';
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ route }) => {
-  const [product, setProduct] = useState<Product>();
-  const [isFetching, setIsFetching] = useState(true);
+  const [product, isFetching, fetchProduct] = useProductDetail();
   const {
     params: { sku },
   } = route;
-  const fetchProductBySku = useCallback(async () => {
-    try {
-      const response = await getProductBySku({ sku });
-      setProduct(response);
-      setIsFetching(false);
-    } catch (error) {
-      setIsFetching(false);
-    }
-  }, [sku]);
 
   useEffect(() => {
-    fetchProductBySku();
-  }, [fetchProductBySku]);
+    fetchProduct(sku);
+  }, [fetchProduct, sku]);
 
   return (
     <ProductViewContainer style={shadowStyle}>
