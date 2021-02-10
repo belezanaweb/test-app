@@ -24,7 +24,6 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
           {appLabels.productDetail.labelProductDescription}
         </CommonText>
       </View>
-      {/* Product description */}
       <HTML
         source={{
           html: product.details.description,

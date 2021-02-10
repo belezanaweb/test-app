@@ -72,7 +72,7 @@ const theme: DefaultTheme = {
       height: 35,
     },
     header: {
-      height: 30,
+      height: 35,
     },
   },
 };

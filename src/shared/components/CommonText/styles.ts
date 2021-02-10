@@ -31,15 +31,13 @@ export const StyledCommonText = styled.Text<ICommonText>`
           color: ${theme.palette.common.black};`;
       case COMMON_TEXT_TYPES.TITLE:
         return `
-          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-family: ${getFontWeight({ weight: 'bold' })};
           font-size: ${moderateScale(theme.dimensions.text.size.bigLarge)}px;
-          font-weight: 500;
           color: ${theme.palette.common.black};`;
       case COMMON_TEXT_TYPES.SUBTITLE:
         return `
-          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-family: ${getFontWeight({ weight: 'bold' })};
           font-size: ${moderateScale(theme.dimensions.text.size.extraLarge)}px;
-          font-weight: 500;
           color: ${theme.palette.common.black};`;
       case COMMON_TEXT_TYPES.PRIMARY:
         return `
@@ -53,9 +51,8 @@ export const StyledCommonText = styled.Text<ICommonText>`
           color: ${theme.palette.primary};`;
       case COMMON_TEXT_TYPES.ACCORDION:
         return `
-          font-family: ${getFontWeight({ weight: 'normal' })};
+          font-family: ${getFontWeight({ weight: 'bold' })};
           font-size: ${moderateScale(theme.dimensions.text.size.normal)}px;
-          font-weight: 500;
           color: ${theme.palette.common.royalHeath};`;
       case COMMON_TEXT_TYPES.SMOOTH:
         return `

@@ -22,6 +22,7 @@ const MainStackScreen = () => (
         backgroundColor: theme.palette.background,
         elevation: 0, // remove shadow on Android
         shadowOpacity: 0, // remove shadow on iOS
+        height: moderateScale(theme.dimensions.header.height),
       },
       headerTintColor: theme.palette.common.black,
       headerTitleStyle: {
