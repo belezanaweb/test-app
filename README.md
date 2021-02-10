@@ -33,7 +33,7 @@ Vamos lá, alguns itens são "visiveis", outros não. Irei colocar um gif daquil
   > A prop `windowSize`, responsável por essa liberação de memória, foi commitada com o valor 5, para ser um misto entre atraso visual e performance. Existe uma explicação melhor no componente [`src/containers/Home`](./src/containers/Home). No gif abaixo, utilizei o valor 1 para ficar claramente visível:
 
 <p align="center">
-  <img  title="IOS" src="https://i.imgur.com/DIb93RP.gif">
+  <img  title="IOS" src="https://i.imgur.com/gapwfrn.gif">
   <img  title="Android" src="https://i.imgur.com/AHMPmFq.gif">
 </p>
 
