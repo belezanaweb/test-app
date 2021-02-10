@@ -3,7 +3,7 @@
 Olá! Antes de tudo, acho melhor começarmos matando a curiosidade. Aqui vai uma amostra rápida (bem rápida) de como ficou o App:
 
 <p align="center">
-  <img  title="IOS" src="https://i.imgur.com/QTxjqye.gif">
+  <img  title="IOS" src="https://i.imgur.com/DkSZBpC.gif">
   <img  title="Android" src="https://i.imgur.com/UwYH5KN.gif">
 </p>
 
