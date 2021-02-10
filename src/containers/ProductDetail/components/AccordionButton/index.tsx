@@ -1,8 +1,7 @@
 import Arrow from 'assets/svg/Arrow';
-import React, { memo, useMemo, useRef } from 'react';
-import { useWindowDimensions } from 'react-native';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
+import { Animated, Easing, useWindowDimensions } from 'react-native';
 import FastImage from 'react-native-fast-image';
-import Animated, { Easing } from 'react-native-reanimated';
 import { moderateScale } from 'react-native-size-matters';
 import CommonText from 'shared/components/CommonText';
 import { COMMON_TEXT_TYPES } from 'shared/components/CommonText/styles';
@@ -32,19 +31,29 @@ const AccordionButton: React.FC<AccordionButtonProps> = ({
     };
   }, [width]);
 
-  const fadeIn = Animated.timing(animatedValue.current, {
-    toValue: 1,
-    duration: 150,
-    easing: Easing.ease,
-  });
+  const fadeIn = useMemo(
+    () =>
+      Animated.timing(animatedValue.current, {
+        toValue: 1,
+        duration: 150,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }),
+    [],
+  );
 
-  const fadeOut = Animated.timing(animatedValue.current, {
-    toValue: 0,
-    duration: 150,
-    easing: Easing.ease,
-  });
+  const fadeOut = useMemo(
+    () =>
+      Animated.timing(animatedValue.current, {
+        toValue: 0,
+        duration: 150,
+        easing: Easing.ease,
+        useNativeDriver: true,
+      }),
+    [],
+  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isAccordionOpen) {
       fadeIn.start();
     } else {
