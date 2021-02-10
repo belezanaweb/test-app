@@ -6,9 +6,11 @@
     "start": "npx react-native start",
     "start:clean": "rm -rf /tmp/metro-* && yarn start --reset-cache",
     "android": "npx react-native run-android",
+    "android-release": "npx react-native run-android --variant=release",
     "android:clean": "cd android/ && ./gradlew clean && cd .. && npx react-native run-android",
     "adb-reverse": "adb reverse tcp:8081 tcp:8081",
     "ios": "npx react-native run-ios",
+    "pod-install": "cd ios/ && pod install && cd ..",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
