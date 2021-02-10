@@ -7,21 +7,32 @@ import appLabels from 'utils/appLabels';
 import GlobalModal from 'shared/components/GlobalModal';
 import theme from 'shared/styles/theme';
 import { MainStackParamList, RootStackParamList } from 'utils/types/Router';
+import { getFontWeight } from 'utils';
+import { moderateScale } from 'react-native-size-matters';
 
 const MainStack = createStackNavigator<MainStackParamList>();
 const RootStack = createStackNavigator<RootStackParamList>();
 
 const MainStackScreen = () => (
-  <MainStack.Navigator mode="card">
+  <MainStack.Navigator
+    mode="card"
+    screenOptions={{
+      headerTitleAlign: 'center',
+      headerStyle: {
+        backgroundColor: theme.palette.background,
+        elevation: 0, // remove shadow on Android
+        shadowOpacity: 0, // remove shadow on iOS
+      },
+      headerTintColor: theme.palette.common.black,
+      headerTitleStyle: {
+        fontFamily: getFontWeight({ weight: 'bold' }),
+        fontSize: moderateScale(theme.dimensions.text.size.large),
+      },
+    }}>
     <MainStack.Screen
       name="Home"
       component={Home}
-      options={{
-        title: appLabels.homeScreen.screenName,
-        animationEnabled: false,
-        headerTitleAlign: 'center',
-        headerTitleStyle: { backgroundColor: theme.palette.background },
-      }}
+      options={{ title: appLabels.homeScreen.screenName }}
     />
     <MainStack.Screen
       name="ProductDetail"

@@ -73,6 +73,9 @@ declare module 'styled-components' {
       gradient: {
         height: number;
       };
+      header: {
+        height: number;
+      };
     };
   }
 }

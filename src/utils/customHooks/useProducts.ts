@@ -36,6 +36,7 @@ export function useProductsList(inititalPage: number, size: number) {
         showToast(appLabels.error.generic);
         setIsFetching(false);
         setDidFirstFetch(false);
+        throw Error(appLabels.error.generic);
       }
     },
     [inititalPage, size],
@@ -62,6 +63,7 @@ export function useProductDetail() {
     } catch (error) {
       showToast(appLabels.error.generic);
       setIsFetching(false);
+      throw Error(appLabels.error.generic);
     }
   }, []);
 

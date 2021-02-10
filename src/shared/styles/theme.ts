@@ -71,6 +71,9 @@ const theme: DefaultTheme = {
     gradient: {
       height: 35,
     },
+    header: {
+      height: 30,
+    },
   },
 };
 
